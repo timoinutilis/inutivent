@@ -8,7 +8,8 @@ function get_header()
 <head>
 <title>Inutivent</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" media="all" href="style.css" />
+<!--link rel="stylesheet" type="text/css" media="all" href="style.css" /-->
+<script type="text/javascript" src="functions.js"></script>
 </head>
 
 <body>

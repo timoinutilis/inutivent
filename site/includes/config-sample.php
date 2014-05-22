@@ -12,4 +12,7 @@ define('DB_PASSWORD', '');
 /** MySQL hostname */
 define('DB_HOST', '');
 
+/** Root URL */
+define('SITE_URL', '');
+
 ?>
