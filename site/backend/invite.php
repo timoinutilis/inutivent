@@ -35,7 +35,17 @@ else
 				$mail = trim($mail);
 				if (strlen($mail) > 0)
 				{
-					$guest_user_id = user_create($con, $event_id, '???');
+					$name = '???';
+
+					// extract name
+					$mail_parts = explode(' ', $mail);
+					if (count($mail_parts) > 1)
+					{
+						$name = $mail_parts[0];
+					}
+
+					// create user and send mail
+					$guest_user_id = user_create($con, $event_id, $name);
 					if ($guest_user_id === FALSE)
 					{
 						$failed[] = $mail;

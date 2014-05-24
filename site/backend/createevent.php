@@ -30,7 +30,7 @@ else
 		}
 		else
 		{
-			$user_id = user_create($con, $event_id, $name);
+			$user_id = user_create($con, $event_id, $name, STATUS_ATTENDING);
 			if ($user_id === FALSE)
 			{
 				return_error(mysql_error());

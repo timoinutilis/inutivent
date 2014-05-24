@@ -15,4 +15,7 @@ define('DB_HOST', '');
 /** Root URL */
 define('SITE_URL', '');
 
+/** Invitation sender e-mail */
+define('SENDER_MAIL_ADDRESS', '');
+
 ?>

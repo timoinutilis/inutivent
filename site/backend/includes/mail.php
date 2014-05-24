@@ -34,8 +34,7 @@ END;
 
 function send_mail($mail, $subject, $message)
 {
-//	$message = wordwrap($message, 70, "\r\n");
-	$headers = 'From: Inutivent <no-reply@inutilis.com>';
+	$headers = 'From: '.SENDER_MAIL_ADDRESS;
 	return mail($mail, $subject, $message, $headers);
 }
 
