@@ -32,5 +32,13 @@ function sendForm(form, onComplete, onError)
 	}
 	request.open(form.method, form.action, true);
 	request.send(new FormData(form));
+}
 
+function setFormsDisabled(disabled)
+{
+	var elements = document.getElementsByTagName("input");
+	for (var i = 0; i < elements.length; i++)
+	{
+		elements[i].disabled = disabled;
+	}
 }

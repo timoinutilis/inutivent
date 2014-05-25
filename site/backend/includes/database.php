@@ -65,7 +65,7 @@ function event_create($con, $title, $details, $time)
 	return FALSE;
 }
 
-function event_update($con, $event_id, $title, $time, $details)
+function event_update($con, $event_id, $title = NULL, $time = NULL, $details = NULL, $cover = NULL)
 {
 	$changes = array();
 
@@ -83,6 +83,11 @@ function event_update($con, $event_id, $title, $time, $details)
 	{
 		$details = mysql_escape_string($details);
 		$changes[] = "details = '{$details}'";
+	}
+	if (!empty($cover))
+	{
+		$cover = mysql_escape_string($cover);
+		$changes[] = "cover = '{$cover}'";
 	}
 
 	if (count($changes) > 0)

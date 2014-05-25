@@ -31,6 +31,25 @@ if ($con)
 		}
 		else
 		{
+			if (!empty($event->cover))
+			{
+				$cover_url = "uploads/".$event_id."/".$event->cover;
+				echo "<div><img src=\"{$cover_url}\"></div>";
+			}
+			if ($is_owner)
+			{
+?>
+
+<form action="backend/uploadcover.php" method="post" enctype="multipart/form-data" onsubmit="return onCoverSubmit(event)">
+<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+<label for="file">Foto de portada:</label>
+<input type="file" name="file" id="file">
+<input type="submit" name="submit" value="Subir">
+</form>
+
+<?php
+			}
 
 ?>
 
@@ -52,6 +71,7 @@ if ($con)
 <button type="button" onclick="hideEditor('title-display', 'title-editor', 'input-title');">Cancelar</button>
 </form>
 </div>
+
 <?php
 			}
 ?>
@@ -180,12 +200,22 @@ function submitAssist()
 {
 	var form = document.getElementById("form-assist");
 	sendForm(form, onComplete, onError);
+	setFormsDisabled(true);
 }
 
 function onNameSubmit(event)
 {
 	var form = event.target;
 	sendForm(form, onComplete, onError);
+	setFormsDisabled(true);
+	return false;
+}
+
+function onCoverSubmit(event)
+{
+	var form = event.target;
+	sendForm(form, onComplete, onError);
+	setFormsDisabled(true);
 	return false;
 }
 
@@ -193,6 +223,7 @@ function onPostSubmit(event)
 {
 	var form = event.target;
 	sendForm(form, onComplete, onError);
+	setFormsDisabled(true);
 	return false;
 }
 
@@ -200,16 +231,19 @@ function onEventSubmit(event)
 {
 	var form = event.target;
 	sendForm(form, onComplete, onError);
+	setFormsDisabled(true);
 	return false;
 }
 
 function onComplete(data)
 {
+	setFormsDisabled(false);
 	window.location.reload();
 }
 
 function onError(error)
 {
+	setFormsDisabled(false);
 	alert(error);
 }
 
