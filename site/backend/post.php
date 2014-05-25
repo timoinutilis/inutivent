@@ -3,10 +3,10 @@
 require_once(dirname(__FILE__).'/includes/database.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 
-if (   !isset($_REQUEST['event_id'])
-	|| !isset($_REQUEST['user_id'])
-	|| !isset($_REQUEST['type'])
-	|| !isset($_REQUEST['data']) )
+if (   empty($_REQUEST['event_id'])
+	|| empty($_REQUEST['user_id'])
+	|| empty($_REQUEST['type'])
+	|| empty($_REQUEST['data']) )
 {
 	return_error("missing parameters");
 }

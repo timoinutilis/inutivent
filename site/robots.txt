@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /uploads/
+Disallow: /event.php
+Disallow: /invite.php
+Disallow: /*?*

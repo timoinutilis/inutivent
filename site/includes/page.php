@@ -1,7 +1,11 @@
 <?php
 
+require_once(dirname(__FILE__).'/config.php');
+
 function get_header()
 {
+	$url = SITE_URL;
+
 	echo <<<END
 <!DOCTYPE HTML>
 <html>
@@ -13,7 +17,7 @@ function get_header()
 </head>
 
 <body>
-<h1>Inutivent</h1>
+<h1><a href="{$url}">Inutivent</a></h1>
 
 END;
 }

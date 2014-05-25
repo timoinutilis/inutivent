@@ -35,6 +35,26 @@ if ($con)
 ?>
 
 <h2><?php echo $event->title; ?></h2>
+<?php
+			if ($is_owner)
+			{
+?>
+
+<div id="title-display">
+<button type="button" onclick="showTitleEditor();">Editar título</button>
+</div>
+<div id="title-editor" style="display:none;">
+<form action="backend/updateevent.php" method="POST" onsubmit="return onEventSubmit(event)">
+<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+<input type="text" name="title" id="input-title">
+<input type="submit" value="Guardar">
+<button type="button" onclick="hideEditor('title-display', 'title-editor', 'input-title');">Cancelar</button>
+</form>
+</div>
+<?php
+			}
+?>
 
 <p>
 <form action="backend/updateuser.php" method="POST" id="form-assist" onsubmit="return false">
@@ -51,18 +71,76 @@ if ($con)
 <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 Tu nombre: <input type="text" name="name" value="<?php echo $user->name; ?>">
-<input type="submit" value="Cambiar">
+<input type="submit" value="Guardar">
 </form>
 </p>
 
 <h3>Fecha</h3>
 <p>
-<?php echo $event->time; ?>
+<?php
+			if ($is_owner)
+			{
+?>
+
+<div id="time-display">
+<?php echo $event->time;?>
+<button type="button" onclick="showTimeEditor();">Editar</button>
+</div>
+<div id="time-editor" style="display:none;">
+<form action="backend/updateevent.php" method="POST" onsubmit="return onEventSubmit(event)">
+<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+<input type="text" name="time" id="input-time">
+<input type="submit" value="Guardar">
+<button type="button" onclick="hideEditor('time-display', 'time-editor', 'input-time');">Cancelar</button>
+</form>
+</div>
+<?php
+			}
+			else
+			{
+?>
+<div id="time-display">
+<?php echo $event->time;?>
+</div>
+<?php
+			}
+?>
 </p>
 <h3>Detalles</h3>
+<?php
+			if ($is_owner)
+			{
+?>
+<div id="details-display">
 <p>
 <?php echo html_text($event->details); ?>
 </p>
+<button type="button" onclick="showDetailsEditor();">Editar</button>
+</div>
+<div id="details-editor" style="display:none;">
+<form action="backend/updateevent.php" method="POST" onsubmit="return onEventSubmit(event)">
+<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+<textarea rows="10" cols="50" name="details" id="textarea-details"></textarea><br>
+<input type="submit" value="Guardar">
+<button type="button" onclick="hideEditor('details-display', 'details-editor', 'textarea-details');">Cancelar</button>
+</form>
+</div>
+<?php
+			}
+			else
+			{
+?>
+<div id="details-display">
+<p>
+<?php echo html_text($event->details); ?>
+</p>
+</div>
+
+<?php
+			}
+?>
 
 <?php
 
@@ -100,7 +178,7 @@ else
 
 function submitAssist()
 {
-	var form = document.getElementById('form-assist');
+	var form = document.getElementById("form-assist");
 	sendForm(form, onComplete, onError);
 }
 
@@ -118,6 +196,13 @@ function onPostSubmit(event)
 	return false;
 }
 
+function onEventSubmit(event)
+{
+	var form = event.target;
+	sendForm(form, onComplete, onError);
+	return false;
+}
+
 function onComplete(data)
 {
 	window.location.reload();
@@ -126,6 +211,37 @@ function onComplete(data)
 function onError(error)
 {
 	alert(error);
+}
+
+function showTitleEditor()
+{
+	var data = <?php echo json_encode($event->title); ?>;
+	document.getElementById("title-display").style.display = "none";
+	document.getElementById("title-editor").style.display = "block";
+	document.getElementById("input-title").value = data;
+}
+
+function showTimeEditor()
+{
+	var data = <?php echo json_encode($event->time); ?>;
+	document.getElementById("time-display").style.display = "none";
+	document.getElementById("time-editor").style.display = "block";
+	document.getElementById("input-time").value = data;
+}
+
+function showDetailsEditor()
+{
+	var data = <?php echo json_encode($event->details); ?>;
+	document.getElementById("details-display").style.display = "none";
+	document.getElementById("details-editor").style.display = "block";
+	document.getElementById("textarea-details").value = data;
+}
+
+function hideEditor(displayDiv, editorDiv, valueInput)
+{
+	document.getElementById(displayDiv).style.display = "block";
+	document.getElementById(editorDiv).style.display = "none";
+	document.getElementById(valueInput).value = "";
 }
 
 </script>

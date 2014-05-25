@@ -9,6 +9,9 @@ define('STATUS_MAYBE_ATTENDING', 'M');
 
 define('POST_TYPE_TEXT', 'T');
 
+define('HASH_EVENT', 'md5');
+define('HASH_USER', 'crc32');
+
 function connect_to_db()
 {
 	$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
@@ -25,7 +28,7 @@ function connect_to_db()
 function event_get_new_id($con)
 {
 	$time = microtime();
-	$time_hash = hash('crc32', $time);
+	$time_hash = hash(HASH_EVENT, $time);
 
 	for ($i = 0; $i < 10; $i++)
 	{
@@ -39,7 +42,7 @@ function event_get_new_id($con)
 			return $time_hash;
 		}
 		$time++;
-		$time_hash = hash('crc32', $time);
+		$time_hash = hash(HASH_EVENT, $time);
 	}
 
 	return FALSE;
@@ -62,6 +65,37 @@ function event_create($con, $title, $details, $time)
 	return FALSE;
 }
 
+function event_update($con, $event_id, $title, $time, $details)
+{
+	$changes = array();
+
+	if (!empty($title))
+	{
+		$title = mysql_escape_string($title);
+		$changes[] = "title = '{$title}'";
+	}
+	if (!empty($time))
+	{
+		$time = mysql_escape_string($time);
+		$changes[] = "time = '{$time}'";
+	}
+	if (!empty($details))
+	{
+		$details = mysql_escape_string($details);
+		$changes[] = "details = '{$details}'";
+	}
+
+	if (count($changes) > 0)
+	{
+		$changes_sql = implode(', ', $changes);
+
+		$result = mysql_query("UPDATE events SET {$changes_sql} WHERE id = '{$event_id}'", $con);
+		return $result;
+	}
+	// no changes no error
+	return TRUE;
+}
+
 function event_set_owner($con, $event_id, $user_id)
 {
 	$result = mysql_query("UPDATE events SET owner = '{$user_id}' WHERE id = '{$event_id}'", $con);
@@ -81,10 +115,17 @@ function event_get($con, $event_id)
 	}
 }
 
-function user_get_new_id($con, $event_id)
+function user_get_new_id($con, $event_id, $spare_obj = NULL)
 {
-	$time = microtime();
-	$time_hash = hash('crc32', $time);
+	if ($spare_obj && isset($spare_obj->last_time))
+	{
+		$time = $spare_obj->last_time + mt_rand(1, 60000);
+	}
+	else
+	{
+		$time = microtime();
+	}
+	$time_hash = hash(HASH_USER, $time);
 
 	for ($i = 0; $i < 10; $i++)
 	{
@@ -95,19 +136,23 @@ function user_get_new_id($con, $event_id)
 		}
 		if (mysql_num_rows($result) == 0)
 		{
+			if ($spare_obj)
+			{
+				$spare_obj->last_time = $time;
+			}
 			return $time_hash;
 		}
 		$time++;
-		$time_hash = hash('crc32', $time);
+		$time_hash = hash(HASH_USER, $time);
 	}
 
 	return FALSE;
 }
 
-function user_create($con, $event_id, $name, $status = STATUS_UNKNOWN)
+function user_create($con, $event_id, $name, $status = STATUS_UNKNOWN, $user_id_spare_obj = NULL)
 {
 	$name = mysql_escape_string($name);
-	$id = user_get_new_id($con, $event_id);
+	$id = user_get_new_id($con, $event_id, $user_id_spare_obj);
 	if ($id)
 	{
 		$result = mysql_query("INSERT INTO users (id, event_id, name, status, status_changed, visited) VALUES ('{$id}', '{$event_id}', '{$name}', '{$status}', NOW(), NOW())", $con);

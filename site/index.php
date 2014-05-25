@@ -1,6 +1,6 @@
 <?php
 
-require_once('./includes/page.php');
+require_once(dirname(__FILE__).'/includes/page.php');
 
 get_header();
 ?>

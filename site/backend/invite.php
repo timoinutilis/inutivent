@@ -4,8 +4,8 @@ require_once(dirname(__FILE__).'/includes/database.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 require_once(dirname(__FILE__).'/includes/mail.php');
 
-if (   !isset($_REQUEST['event_id'])
-	|| !isset($_REQUEST['user_id'])
+if (   empty($_REQUEST['event_id'])
+	|| empty($_REQUEST['user_id'])
 	|| !isset($_REQUEST['mails']) )
 {
 	return_error("missing parameters");
@@ -30,43 +30,65 @@ else
 			$mail_addresses = preg_split('/[\n,;]+/', $mails);
 			$num_sent = 0;
 			$failed = array();
+			$debug = array();
+			$user_id_spare_obj = new stdClass();
 			foreach ($mail_addresses as $mail)
 			{
 				$mail = trim($mail);
 				if (strlen($mail) > 0)
 				{
+					$pure_mail = $mail;
 					$name = '???';
 
-					// extract name
+					// parse mail
 					$mail_parts = explode(' ', $mail);
 					if (count($mail_parts) > 1)
 					{
 						$name = $mail_parts[0];
+//						$pure_mail = $mail_parts[count($mail_parts) - 1];
+//						$pure_mail = substr($pure_mail, 1, strlen($pure_mail) - 2);
+
+						$matches = array();
+						$t = preg_match('/<(.*?)>/s', $mail, $matches);
+						if (count($matches) > 1)
+						{
+							$pure_mail = $matches[1];
+						}
 					}
 
-					// create user and send mail
-					$guest_user_id = user_create($con, $event_id, $name);
-					if ($guest_user_id === FALSE)
+					$debug[] = $mail." ".$name." ".$pure_mail;
+
+					$valid = filter_var($pure_mail, FILTER_VALIDATE_EMAIL);
+					if (!$valid)
 					{
 						$failed[] = $mail;
 					}
 					else
 					{
-						$guest_user = new stdClass();
-						$guest_user->id = $guest_user_id;
-
-						if (send_invitation_mail($mail, $event, $owner, $guest_user))
+						// create user and send mail
+						$guest_user_id = user_create($con, $event_id, $name, STATUS_UNKNOWN, $user_id_spare_obj);
+						if ($guest_user_id === FALSE)
 						{
-							$num_sent++;
+							$failed[] = $mail;
 						}
 						else
 						{
-							$failed[] = $mail;
+							$guest_user = new stdClass();
+							$guest_user->id = $guest_user_id;
+
+							if (send_invitation_mail($mail, $event, $owner, $guest_user))
+							{
+								$num_sent++;
+							}
+							else
+							{
+								$failed[] = $mail;
+							}
 						}
 					}
 				}
 			}
-			$result = array('num_sent' => $num_sent, 'failed' => $failed);
+			$result = array('num_sent' => $num_sent, 'failed' => $failed, 'debug' => $debug);
 			echo json_encode($result);
 		}
 	}
