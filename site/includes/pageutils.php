@@ -34,7 +34,7 @@ function sort_by_created(&$items)
 
 function cmp_by_created($a, $b)
 {
-	return strcmp($b->created, $a->created);
+	return strcmp($a->created, $b->created);
 }
 
 ?>

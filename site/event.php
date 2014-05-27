@@ -289,15 +289,6 @@ function get_posts($con, $event_id, $user_id, $users)
 ?>
 
 <h3>Publicaciones</h3>
-<p>
-<form action="backend/post.php" method="POST" onsubmit="return onPostSubmit(event)">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
-<textarea rows="3" cols="50" name="data" placeholder="Escribe algo..."></textarea><br>
-<input type="submit" value="Publicar">
-</form>
-</p>
 
 <?php
 
@@ -314,6 +305,20 @@ function get_posts($con, $event_id, $user_id, $users)
 			get_post($post, $users);
 		}
 	}
+
+?>
+
+<p>
+<form action="backend/post.php" method="POST" onsubmit="return onPostSubmit(event)">
+<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
+<textarea rows="3" cols="50" name="data" placeholder="Escribe algo..."></textarea><br>
+<input type="submit" value="Publicar">
+</form>
+</p>
+
+<?php
 
 }
 
