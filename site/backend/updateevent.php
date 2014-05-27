@@ -22,7 +22,7 @@ else
 		$event = event_get($con, $event_id);
 		if ($event === FALSE)
 		{
-			return_error(mysql_error());
+			return_error("MySQL error: ".mysql_error());
 		}
 		else if ($event->owner != $user_id)
 		{
@@ -35,12 +35,12 @@ else
 		}
 		else
 		{
-			return_error(mysql_error());
+			return_error("MySQL error: ".mysql_error());
 		}
 	}
 	else
 	{
-		return_error(mysql_error());
+		return_error("MySQL error: ".mysql_error());
 	}
 }
 

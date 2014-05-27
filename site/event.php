@@ -1,341 +1,186 @@
 <?php
 
-require_once(dirname(__FILE__).'/includes/page.php');
+/*
+EVENT
+*/
+
+if (   empty($_REQUEST['event'])
+	|| empty($_REQUEST['user']) )
+{
+	header("Location: index.php");
+	exit();
+}
+else
+{
+	$event_id = $_REQUEST['event'];
+	$user_id = $_REQUEST['user'];
+}
+
 require_once(dirname(__FILE__).'/includes/pageutils.php');
 require_once(dirname(__FILE__).'/backend/includes/database.php');
 
-$event_id = $_REQUEST['event'];
-$user_id = $_REQUEST['user'];
+include 'includes/header.php';
 
-
-
-get_header();
+$all_loaded = FALSE;
+$error = "";
 
 $con = connect_to_db();
-if ($con)
+if (!$con)
+{
+	$error = "connect_to_db";
+}
+else
 {
 	$event = event_get($con, $event_id);
 	if ($event === FALSE)
 	{
-		echo '<p>Evento no encontrado! Quizá ya está borrado.</p>';
+		$error = "event";
 	}
 	else
 	{
-		$is_owner = ($event->owner == $user_id);
-
 		$user = user_get($con, $event_id, $user_id);
-
 		if ($user === FALSE)
 		{
-			echo '<p>Usuario no encontrado!</p>';
+			$error = "user";
 		}
 		else
 		{
-			if (!empty($event->cover))
-			{
-				$cover_url = "uploads/".$event_id."/".$event->cover;
-				echo "<div><img src=\"{$cover_url}\"></div>";
-			}
-			if ($is_owner)
-			{
-?>
-
-<form action="backend/uploadcover.php" method="post" enctype="multipart/form-data" onsubmit="return onCoverSubmit(event)">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<label for="file">Foto de portada:</label>
-<input type="file" name="file" id="file">
-<input type="submit" name="submit" value="Subir">
-</form>
-
-<?php
-			}
-
-?>
-
-<h2><?php echo $event->title; ?></h2>
-<?php
-			if ($is_owner)
-			{
-?>
-
-<div id="title-display">
-<button type="button" onclick="showTitleEditor();">Editar título</button>
-</div>
-<div id="title-editor" style="display:none;">
-<form action="backend/updateevent.php" method="POST" onsubmit="return onEventSubmit(event)">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<input type="text" name="title" id="input-title">
-<input type="submit" value="Guardar">
-<button type="button" onclick="hideEditor('title-display', 'title-editor', 'input-title');">Cancelar</button>
-</form>
-</div>
-
-<?php
-			}
-?>
-
-<p>
-<form action="backend/updateuser.php" method="POST" id="form-assist" onsubmit="return false">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<input type="radio" name="status" value="A" <?php if ($user->status == STATUS_ATTENDING) echo 'checked' ?> onchange="submitAssist();">Asistir<br>
-<input type="radio" name="status" value="M" <?php if ($user->status == STATUS_MAYBE_ATTENDING) echo 'checked' ?> onchange="submitAssist();">Tal vez asistir<br>
-<input type="radio" name="status" value="N" <?php if ($user->status == STATUS_NOT_ATTENDING) echo 'checked' ?> onchange="submitAssist();">No asistir<br>
-</form>
-</p>
-
-<p>
-<form action="backend/updateuser.php" method="POST" onsubmit="return onNameSubmit(event)">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-Tu nombre: <input type="text" name="name" value="<?php echo $user->name; ?>">
-<input type="submit" value="Guardar">
-</form>
-</p>
-
-<h3>Fecha</h3>
-<p>
-<?php
-			if ($is_owner)
-			{
-?>
-
-<div id="time-display">
-<?php echo $event->time;?>
-<button type="button" onclick="showTimeEditor();">Editar</button>
-</div>
-<div id="time-editor" style="display:none;">
-<form action="backend/updateevent.php" method="POST" onsubmit="return onEventSubmit(event)">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<input type="text" name="time" id="input-time">
-<input type="submit" value="Guardar">
-<button type="button" onclick="hideEditor('time-display', 'time-editor', 'input-time');">Cancelar</button>
-</form>
-</div>
-<?php
-			}
-			else
-			{
-?>
-<div id="time-display">
-<?php echo $event->time;?>
-</div>
-<?php
-			}
-?>
-</p>
-<h3>Detalles</h3>
-<?php
-			if ($is_owner)
-			{
-?>
-<div id="details-display">
-<p>
-<?php echo html_text($event->details); ?>
-</p>
-<button type="button" onclick="showDetailsEditor();">Editar</button>
-</div>
-<div id="details-editor" style="display:none;">
-<form action="backend/updateevent.php" method="POST" onsubmit="return onEventSubmit(event)">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<textarea rows="10" cols="50" name="details" id="textarea-details"></textarea><br>
-<input type="submit" value="Guardar">
-<button type="button" onclick="hideEditor('details-display', 'details-editor', 'textarea-details');">Cancelar</button>
-</form>
-</div>
-<?php
-			}
-			else
-			{
-?>
-<div id="details-display">
-<p>
-<?php echo html_text($event->details); ?>
-</p>
-</div>
-
-<?php
-			}
-?>
-
-<?php
-
 			$users = user_get_all($con, $event_id);
 			if ($users === FALSE)
 			{
-				echo '<p>'.mysql_error().'</p>';
+				$error = "users";
 			}
 			else
 			{
-				get_posts($con, $event_id, $user_id, $users);
-			
-				echo '<h3>Invitados</h3>';
-				if ($is_owner)
+				$posts = post_get_all($con, $event_id, $user_id);
+				if ($posts === FALSE)
 				{
-					$invite_link = "invite.php?event={$event_id}&user={$user_id}";
-					echo "<p><a href=\"{$invite_link}\">Invitar</a></p>";
+					$error = "posts";
 				}
-				get_guests_list('asistirán', $users, STATUS_ATTENDING, $event);
-				get_guests_list('tal vez asistan', $users, STATUS_MAYBE_ATTENDING, $event);
-				get_guests_list('no asistirán', $users, STATUS_NOT_ATTENDING, $event);
-				get_guests_list('invitados', $users, STATUS_UNKNOWN, $event);
+				else
+				{
+					sort_by_created($posts);
+
+					// ready
+					$all_loaded = TRUE;
+				}
 			}
 		}
 	}
 }
+
+if ($all_loaded)
+{
+	$is_owner = ($event->owner == $user_id);
+	include 'includes/event-view.php';
+}
 else
 {
-	echo mysql_error();
+	include 'includes/error-view.php';
 }
 
-?>
+include 'includes/footer.php';
 
-<script>
 
-function submitAssist()
+// functions
+
+function header_image_url()
 {
-	var form = document.getElementById("form-assist");
-	sendForm(form, onComplete, onError);
-	setFormsDisabled(true);
-}
-
-function onNameSubmit(event)
-{
-	var form = event.target;
-	sendForm(form, onComplete, onError);
-	setFormsDisabled(true);
-	return false;
-}
-
-function onCoverSubmit(event)
-{
-	var form = event.target;
-	sendForm(form, onComplete, onError);
-	setFormsDisabled(true);
-	return false;
-}
-
-function onPostSubmit(event)
-{
-	var form = event.target;
-	sendForm(form, onComplete, onError);
-	setFormsDisabled(true);
-	return false;
-}
-
-function onEventSubmit(event)
-{
-	var form = event.target;
-	sendForm(form, onComplete, onError);
-	setFormsDisabled(true);
-	return false;
-}
-
-function onComplete(data)
-{
-	setFormsDisabled(false);
-	window.location.reload();
-}
-
-function onError(error)
-{
-	setFormsDisabled(false);
-	alert(error);
-}
-
-function showTitleEditor()
-{
-	var data = <?php echo json_encode($event->title); ?>;
-	document.getElementById("title-display").style.display = "none";
-	document.getElementById("title-editor").style.display = "block";
-	document.getElementById("input-title").value = data;
-}
-
-function showTimeEditor()
-{
-	var data = <?php echo json_encode($event->time); ?>;
-	document.getElementById("time-display").style.display = "none";
-	document.getElementById("time-editor").style.display = "block";
-	document.getElementById("input-time").value = data;
-}
-
-function showDetailsEditor()
-{
-	var data = <?php echo json_encode($event->details); ?>;
-	document.getElementById("details-display").style.display = "none";
-	document.getElementById("details-editor").style.display = "block";
-	document.getElementById("textarea-details").value = data;
-}
-
-function hideEditor(displayDiv, editorDiv, valueInput)
-{
-	document.getElementById(displayDiv).style.display = "block";
-	document.getElementById(editorDiv).style.display = "none";
-	document.getElementById(valueInput).value = "";
-}
-
-</script>
-
-<?php
-
-get_footer();
-
-function get_posts($con, $event_id, $user_id, $users)
-{
-?>
-
-<h3>Publicaciones</h3>
-
-<?php
-
-	$posts = post_get_all($con, $event_id, $user_id);
-	if ($posts === FALSE)
+	global $event_id, $event;
+	if (!empty($event->cover))
 	{
-		echo '<p>'.mysql_error().'</p>';
+		echo "uploads/".$event_id."/".$event->cover;
+	}
+	echo "images/default_header.jpg";
+}
+
+function event_title()
+{
+	global $event;
+	echo $event->title;
+}
+
+function event_date()
+{
+	global $event;
+	echo $event->time;
+}
+
+function event_hour()
+{
+	global $event;
+	echo $event->time;
+}
+
+function event_owner_name()
+{
+	global $event, $users;
+	echo $users[$event->owner]->name;
+}
+
+function event_details()
+{
+	global $event;
+	echo html_text($event->details);
+}
+
+function user_name()
+{
+	global $user;
+	echo $user->name;
+}
+
+function status_button($status)
+{
+	global $user;
+	
+	if ($status == STATUS_ATTENDING)
+	{
+		$css_class = "yes";
+	}
+	else if ($status == STATUS_NOT_ATTENDING)
+	{
+		$css_class = "no";
 	}
 	else
 	{
-		sort_by_created($posts);
-		foreach ($posts as $post)
+		$css_class = "maybe";
+	}
+
+	$attr = "";
+	if ($user->status != STATUS_UNKNOWN)
+	{
+		if ($user->status == $status)
 		{
-			get_post($post, $users);
+			$css_class .= " selected";
+			$attr = " disabled";
+		}
+		else
+		{
+			$css_class .= " unselected";
 		}
 	}
 
-?>
+	$attr .= " onclick=\"submitAssist('{$status}')\"";
 
-<p>
-<form action="backend/post.php" method="POST" onsubmit="return onPostSubmit(event)">
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
-<textarea rows="3" cols="50" name="data" placeholder="Escribe algo..."></textarea><br>
-<input type="submit" value="Publicar">
-</form>
-</p>
-
-<?php
-
+	echo "class=\"{$css_class}\"{$attr}";
 }
 
-function get_post($post, $users)
+function guest_list()
 {
-	$user = $users[$post->user_id];
-	$text = html_text($post->data);
-	echo "<p>{$user->name} ({$post->created})</p><p>{$text}</p>";
+	guests_list_for_status('asistirán', STATUS_ATTENDING);
+	guests_list_for_status('tal vez asistan', STATUS_MAYBE_ATTENDING);
+	guests_list_for_status('no asistirán', STATUS_NOT_ATTENDING);
+	guests_list_for_status('invitados', STATUS_UNKNOWN);
 }
 
-function get_guests_list($title, $guests, $status, $event)
+function guests_list_for_status($title, $status)
 {
-	$guests = sorted_users_with_status($guests, $status);
-
+	global $users, $event;
+	$guests = sorted_users_with_status($users, $status);
 	if (count($guests) > 0)
 	{
-		echo "<h4>{$title}</h4>";
+		echo "<h2>{$title}</h2>";
 		echo '<ul>';
 		foreach ($guests as $guest)
 		{
@@ -352,4 +197,21 @@ function get_guests_list($title, $guests, $status, $event)
 	}
 }
 
+function posts()
+{
+	global $posts, $users;
+	foreach ($posts as $post)
+	{
+		$name = $users[$post->user_id]->name;
+		$text = html_text($post->data);
+		$time = $post->created;
+		echo <<<END
+							<div class="post">
+								<span class="name">{$name}:</span>
+								<span class="text">{$text}</span>
+								<p class="time">{$time}</p>
+							</div>
+END;
+	}
+}
 ?>

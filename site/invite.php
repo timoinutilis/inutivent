@@ -1,76 +1,77 @@
 <?php
 
-require_once(dirname(__FILE__).'/includes/page.php');
+/*
+INVITE
+*/
+
+if (   empty($_REQUEST['event'])
+	|| empty($_REQUEST['user']) )
+{
+	header("Location: index.php");
+	exit();
+}
+else
+{
+	$event_id = $_REQUEST['event'];
+	$user_id = $_REQUEST['user'];
+}
+
 require_once(dirname(__FILE__).'/backend/includes/database.php');
 
-$event_id = $_REQUEST['event'];
-$user_id = $_REQUEST['user'];
-
-get_header();
+include 'includes/header.php';
 
 $con = connect_to_db();
 if ($con)
 {
+	$all_loaded = FALSE;
+	$error = "";
+
 	$event = event_get($con, $event_id);
 	if ($event === FALSE)
 	{
-		echo 'Evento no encontrado!';
+		$error = "event";
 	}
 	else
 	{
-		$event_link = "event.php?event={$event_id}&user={$user_id}";
-?>
+		// ready
+		$all_loaded = TRUE;
+	}
 
-<h2>Invitar a <?php echo $event->title; ?></h2>
-
-<p>
-<form action="backend/invite.php" method="POST" onsubmit="return onSubmit(event)">
-Direcciones de e-mail:<br>
-<textarea rows="10" cols="50" name="mails" id="mails"></textarea><br>
-<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-<input type="submit" value="Enviar mail(s)">
-</form>
-</p>
-
-<p>
-<a href="<?php echo $event_link; ?>">Ir al evento</a>
-</p>
-
-<script>
-
-function onSubmit(event)
-{
-	var form = event.target;
-	sendForm(form, onComplete, onError);
-	return false;
-}
-
-function onComplete(data)
-{
-	if (data.failed.length > 0)
+	if ($all_loaded)
 	{
-		document.getElementById('mails').value = data.failed.join("\n");
-		alert("Se han enviado " + data.num_sent + " invitacion(es) correctamente.\nHubo errores con:\n" + data.failed.join(", "));
+		include 'includes/invite-view.php';
 	}
 	else
 	{
-		window.location.href = "<?php echo $event_link; ?>";
+		include 'includes/error-view.php';
 	}
 }
 
-function onError(error)
+include 'includes/footer.php';
+
+
+// functions
+
+function header_image_url()
 {
-	alert(error);
-}
-
-</script>
-
-<?php
-
+	global $event_id, $event;
+	if (!empty($event->cover))
+	{
+		echo "uploads/".$event_id."/".$event->cover;
 	}
+	echo "images/default_header.jpg";
 }
 
-get_footer();
+function event_title()
+{
+	global $event;
+	echo $event->title;
+}
+
+function event_url()
+{
+	global $event_id, $user_id;
+	echo "event.php?event={$event_id}&user={$user_id}";;
+}
 
 ?>

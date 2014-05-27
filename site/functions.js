@@ -1,4 +1,13 @@
+/*
+JS Functions
+*/
+
 function sendForm(form, onComplete, onError)
+{
+	sendFormData(form.method, form.action, new FormData(form), onComplete, onError);
+}
+
+function sendFormData(method, action, formData, onComplete, onError)
 {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function()
@@ -10,7 +19,7 @@ function sendForm(form, onComplete, onError)
 				try
 				{
 					var data = JSON.parse(request.responseText);
-					if (data.error)
+					if (data.error != null)
 					{
 						onError(data.error);
 					}
@@ -30,8 +39,8 @@ function sendForm(form, onComplete, onError)
 			}
 		}
 	}
-	request.open(form.method, form.action, true);
-	request.send(new FormData(form));
+	request.open(method, action, true);
+	request.send(formData);
 }
 
 function setFormsDisabled(disabled)

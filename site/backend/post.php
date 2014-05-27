@@ -23,7 +23,7 @@ else
 		$post_id = post_create($con, $event_id, $user_id, $type, $data);
 		if ($post_id === FALSE)
 		{
-			return_error(mysql_error());
+			return_error("MySQL error: ".mysql_error());
 		}
 		else
 		{
@@ -33,7 +33,7 @@ else
 	}
 	else
 	{
-		return_error(mysql_error());
+		return_error("MySQL error: ".mysql_error());
 	}
 }
 

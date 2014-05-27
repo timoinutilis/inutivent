@@ -34,7 +34,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	line-height: 1.4;
 }
 ol, ul {
 	list-style: none;
@@ -50,4 +50,400 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+/*
+Stuff
+*/
+
+body {
+	font-family: sans-serif;
+}
+
+#wrapper {
+}
+
+#content {
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+input,
+textarea,
+input:focus,
+textarea:focus {
+	outline: none;
+	font-family: sans-serif;
+	font-size: 100%;
+	border: 1px solid #ddd;
+	padding: 5px;
+	color: #444;
+}
+
+input:hover:enabled,
+textarea:hover:enabled {
+	border: 1px solid #bbb;
+}
+
+input:active:enabled,
+input:focus:enabled,
+textarea:active:enabled,
+textarea:focus:enabled {
+	border: 1px solid #bbb;
+	box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3) inset;
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+	border: none !important;
+	background-color: #07a;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.25);
+	font-size: 90%;
+}
+
+input[type="button"]:hover:enabled,
+input[type="submit"]:hover:enabled,
+button:hover:enabled {
+	background-color: #039EE1;
+}
+
+input[type="button"]:active:enabled,
+input[type="submit"]:active:enabled,
+button:active:enabled {
+	background-color: #025579;
+}
+
+textarea {
+	width: 100%;
+}
+
+.section {
+	width: 100%;
+	display: block;
+}
+
+.inside {
+	width: 80%;
+	max-width: 800px;
+	margin: 0 auto;
+	color: #444;
+}
+
+.inside h1 {
+	font-weight: bold;
+	font-size: 120%;
+	margin-bottom: 24px;
+}
+
+.inside h2 {
+	font-weight: bold;
+	font-size: 100%;
+	margin: 16px 0;
+}
+
+#header {
+	background-color: #000;
+	color: #fff;
+	text-align: center;
+	padding: 16px 0;
+}
+
+#header h1 {
+	font-size: 200%;
+	font-weight: bold;
+}
+
+#header .options {
+	position: absolute;
+	top: 27px;
+	right: 20px;
+}
+
+#header a {
+	color: #fff;
+}
+
+#cover {
+	text-align: center;
+	width: 100%;
+}
+
+#cover .wrapper {
+	width: 100%;
+	position: relative;
+	float: left;
+	clear: none;
+	overflow: hidden;
+}
+
+#cover img {
+	width: 100%;
+	display: block;
+	position: relative;
+	z-index: 1;
+}
+
+#cover h1 {
+	display: block;
+	position: absolute;
+	width: 100%;
+	bottom: 10px;
+	left: 0;
+	z-index: 2;
+	text-align: center;
+	font-size: 200%;
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 0px 1px 6px #000;
+}
+
+#cover .wrapper:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 6px;
+	box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.5) inset;
+	z-index: 3;
+}
+#cover .wrapper:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: 6px;
+	box-shadow: 0px -4px 10px -5px rgba(0, 0, 0, 1.0) inset;
+	z-index: 3;
+}
+
+#event-info {
+}
+
+#event-info .inside {
+	padding: 80px 0;
+	text-align: justify;
+}
+
+#event-info .facts {
+	display: block;
+	text-align: center;
+}
+
+#event-info .fact {
+	width: 140px;
+	text-align: center;
+	display: inline-block;
+	margin: 0 0 20px 0;
+}
+
+#event-info .details {
+	font-size: 120%;
+}
+
+#user-info {
+	background-color: #f2f2f2;
+}
+
+#user-info .inside {
+	padding: 40px 0;
+	text-align: center;
+}
+
+#user-info .name {
+	padding: 20px 0;
+}
+
+#user-info .status {
+	display: block;
+	text-align: center;
+}
+
+#user-info .status button {
+	font-size: 100%;
+	width: 180px;
+	padding: 16px 0;
+	margin: 0 10px 10px 10px;
+}
+
+#user-info .status button.selected {
+	background-image: url(images/tick.png);
+	background-repeat: no-repeat;
+	background-position: 92% 50%;
+}
+
+#user-info .status button.unselected {
+	opacity: 0.25;
+}
+
+#user-info .status button.unselected:hover:enabled {
+	opacity: 1;
+}
+
+#user-info .status button.yes {
+	background-color: #0a0;
+}
+#user-info .status button.yes:hover:enabled {
+	background-color: #0b0;
+}
+#user-info .status button.yes:active:enabled {
+	background-color: #080;
+}
+
+#user-info .status button.maybe {
+	background-color: #fa0;
+}
+#user-info .status button.maybe:hover:enabled {
+	background-color: #fb0;
+}
+#user-info .status button.maybe:active:enabled {
+	background-color: #c80;
+}
+
+#user-info .status button.no {
+	background-color: #a00;
+}
+#user-info .status button.no:hover:enabled {
+	background-color: #c00;
+}
+#user-info .status button.no:active:enabled {
+	background-color: #700;
+}
+
+#event-content {
+}
+
+#event-content .inside {
+	padding: 80px 0;
+}
+
+#posts {
+	float: left;
+	width: 65%;
+	margin-right: 40px;
+	padding-right: 40px;
+	border-right: 1px solid #eee;
+}
+
+#posts .post {
+	margin-bottom: 12px;
+}
+
+#posts .post .name {
+	color: #666;
+	font-weight: bold;
+}
+
+#posts .post .time {
+	color: #888;
+	font-size: 75%;
+}
+
+#people {
+	display: inline-block;
+}
+
+#people li {
+	color: #666;
+}
+
+#event-create .inside {
+	padding: 80px 0;
+}
+
+.big-button {
+	min-width: 140px;
+	padding: 16px 16px;
+}
+
+#event-create .group,
+#invite .group {
+	margin-bottom: 20px;
+}
+
+#event-create .group input {
+	display: block;
+	width: 300px;
+}
+
+#event-create .group label {
+	display: block;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	float: left;
+}
+
+#event-create .group br {
+	clear: left;
+}
+
+#invite .inside {
+	padding: 80px 0;
+}
+
+#invite .inside a {
+	display: inline-block;
+}
+
+#invite input[type="submit"] {
+	margin-right: 30px;
+}
+
+#welcome .inside {
+	padding: 80px 0;
+	text-align: center;
+}
+
+#welcome .inside p {
+	font-size: 150%;
+	margin-bottom: 20px;
+}
+
+#error .inside {
+	padding: 80px 0;
+	text-align: center;
+	font-size: 150%;
+}
+
+#footer {
+	background-color: #000;
+	text-align: center;
+}
+
+#footer a {
+	color: #fff;
+	text-decoration: underline;
+}
+
+#footer .inside {
+	padding: 40px 0 20px 0;
+	text-align: center;
+	color: #aaa;
+}
+
+#footer .column {
+	float: left;
+	width: 50%;
+	min-width: 250px;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+#footer .right {
+	text-align: center;
+}
+
+#footer .column p {
+	margin: 0 20px;
 }

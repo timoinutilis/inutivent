@@ -1,16 +1,31 @@
 <?php
 
-require_once(dirname(__FILE__).'/includes/page.php');
+/*
+HOME PAGE / INDEX
+*/
 
-get_header();
 ?>
 
-<h2>¡Hola!</h2>
+<?php include 'includes/header.php'; ?>
 
-<p>
-<a href="create.php">Crear nuevo evento</a>
-</p>
+				<div id="cover" class="section">
+					<div class="wrapper">
+						<img src="images/index_header.jpg">
+						<h1>¡Hola!</h1>
+					</div>
+					<br style="clear: both; width: 100%;">
+				</div>
 
-<?php
-get_footer();
-?>
+				<div id="welcome" class="section">
+					<div class="inside">
+
+						<p>En esta página puedes crear eventos y invitar a tus amigos por mail.</p>
+
+						<form action="create.php">
+							<input type="submit" value="Crear evento" class="big-button">
+						</form>
+					</div>
+				</div>
+
+
+<?php include 'includes/footer.php'; ?>

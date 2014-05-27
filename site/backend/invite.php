@@ -23,7 +23,7 @@ else
 		$owner = user_get($con, $event_id, $user_id);
 		if ($event === FALSE || $owner === FALSE)
 		{
-			return_error(mysql_error());
+			return_error("MySQL error: ".mysql_error());
 		}
 		else
 		{
@@ -45,8 +45,6 @@ else
 					if (count($mail_parts) > 1)
 					{
 						$name = $mail_parts[0];
-//						$pure_mail = $mail_parts[count($mail_parts) - 1];
-//						$pure_mail = substr($pure_mail, 1, strlen($pure_mail) - 2);
 
 						$matches = array();
 						$t = preg_match('/<(.*?)>/s', $mail, $matches);
@@ -94,7 +92,7 @@ else
 	}
 	else
 	{
-		return_error(mysql_error());
+		return_error("MySQL error: ".mysql_error());
 	}
 }
 

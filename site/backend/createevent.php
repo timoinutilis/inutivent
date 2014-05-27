@@ -7,7 +7,8 @@ require_once(dirname(__FILE__).'/includes/mail.php');
 if (   empty($_REQUEST['name'])
 	|| empty($_REQUEST['mail'])
 	|| !isset($_REQUEST['title'])
-	|| !isset($_REQUEST['time'])
+	|| !isset($_REQUEST['date'])
+	|| !isset($_REQUEST['hour'])
 	|| !isset($_REQUEST['details']) )
 {
 	return_error("missing parameters");
@@ -17,7 +18,8 @@ else
 	$name = $_REQUEST['name'];
 	$mail = $_REQUEST['mail'];
 	$title = $_REQUEST['title'];
-	$time = $_REQUEST['time'];
+	$date = $_REQUEST['date'];
+	$hour = $_REQUEST['hour'];
 	$details = $_REQUEST['details'];
 
 	if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
@@ -29,24 +31,25 @@ else
 		$con = connect_to_db();
 		if ($con)
 		{
+			$time = $date;
 			$event_id = event_create($con, $title, $details, $time);
 			if ($event_id === FALSE)
 			{
-				return_error(mysql_error());
+				return_error("MySQL error: ".mysql_error());
 			}
 			else
 			{
 				$user_id = user_create($con, $event_id, $name, STATUS_ATTENDING);
 				if ($user_id === FALSE)
 				{
-					return_error(mysql_error());
+					return_error("MySQL error: ".mysql_error());
 				}
 				else
 				{
 					$success = event_set_owner($con, $event_id, $user_id);
 					if ($success === FALSE)
 					{
-						return_error(mysql_error());
+						return_error("MySQL error: ".mysql_error());
 					}
 					else
 					{
@@ -67,7 +70,7 @@ else
 		}
 		else
 		{
-			return_error(mysql_error());
+			return_error("MySQL error: ".mysql_error());
 		}
 	}
 }

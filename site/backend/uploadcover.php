@@ -102,12 +102,12 @@ else
 				}
 				else
 				{
-					return_error(mysql_error());
+					return_error("MySQL error: ".mysql_error());
 				}
 			}
 			else
 			{
-				return_error(mysql_error());
+				return_error("MySQL error: ".mysql_error());
 			}
 
 		}
