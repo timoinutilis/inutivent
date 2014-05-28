@@ -4,10 +4,12 @@
 INVITE
 */
 
+require_once(dirname(__FILE__).'/includes/config.php');
+
 if (   empty($_REQUEST['event'])
 	|| empty($_REQUEST['user']) )
 {
-	header("Location: index.php");
+	header("Location: ".SITE_URL);
 	exit();
 }
 else

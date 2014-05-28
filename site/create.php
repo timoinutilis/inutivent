@@ -4,6 +4,8 @@
 CREATE EVENT
 */
 
+require_once(dirname(__FILE__).'/includes/config.php');
+
 ?>
 
 <?php include 'includes/header.php'; ?>

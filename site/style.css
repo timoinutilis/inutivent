@@ -68,10 +68,15 @@ body {
 
 a {
 	text-decoration: none;
+	color: #07a;
 }
 
 a:hover {
 	text-decoration: underline;
+}
+
+a:active {
+	color: #025579;
 }
 
 input,
@@ -120,6 +125,16 @@ input[type="button"]:active:enabled,
 input[type="submit"]:active:enabled,
 button:active:enabled {
 	background-color: #025579;
+}
+
+button.delete {
+	background-color: #f00;
+}
+button.delete:hover {
+	background-color: #f66;
+}
+button.delete:active {
+	background-color: #a00;
 }
 
 textarea {
@@ -453,6 +468,7 @@ input[type="file"]:active {
 #footer {
 	background-color: #000;
 	text-align: center;
+	margin-top: 140px;
 }
 
 #footer a {

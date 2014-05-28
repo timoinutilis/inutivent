@@ -20,7 +20,7 @@ HEADER
 
 			<div id="header" class="section">
 				<div class="logo">
-					<h1><a href="index.php">Inutivent</a></h1>
+					<h1><a href="<?php echo SITE_URL; ?>">Inutivent</a></h1>
 				</div>
 				<div class="options">
 					<a href="create.php">Crear nuevo evento</a>

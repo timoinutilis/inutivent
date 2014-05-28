@@ -15,6 +15,7 @@ EVENT VIEW
 					<br style="clear: both; width: 100%;">
 				</div>
 
+				<?php if ($is_owner) { ?>
 				<div id="cover-editor" class="section">
 					<div class="inside">
 						<form action="backend/uploadcover.php" method="post" enctype="multipart/form-data" onsubmit="return onCoverSubmit(event)">
@@ -26,6 +27,7 @@ EVENT VIEW
 						</form>
 					</div>
 				</div>
+				<?php } ?>
 
 				<div id="event-info" class="section">
 					<div class="inside">
@@ -56,6 +58,7 @@ EVENT VIEW
 							<?php if ($is_owner) { ?>
 							<div class="button-container">
 								<button type="button" onclick="showEventEditor();">Editar</button>
+								<button type="button" onclick="onClickDeleteEvent();" class="delete">Borrar evento</button>
 							</div>
 							<?php } ?>
 						</div>
@@ -228,6 +231,23 @@ EVENT VIEW
 						document.getElementById("input-date").value = "";
 						document.getElementById("input-hour").value = "";
 						document.getElementById('textarea-details').value = "";
+					}
+
+					function onClickDeleteEvent()
+					{
+						if (confirm("Quieres borrar este evento de verdad?\nSe borran toda la información, las publicaciones y las fotos."))
+						{
+							var formData = new FormData();
+							formData.append("event_id", "<?php echo $event_id; ?>");
+							formData.append("user_id", "<?php echo $user_id; ?>");
+							sendFormData("POST", "backend/deleteevent.php", formData, onCompleteDelete, onError)
+							setFormsDisabled(true);
+						}
+					}
+
+					function onCompleteDelete(data)
+					{
+						window.location.href = "<?php echo SITE_URL; ?>";
 					}
 
 				</script>

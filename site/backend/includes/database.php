@@ -120,6 +120,24 @@ function event_get($con, $event_id)
 	}
 }
 
+function event_delete_completely($con, $event_id)
+{
+	// posts
+	$result = mysql_query("DELETE FROM posts WHERE event_id = '{$event_id}'", $con);
+	if ($result)
+	{
+		// users
+		$result = mysql_query("DELETE FROM users WHERE event_id = '{$event_id}'", $con);
+		if ($result)
+		{
+			// event
+			$result = mysql_query("DELETE FROM events WHERE id = '{$event_id}'", $con);
+			return $result;
+		}
+	}
+	return FALSE;
+}
+
 function user_get_new_id($con, $event_id, $spare_obj = NULL)
 {
 	if ($spare_obj && isset($spare_obj->last_time))
