@@ -45,6 +45,8 @@ else
 		}
 		else
 		{
+			user_update_visited($con, $event_id, $user_id);
+
 			$users = user_get_all($con, $event_id);
 			if ($users === FALSE)
 			{
@@ -72,11 +74,15 @@ else
 if ($all_loaded)
 {
 	$is_owner = ($event->owner == $user_id);
-	include 'includes/event-view.php';
+	include 'includes/content-event.php';
+}
+else if ($error == "event" || $error == "user")
+{
+	include 'includes/content-not-found.php';
 }
 else
 {
-	include 'includes/error-view.php';
+	include 'includes/content-error.php';
 }
 
 include 'includes/footer.php';
@@ -103,13 +109,13 @@ function event_title()
 function event_date()
 {
 	global $event;
-	echo $event->time;
+	echo date_of_datetime($event->time);
 }
 
 function event_hour()
 {
 	global $event;
-	echo $event->time;
+	echo hour_of_datetime($event->time);
 }
 
 function event_owner_name()
@@ -166,6 +172,12 @@ function status_button($status)
 	echo "class=\"{$css_class}\"{$attr}";
 }
 
+function invite_url()
+{
+	global $event_id, $user_id;
+	echo "invite.php?event={$event_id}&user={$user_id}";
+}
+
 function guest_list()
 {
 	guests_list_for_status('asistirán', STATUS_ATTENDING);
@@ -178,22 +190,43 @@ function guests_list_for_status($title, $status)
 {
 	global $users, $event;
 	$guests = sorted_users_with_status($users, $status);
+	$has_unvisited_users = FALSE;
 	if (count($guests) > 0)
 	{
-		echo "<h2>{$title}</h2>";
-		echo '<ul>';
+		echo <<<END
+							<h2>{$title}</h2>
+							<ul>
+
+END;
 		foreach ($guests as $guest)
 		{
+			$extras = "";
 			if ($guest->id == $event->owner)
 			{
-				echo "<li>{$guest->name} (Organizador)</li>";
+				$extras .= " (Org.)";
 			}
-			else
+			if ($guest->visited == '0000-00-00 00:00:00')
 			{
-				echo "<li>{$guest->name}</li>";
+				// hasn't seen the site yet
+				$extras .= " *";
+				$has_unvisited_users = TRUE;
 			}
+			echo <<<END
+								<li>{$guest->name}{$extras}</li>
+
+END;
 		}
-		echo '</ul>';
+		echo <<<END
+							</ul>
+
+END;
+		if ($has_unvisited_users)
+		{
+		echo <<<END
+							<p class="note">* aún no lo ha visto</p>
+
+END;
+		}
 	}
 }
 
@@ -204,13 +237,14 @@ function posts()
 	{
 		$name = $users[$post->user_id]->name;
 		$text = html_text($post->data);
-		$time = $post->created;
+		$time = relative_time($post->created);
 		echo <<<END
-							<div class="post">
-								<span class="name">{$name}:</span>
-								<span class="text">{$text}</span>
-								<p class="time">{$time}</p>
-							</div>
+								<div class="post">
+									<span class="name">{$name}:</span>
+									<span class="text">{$text}</span>
+									<p class="time">{$time}</p>
+								</div>
+
 END;
 	}
 }

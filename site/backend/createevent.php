@@ -31,7 +31,7 @@ else
 		$con = connect_to_db();
 		if ($con)
 		{
-			$time = $date;
+			$time = convert_to_datetime($date, $hour);
 			$event_id = event_create($con, $title, $details, $time);
 			if ($event_id === FALSE)
 			{

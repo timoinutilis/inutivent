@@ -66,23 +66,30 @@ EVENT VIEW
 				<div id="event-content" class="section">
 					<div class="inside">
 						<div id="posts">
-							<img src="images/speech_4.png">
-							<h1>Publicaciones</h1>
-							<?php posts(); ?>
+							<div id="posts-content">
+								<img src="images/speech_4.png">
+								<h1>Publicaciones</h1>
+<?php posts(); ?>
 
-							<form action="backend/post.php" method="POST" onsubmit="return onPostSubmit(event)">
-							<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
-							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-							<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
-							<textarea rows="3" name="data" placeholder="Escribe algo..."></textarea><br>
-							<input type="submit" value="Publicar">
-							</form>
+								<form action="backend/post.php" method="POST" onsubmit="return onPostSubmit(event)">
+									<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+									<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+									<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
+									<textarea rows="3" name="data" placeholder="Escribe algo..."></textarea><br>
+									<input type="submit" value="Publicar">
+								</form>
+							</div>
 						</div>
 
 						<div id="people">
 							<img src="images/users.png">
 							<h1>Invitados</h1>
-							<?php guest_list(); ?>
+<?php guest_list(); ?>
+							<?php if ($is_owner) { ?>
+							<br>
+							<a href="<?php invite_url(); ?>">Invitar...</a>
+							<?php } ?>
+							
 						</div>
 
 						<br style="clear: both; width: 100%;">

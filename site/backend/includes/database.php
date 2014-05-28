@@ -160,7 +160,7 @@ function user_create($con, $event_id, $name, $status = STATUS_UNKNOWN, $user_id_
 	$id = user_get_new_id($con, $event_id, $user_id_spare_obj);
 	if ($id)
 	{
-		$result = mysql_query("INSERT INTO users (id, event_id, name, status, status_changed, visited) VALUES ('{$id}', '{$event_id}', '{$name}', '{$status}', NOW(), NOW())", $con);
+		$result = mysql_query("INSERT INTO users (id, event_id, name, status, status_changed, visited) VALUES ('{$id}', '{$event_id}', '{$name}', '{$status}', NOW(), '0000-00-00 00:00:00')", $con);
 		if ($result)
 		{
 			return $id;
@@ -192,6 +192,12 @@ function user_update($con, $event_id, $user_id, $status, $name)
 	}
 	// no changes no error
 	return TRUE;
+}
+
+function user_update_visited($con, $event_id, $user_id)
+{
+	$result = mysql_query("UPDATE users SET visited = NOW() WHERE event_id = '{$event_id}' AND id = '{$user_id}'", $con);
+	return $result;
 }
 
 function user_get($con, $event_id, $user_id)

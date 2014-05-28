@@ -1,7 +1,7 @@
 <?php
 
 /*
-ERROR VIEW
+EVENT NOT FOUND VIEW
 */
 
 ?>
@@ -9,14 +9,15 @@ ERROR VIEW
 
 				<div id="cover" class="section">
 					<div class="wrapper">
-						<img src="images/error_header.jpg">
-						<h1>¡Vaya! Hay un problema...</h1>
+						<img src="images/not_found_header.jpg">
+						<h1>¡Vaya!</h1>
 					</div>
 					<br style="clear: both; width: 100%;">
 				</div>
 
 				<div id="error" class="section">
 					<div class="inside">
-						Algo no ha funcionado bien :(
+						<img src="images/warning.png">
+						<p>Este evento (ya) no existe.<br>A lo mejor está borrado.</p>
 					</div>
 				</div>

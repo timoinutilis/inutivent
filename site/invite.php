@@ -39,11 +39,11 @@ if ($con)
 
 	if ($all_loaded)
 	{
-		include 'includes/invite-view.php';
+		include 'includes/content-invite.php';
 	}
 	else
 	{
-		include 'includes/error-view.php';
+		include 'includes/content-error.php';
 	}
 }
 

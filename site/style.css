@@ -328,11 +328,13 @@ textarea {
 }
 
 #posts {
-	float: left;
-	width: 65%;
-	margin-right: 40px;
-	padding-right: 40px;
-	border-right: 1px solid #eee;
+    margin-right: -201px;
+    float:left;
+    width:100%;
+}
+
+#posts-content {
+	margin-right: 241px;
 }
 
 #posts .post {
@@ -350,11 +352,20 @@ textarea {
 }
 
 #people {
-	display: inline-block;
+	width: 160px;
+	float: left;
+	padding-left: 40px;
+	border-left: 1px solid #eee;
 }
 
 #people li {
 	color: #666;
+}
+
+#people .note {
+	color: #888;
+	font-size: 75%;
+	margin-top: 10px;
 }
 
 #event-create .inside {

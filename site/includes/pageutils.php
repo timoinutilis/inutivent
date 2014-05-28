@@ -37,4 +37,69 @@ function cmp_by_created($a, $b)
 	return strcmp($a->created, $b->created);
 }
 
+function hour_of_datetime($datetime)
+{
+	$parts = explode(" ", $datetime);
+	$parts_time = explode(":", $parts[1]);
+	return intval($parts_time[0]).":".$parts_time[1];
+}
+
+function date_of_datetime($datetime)
+{
+	$parts = explode(" ", $datetime);
+	$parts_date = explode("-", $parts[0]);
+	return intval($parts_date[2])."/".intval($parts_date[1])."/".$parts_date[0];
+}
+
+function days_since($datetime)
+{
+	$parts = explode(" ", $datetime);
+
+	$date = strtotime($parts[0]);
+	$now = time();
+	$diff = $now - $date;
+
+	return floor($diff / (60 * 60 * 24));
+}
+
+function relative_day($datetime)
+{
+	$days = days_since($datetime);
+
+	if ($days == 0)
+	{
+		return "hoy";
+	}
+	else if ($days == 1)
+	{
+		return "ayer";
+	}
+	return date_of_datetime($datetime);
+}
+
+function relative_time($datetime)
+{
+	$days = days_since($datetime);
+
+	if ($days == 0)
+	{
+		return hour_of_datetime($datetime);
+	}
+
+	if ($days == 1)
+	{
+		$date = "ayer";
+	}
+	else if ($days <= 7)
+	{
+		$date = "hace {$days} días";
+	}
+	else
+	{
+		$date = date_of_datetime($datetime);
+	}
+
+	return $date." a la(s) ".hour_of_datetime($datetime);
+}
+
 ?>
