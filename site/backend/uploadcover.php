@@ -4,10 +4,10 @@ require_once(dirname(__FILE__).'/includes/database.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 
 define('UPLOAD_MAX_BYTES', 3000000);
-define('COVER_WIDTH', 640);
-define('COVER_HEIGHT', 200);
-define('COVER_MAX_BYTES', 30000);
-define('COVER_JPG_QUALITY', 80);
+define('COVER_MAX_WIDTH', 1024);
+define('COVER_MAX_HEIGHT_FACTOR', 0.375);
+define('COVER_MAX_BYTES', 50000);
+define('COVER_JPG_QUALITY', 60);
 
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id'])
@@ -58,7 +58,7 @@ else
 			$width = $image_info[0];
 			$height = $image_info[1];
 
-			if ($width != COVER_WIDTH || $height != COVER_HEIGHT || $file_size > COVER_MAX_BYTES)
+			if ($width > COVER_MAX_WIDTH || $height > ($width * COVER_MAX_HEIGHT_FACTOR) || $file_size > COVER_MAX_BYTES)
 			{
 				// save down scaled image
 				if ($file_type == "image/x-png" || $file_type == "image/png")
@@ -69,14 +69,18 @@ else
 				{
 					$image_orig = imagecreatefromjpeg($temp_filename);
 				}
-				$image_scaled = imagecreatetruecolor(COVER_WIDTH, COVER_HEIGHT);
-				$scale_factor = max(COVER_WIDTH / $width, COVER_HEIGHT / $height);
-				$src_scaled_width = COVER_WIDTH / $scale_factor;
-				$src_scaled_height = COVER_HEIGHT / $scale_factor;
+				$cover_width = min($width, COVER_MAX_WIDTH);
+				$scale = $cover_width / COVER_MAX_WIDTH;
+				$cover_height = min(floor($height * $scale), floor($cover_width * COVER_MAX_HEIGHT_FACTOR));
+
+				$image_scaled = imagecreatetruecolor($cover_width, $cover_height);
+				$scale_factor = max($cover_width / $width, $cover_height / $height);
+				$src_scaled_width = $cover_width / $scale_factor;
+				$src_scaled_height = $cover_height / $scale_factor;
 				imagecopyresampled($image_scaled, $image_orig,
 					0, 0,
 					($width - $src_scaled_width) * 0.5, ($height - $src_scaled_height) * 0.5,
-					COVER_WIDTH, COVER_HEIGHT,
+					$cover_width, $cover_height,
 					$src_scaled_width, $src_scaled_height);
 
 				imagedestroy($image_orig);

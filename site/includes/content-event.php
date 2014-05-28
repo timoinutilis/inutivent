@@ -15,30 +15,75 @@ EVENT VIEW
 					<br style="clear: both; width: 100%;">
 				</div>
 
+				<div id="cover-editor" class="section">
+					<div class="inside">
+						<form action="backend/uploadcover.php" method="post" enctype="multipart/form-data" onsubmit="return onCoverSubmit(event)">
+							<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+							<label for="file">Foto de portada:</label>
+							<input type="file" name="file" id="file">
+							<input type="submit" name="submit" value="Subir">
+						</form>
+					</div>
+				</div>
+
 				<div id="event-info" class="section">
 					<div class="inside">
-						<div class="facts">
-							<div class="fact">
-								<img src="images/calendar.png">
-								<p><?php echo event_date(); ?></p>
+						<div id="event-display">
+							<div class="facts">
+								<div class="fact">
+									<img src="images/calendar.png">
+									<p><?php event_date(); ?></p>
+								</div>
+
+								<div class="fact">
+									<img src="images/time.png">
+									<p><?php event_hour(); ?></p>
+								</div>
+
+								<div class="fact">
+									<img src="images/user.png">
+									<p><?php event_owner_name(); ?></p>
+								</div>
 							</div>
 
-							<div class="fact">
-								<img src="images/time.png">
-								<p><?php echo event_hour(); ?></p>
+							<br style="clear: both; width: 100%;">
+
+							<div class="details">
+								<?php event_details(); ?>
 							</div>
 
-							<div class="fact">
-								<img src="images/user.png">
-								<p><?php echo event_owner_name(); ?></p>
+							<?php if ($is_owner) { ?>
+							<div class="button-container">
+								<button type="button" onclick="showEventEditor();">Editar</button>
 							</div>
+							<?php } ?>
 						</div>
 
-						<br style="clear: both; width: 100%;">
+						<?php if ($is_owner) { ?>
+						<div id="event-editor" style="display:none;">
+							<form action="backend/updateevent.php" method="POST" onsubmit="return onEventSubmit(event)">
+								<div class="group">
+									<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
+									<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
-						<div class="details">
-							<?php echo event_details(); ?>
+									<label for="input-title">Título:</label>
+									<input type="text" id="input-title" name="title" placeholder="ejemplo: fiesta de cumpleaños"><br>
+									
+									<label for="input-date">Fecha:</label>
+									<input type="text" id="input-date" name="date" placeholder="ejemplo: 24/12/2014"><br>
+									
+									<label for="input-hour">Hora:</label>
+									<input type="text" id="input-hour" name="hour" placeholder="ejemplo: 20:00"><br>
+
+									<textarea rows="10" name="details" id="textarea-details"></textarea><br>
+								</div>
+								<input type="submit" value="Guardar">
+								<button type="button" onclick="hideEditor();">Cancelar</button>
+							</form>
 						</div>
+						<?php } ?>
+
 					</div>
 				</div>
 
@@ -157,35 +202,32 @@ EVENT VIEW
 						alert(error);
 					}
 
-					function showTitleEditor()
+					function showEventEditor()
 					{
-						var data = <?php echo json_encode($event->title); ?>;
-						document.getElementById("title-display").style.display = "none";
-						document.getElementById("title-editor").style.display = "block";
-						document.getElementById("input-title").value = data;
+						var title = <?php echo json_encode($event->title); ?>;
+						var date = "<?php event_date(); ?>";
+						var hour = "<?php event_hour(); ?>";
+						var details = <?php echo json_encode($event->details); ?>;
+						
+						document.getElementById("event-display").style.display = "none";
+						document.getElementById("event-editor").style.display = "block";
+						document.getElementById("cover-editor").style.display = "none";
+
+						document.getElementById("input-title").value = title;
+						document.getElementById("input-date").value = date;
+						document.getElementById("input-hour").value = hour;
+						document.getElementById("textarea-details").value = details;
 					}
 
-					function showTimeEditor()
+					function hideEditor()
 					{
-						var data = <?php echo json_encode($event->time); ?>;
-						document.getElementById("time-display").style.display = "none";
-						document.getElementById("time-editor").style.display = "block";
-						document.getElementById("input-time").value = data;
-					}
-
-					function showDetailsEditor()
-					{
-						var data = <?php echo json_encode($event->details); ?>;
-						document.getElementById("details-display").style.display = "none";
-						document.getElementById("details-editor").style.display = "block";
-						document.getElementById("textarea-details").value = data;
-					}
-
-					function hideEditor(displayDiv, editorDiv, valueInput)
-					{
-						document.getElementById(displayDiv).style.display = "block";
-						document.getElementById(editorDiv).style.display = "none";
-						document.getElementById(valueInput).value = "";
+						document.getElementById('event-display').style.display = "block";
+						document.getElementById('event-editor').style.display = "none";
+						document.getElementById("cover-editor").style.display = "block";
+						document.getElementById("input-title").value = "";
+						document.getElementById("input-date").value = "";
+						document.getElementById("input-hour").value = "";
+						document.getElementById('textarea-details').value = "";
 					}
 
 				</script>

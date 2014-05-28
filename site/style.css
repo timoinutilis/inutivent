@@ -126,6 +126,12 @@ textarea {
 	width: 100%;
 }
 
+input[type="file"],
+input[type="file"]:hover,
+input[type="file"]:active {
+	border: none;
+}
+
 .section {
 	width: 100%;
 	display: block;
@@ -227,6 +233,14 @@ textarea {
 	z-index: 3;
 }
 
+#cover-editor {
+	position: absolute;
+}
+
+#cover-editor .inside {
+	text-align: center;
+}
+
 #event-info {
 }
 
@@ -250,6 +264,11 @@ textarea {
 #event-info .details {
 	font-size: 120%;
 }
+
+#event-info .button-container {
+	margin-top: 20px;
+}
+
 
 #user-info {
 	background-color: #f2f2f2;
@@ -378,16 +397,19 @@ textarea {
 }
 
 #event-create .group,
-#invite .group {
+#invite .group,
+#event-editor .group {
 	margin-bottom: 20px;
 }
 
-#event-create .group input {
+#event-create .group input,
+#event-editor .group input {
 	display: block;
 	width: 300px;
 }
 
-#event-create .group label {
+#event-create .group label,
+#event-editor .group label {
 	display: block;
 	width: 120px;
 	height: 30px;
@@ -395,7 +417,8 @@ textarea {
 	float: left;
 }
 
-#event-create .group br {
+#event-create .group br,
+#event-editor .group br {
 	clear: left;
 }
 

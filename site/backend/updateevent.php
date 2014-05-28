@@ -13,8 +13,11 @@ else
 	$event_id = $_REQUEST['event_id'];
 	$user_id = $_REQUEST['user_id'];
 	$title = !empty($_REQUEST['title']) ? $_REQUEST['title'] : NULL;
-	$time = !empty($_REQUEST['time']) ? $_REQUEST['time'] : NULL;
+	$date = !empty($_REQUEST['date']) ? $_REQUEST['date'] : NULL;
+	$hour = !empty($_REQUEST['hour']) ? $_REQUEST['hour'] : NULL;
 	$details = !empty($_REQUEST['details']) ? $_REQUEST['details'] : NULL;
+
+	$time = ($date && $hour) ? convert_to_datetime($date, $hour) : NULL;
 
 	$con = connect_to_db();
 	if ($con)

@@ -97,7 +97,10 @@ function header_image_url()
 	{
 		echo "uploads/".$event_id."/".$event->cover;
 	}
-	echo "images/default_header.jpg";
+	else
+	{
+		echo "images/default_header.jpg";
+	}
 }
 
 function event_title()

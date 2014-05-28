@@ -18,6 +18,6 @@ EVENT NOT FOUND VIEW
 				<div id="error" class="section">
 					<div class="inside">
 						<img src="images/warning.png">
-						<p>Este evento (ya) no existe.<br>A lo mejor está borrado.</p>
+						<p>Este evento (ya) no existe.<br>A lo mejor está borrado o tu link no es correcto.</p>
 					</div>
 				</div>
