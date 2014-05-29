@@ -23,7 +23,7 @@ HEADER
 					<h1><a href="<?php echo SITE_URL; ?>">Inutivent</a></h1>
 				</div>
 				<div class="options">
-					<a href="create.php">Crear nuevo evento</a>
+					<a href="create.php">+ Crear nuevo evento</a>
 				</div>
 			</div>
 

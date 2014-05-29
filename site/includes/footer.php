@@ -11,17 +11,16 @@ FOOTER
 				<div class="inside">
 					<div class="column">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque massa erat, venenatis sit amet dolor ut, euismod egestas enim.<br>
-							<br>
-							Nunc dictum tortor quis ipsum varius, in adipiscing orci ullamcorper. Duis egestas aliquet enim eget vulputate. Suspendisse non placerat neque, a tristique quam. Donec malesuada magna quis purus vestibulum, a vulputate mi hendrerit.
+							En Inutivent puedes invitar gente a tus eventos, mirar quién va a asistir y hablar con los invitados en el muro.
+							Y todo en la manera más simple, sin registración ni log-in.
+							<a href="<?php echo SITE_URL; ?>">Más información</a>
 						</p>
 					</div>
 					<div class="column right">
 						<p>
 							Iconos de <a href="http://www.ikons.piotrkwiatkowski.co.uk">IKONS</a><br>
-							Página desarrollada por Timo Kloss<br>
-							<br>
-							Esto es una producción de <a href="http://www.inutilis.com">inutilis</a><br>
+							Página desarrollada por <a href="mailto:timo" onclick="onClickMail(event)">Timo Kloss</a><br>
+							Una producción de <a href="http://www.inutilis.com">inutilis</a><br>
 							Copyright 2014 by Timo Kloss
 						</p>
 					</div>

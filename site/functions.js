@@ -51,3 +51,16 @@ function setFormsDisabled(disabled)
 		elements[i].disabled = disabled;
 	}
 }
+
+function onClickMail(event)
+{
+	var h = event.target.href;
+	var l = String.fromCharCode(64);
+	if (h.indexOf(l) == -1)
+	{
+		l += "inutilis";
+		l += String.fromCharCode(46);
+		l += "com";
+		event.target.href = h + l;
+	}
+}

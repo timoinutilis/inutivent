@@ -66,6 +66,10 @@ body {
 #content {
 }
 
+strong {
+	font-weight: bold;
+}
+
 a {
 	text-decoration: none;
 	color: #07a;
@@ -169,6 +173,14 @@ input[type="file"]:active {
 	font-weight: bold;
 	font-size: 100%;
 	margin: 16px 0;
+}
+
+ul.list  {
+	margin-left: 20px;
+}
+
+ul.list li {
+	list-style-type: disc;
 }
 
 #header {
@@ -372,7 +384,7 @@ input[type="file"]:active {
 }
 
 #posts .post {
-	margin-bottom: 12px;
+	margin-bottom: 16px;
 }
 
 #posts .post .name {
@@ -381,7 +393,7 @@ input[type="file"]:active {
 }
 
 #posts .post .time {
-	color: #888;
+	color: #aaa;
 	font-size: 75%;
 }
 
@@ -397,7 +409,7 @@ input[type="file"]:active {
 }
 
 #people .note {
-	color: #888;
+	color: #aaa;
 	font-size: 75%;
 	margin-top: 10px;
 }
@@ -449,14 +461,39 @@ input[type="file"]:active {
 	margin-right: 30px;
 }
 
+#welcome {
+	font-size: 150%;
+}
+
 #welcome .inside {
 	padding: 80px 0;
 	text-align: center;
 }
 
 #welcome .inside p {
-	font-size: 150%;
 	margin-bottom: 20px;
+}
+
+#welcome-why {
+	background-color: #f2f2f2;
+}
+
+#welcome-why .inside {
+	padding: 80px 0;
+}
+
+#welcome-why img {
+	display: block;
+	position: absolute;
+}
+
+#welcome-why .text {
+	margin-left: 240px;
+}
+
+#welcome-how .inside {
+		text-align: justify;
+	padding: 80px 0;
 }
 
 #error .inside {
