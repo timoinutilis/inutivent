@@ -6,7 +6,8 @@ require_once(dirname(__FILE__).'/includes/mail.php');
 
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id'])
-	|| !isset($_REQUEST['mails']) )
+	|| !isset($_REQUEST['mails'])
+	|| !isset($_REQUEST['information']) )
 {
 	return_error("missing parameters");
 }
@@ -15,6 +16,7 @@ else
 	$event_id = $_REQUEST['event_id'];
 	$user_id = $_REQUEST['user_id'];
 	$mails = $_REQUEST['mails'];
+	$information = $_REQUEST['information'];
 
 	$con = connect_to_db();
 	if ($con)
@@ -74,7 +76,7 @@ else
 							$guest_user = new stdClass();
 							$guest_user->id = $guest_user_id;
 
-							if (send_invitation_mail($mail, $event, $owner, $guest_user))
+							if (send_invitation_mail($mail, $event, $owner, $guest_user, $information))
 							{
 								$num_sent++;
 							}

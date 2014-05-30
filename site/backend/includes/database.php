@@ -14,14 +14,7 @@ define('HASH_USER', 'crc32');
 
 function connect_to_db()
 {
-	$con = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
-	if ($con)
-	{
-		if (!mysql_select_db(DB_NAME, $con))
-		{
-			return FALSE;
-		}
-	}
+	$con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	return $con;
 }
 
@@ -32,12 +25,12 @@ function event_get_new_id($con)
 
 	for ($i = 0; $i < 10; $i++)
 	{
-		$result = mysql_query("SELECT id FROM events WHERE id = '{$time_hash}'", $con);
+		$result = mysqli_query($con, "SELECT id FROM events WHERE id = '{$time_hash}'");
 		if ($result === FALSE)
 		{
 			return FALSE;
 		}
-		if (mysql_num_rows($result) == 0)
+		if (mysqli_num_rows($result) == 0)
 		{
 			return $time_hash;
 		}
@@ -50,13 +43,13 @@ function event_get_new_id($con)
 
 function event_create($con, $title, $details, $time)
 {
-	$title = mysql_escape_string($title);
-	$details = mysql_escape_string($details);
+	$title = mysqli_real_escape_string($con, $title);
+	$details = mysqli_real_escape_string($con, $details);
 
 	$id = event_get_new_id($con);
 	if ($id)
 	{
-		$result = mysql_query("INSERT INTO events (id, title, details, time, created) VALUES ('{$id}', '{$title}', '{$details}', '{$time}', NOW())", $con);
+		$result = mysqli_query($con, "INSERT INTO events (id, title, details, time, created) VALUES ('{$id}', '{$title}', '{$details}', '{$time}', NOW())");
 		if ($result)
 		{
 			return $id;
@@ -71,22 +64,22 @@ function event_update($con, $event_id, $title = NULL, $time = NULL, $details = N
 
 	if (!empty($title))
 	{
-		$title = mysql_escape_string($title);
+		$title = mysqli_real_escape_string($con, $title);
 		$changes[] = "title = '{$title}'";
 	}
 	if (!empty($time))
 	{
-		$time = mysql_escape_string($time);
+		$time = mysqli_real_escape_string($con, $time);
 		$changes[] = "time = '{$time}'";
 	}
 	if (!empty($details))
 	{
-		$details = mysql_escape_string($details);
+		$details = mysqli_real_escape_string($con, $details);
 		$changes[] = "details = '{$details}'";
 	}
 	if (!empty($cover))
 	{
-		$cover = mysql_escape_string($cover);
+		$cover = mysqli_real_escape_string($con, $cover);
 		$changes[] = "cover = '{$cover}'";
 	}
 
@@ -94,7 +87,7 @@ function event_update($con, $event_id, $title = NULL, $time = NULL, $details = N
 	{
 		$changes_sql = implode(', ', $changes);
 
-		$result = mysql_query("UPDATE events SET {$changes_sql} WHERE id = '{$event_id}'", $con);
+		$result = mysqli_query($con, "UPDATE events SET {$changes_sql} WHERE id = '{$event_id}'");
 		return $result;
 	}
 	// no changes no error
@@ -103,16 +96,16 @@ function event_update($con, $event_id, $title = NULL, $time = NULL, $details = N
 
 function event_set_owner($con, $event_id, $user_id)
 {
-	$result = mysql_query("UPDATE events SET owner = '{$user_id}' WHERE id = '{$event_id}'", $con);
+	$result = mysqli_query($con, "UPDATE events SET owner = '{$user_id}' WHERE id = '{$event_id}'");
 	return $result;
 }
 
 function event_get($con, $event_id)
 {
-	$result = mysql_query("SELECT * FROM events WHERE id = '{$event_id}'", $con);
-	if ($result && mysql_num_rows($result) == 1)
+	$result = mysqli_query($con, "SELECT * FROM events WHERE id = '{$event_id}'");
+	if ($result && mysqli_num_rows($result) == 1)
 	{
-		return mysql_fetch_object($result);
+		return mysqli_fetch_object($result);
 	}
 	else
 	{
@@ -123,15 +116,15 @@ function event_get($con, $event_id)
 function event_delete_completely($con, $event_id)
 {
 	// posts
-	$result = mysql_query("DELETE FROM posts WHERE event_id = '{$event_id}'", $con);
+	$result = mysqli_query($con, "DELETE FROM posts WHERE event_id = '{$event_id}'");
 	if ($result)
 	{
 		// users
-		$result = mysql_query("DELETE FROM users WHERE event_id = '{$event_id}'", $con);
+		$result = mysqli_query($con, "DELETE FROM users WHERE event_id = '{$event_id}'");
 		if ($result)
 		{
 			// event
-			$result = mysql_query("DELETE FROM events WHERE id = '{$event_id}'", $con);
+			$result = mysqli_query($con, "DELETE FROM events WHERE id = '{$event_id}'");
 			return $result;
 		}
 	}
@@ -152,12 +145,12 @@ function user_get_new_id($con, $event_id, $spare_obj = NULL)
 
 	for ($i = 0; $i < 10; $i++)
 	{
-		$result = mysql_query("SELECT id FROM users WHERE event_id = '{$event_id}' AND id = '{$time_hash}'", $con);
+		$result = mysqli_query($con, "SELECT id FROM users WHERE event_id = '{$event_id}' AND id = '{$time_hash}'");
 		if ($result === FALSE)
 		{
 			return FALSE;
 		}
-		if (mysql_num_rows($result) == 0)
+		if (mysqli_num_rows($result) == 0)
 		{
 			if ($spare_obj)
 			{
@@ -174,11 +167,11 @@ function user_get_new_id($con, $event_id, $spare_obj = NULL)
 
 function user_create($con, $event_id, $name, $status = STATUS_UNKNOWN, $user_id_spare_obj = NULL)
 {
-	$name = mysql_escape_string($name);
+	$name = mysqli_real_escape_string($con, $name);
 	$id = user_get_new_id($con, $event_id, $user_id_spare_obj);
 	if ($id)
 	{
-		$result = mysql_query("INSERT INTO users (id, event_id, name, status, status_changed, visited) VALUES ('{$id}', '{$event_id}', '{$name}', '{$status}', NOW(), '0000-00-00 00:00:00')", $con);
+		$result = mysqli_query($con, "INSERT INTO users (id, event_id, name, status, status_changed, visited) VALUES ('{$id}', '{$event_id}', '{$name}', '{$status}', NOW(), '0000-00-00 00:00:00')");
 		if ($result)
 		{
 			return $id;
@@ -205,7 +198,7 @@ function user_update($con, $event_id, $user_id, $status, $name)
 	{
 		$changes_sql = implode(', ', $changes);
 
-		$result = mysql_query("UPDATE users SET {$changes_sql} WHERE event_id = '{$event_id}' AND id = '{$user_id}'", $con);
+		$result = mysqli_query($con, "UPDATE users SET {$changes_sql} WHERE event_id = '{$event_id}' AND id = '{$user_id}'");
 		return $result;
 	}
 	// no changes no error
@@ -214,27 +207,27 @@ function user_update($con, $event_id, $user_id, $status, $name)
 
 function user_update_visited($con, $event_id, $user_id)
 {
-	$result = mysql_query("UPDATE users SET visited = NOW() WHERE event_id = '{$event_id}' AND id = '{$user_id}'", $con);
+	$result = mysqli_query($con, "UPDATE users SET visited = NOW() WHERE event_id = '{$event_id}' AND id = '{$user_id}'");
 	return $result;
 }
 
 function user_get($con, $event_id, $user_id)
 {
-	$result = mysql_query("SELECT * FROM users WHERE id = '{$user_id}' AND event_id = '{$event_id}'", $con);
-	if ($result && mysql_num_rows($result) == 1)
+	$result = mysqli_query($con, "SELECT * FROM users WHERE id = '{$user_id}' AND event_id = '{$event_id}'");
+	if ($result && mysqli_num_rows($result) == 1)
 	{
-		return mysql_fetch_object($result);
+		return mysqli_fetch_object($result);
 	}
 	return FALSE;
 }
 
 function user_get_all($con, $event_id)
 {
-	$result = mysql_query("SELECT * FROM users WHERE event_id = '{$event_id}'", $con);
+	$result = mysqli_query($con, "SELECT * FROM users WHERE event_id = '{$event_id}'");
 	if ($result)
 	{
 		$users = array();
-		while ($user = mysql_fetch_object($result))
+		while ($user = mysqli_fetch_object($result))
 		{
 			$users[$user->id] = $user;
 		}
@@ -245,22 +238,22 @@ function user_get_all($con, $event_id)
 
 function post_create($con, $event_id, $user_id, $type, $data)
 {
-	$data = mysql_escape_string($data);
-	$result = mysql_query("INSERT INTO posts (event_id, user_id, type, data, created) VALUES ('{$event_id}', '{$user_id}', '{$type}', '{$data}', NOW())", $con);
+	$data = mysqli_real_escape_string($con, $data);
+	$result = mysqli_query($con, "INSERT INTO posts (event_id, user_id, type, data, created) VALUES ('{$event_id}', '{$user_id}', '{$type}', '{$data}', NOW())");
 	if ($result)
 	{
-		return mysql_insert_id();
+		return mysqli_insert_id($con);
 	}
 	return FALSE;
 }
 
 function post_get_all($con, $event_id, $user_id)
 {
-	$result = mysql_query("SELECT * FROM posts WHERE event_id = '{$event_id}'", $con);
+	$result = mysqli_query($con, "SELECT * FROM posts WHERE event_id = '{$event_id}'");
 	if ($result)
 	{
 		$posts = array();
-		while ($post = mysql_fetch_object($result))
+		while ($post = mysqli_fetch_object($result))
 		{
 			$posts[] = $post;
 		}

@@ -26,8 +26,10 @@ require_once(dirname(__FILE__).'/includes/config.php');
 								<label for="hour">Hora:</label>
 								<input type="text" id="hour" name="hour" placeholder="ejemplo: 20:00"><br>
 								
-								Detalles:<br>
+								Detalles: *<br>
 								<textarea rows="10" name="details" placeholder="Escribe algo..."></textarea><br>
+								<span class="footnote">* No pongas aquí datos privados como tu dirección o numero de telefono.
+								Lo puedes hacer al enviar invitaciones.</span><br>
 								<br>
 								
 								<label for="name">Tu nombre:</label>
