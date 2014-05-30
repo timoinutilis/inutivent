@@ -20,8 +20,7 @@ else
 
 require_once(dirname(__FILE__).'/includes/pageutils.php');
 require_once(dirname(__FILE__).'/backend/includes/database.php');
-
-include 'includes/header.php';
+require_once(dirname(__FILE__).'/includes/init.php');
 
 $all_loaded = FALSE;
 $error = "";
@@ -56,7 +55,7 @@ else
 			}
 			else
 			{
-				$posts = post_get_all($con, $event_id, $user_id);
+				$posts = post_get_all($con, $event_id);
 				if ($posts === FALSE)
 				{
 					$error = "posts";
@@ -72,6 +71,10 @@ else
 		}
 	}
 }
+
+init_page($all_loaded ? $event->title : NULL, TRUE);
+
+include 'includes/header.php';
 
 if ($all_loaded)
 {

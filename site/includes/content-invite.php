@@ -24,7 +24,7 @@ INVITE
 								Direcciones de e-mail: *<br>
 								<textarea rows="10" name="mails" id="mails"></textarea><br>
 								<span class="footnote">* Separados por nueva línea, "," o ";". Si usas el formato
-									"Nombre &lt;mail@example.com&gt;", ya se guarda el nombre para el invitado, si no se ve como "???" hasta que
+									"Nombre &lt;mail@example.com&gt;" ya se guarda el nombre para el invitado, si no se ve como "???" hasta que
 									lo cambie.</span>
 							</div>
 							<div class="group">

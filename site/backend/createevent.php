@@ -15,12 +15,12 @@ if (   empty($_REQUEST['name'])
 }
 else
 {
-	$name = $_REQUEST['name'];
+	$name = clean_string_line($_REQUEST['name']);
 	$mail = $_REQUEST['mail'];
-	$title = $_REQUEST['title'];
+	$title = clean_string_line($_REQUEST['title']);
 	$date = $_REQUEST['date'];
 	$hour = $_REQUEST['hour'];
-	$details = $_REQUEST['details'];
+	$details = clean_string($_REQUEST['details']);
 
 	if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
 	{
@@ -35,21 +35,21 @@ else
 			$event_id = event_create($con, $title, $details, $time);
 			if ($event_id === FALSE)
 			{
-				return_error("MySQL error: ".mysql_error());
+				return_error("MySQL error: ".db_error());
 			}
 			else
 			{
 				$user_id = user_create($con, $event_id, $name, STATUS_ATTENDING);
 				if ($user_id === FALSE)
 				{
-					return_error("MySQL error: ".mysql_error());
+					return_error("MySQL error: ".db_error());
 				}
 				else
 				{
 					$success = event_set_owner($con, $event_id, $user_id);
 					if ($success === FALSE)
 					{
-						return_error("MySQL error: ".mysql_error());
+						return_error("MySQL error: ".db_error());
 					}
 					else
 					{
@@ -70,7 +70,7 @@ else
 		}
 		else
 		{
-			return_error("MySQL error: ".mysql_error());
+			return_error("MySQL error: ".db_error());
 		}
 	}
 }

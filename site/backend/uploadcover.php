@@ -106,12 +106,12 @@ else
 				}
 				else
 				{
-					return_error("MySQL error: ".mysql_error());
+					return_error("MySQL error: ".db_error());
 				}
 			}
 			else
 			{
-				return_error("MySQL error: ".mysql_error());
+				return_error("MySQL error: ".db_error());
 			}
 
 		}

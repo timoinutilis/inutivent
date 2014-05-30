@@ -16,7 +16,7 @@ else
 	$event_id = $_REQUEST['event_id'];
 	$user_id = $_REQUEST['user_id'];
 	$mails = $_REQUEST['mails'];
-	$information = $_REQUEST['information'];
+	$information = clean_string($_REQUEST['information']);
 
 	$con = connect_to_db();
 	if ($con)
@@ -25,7 +25,7 @@ else
 		$owner = user_get($con, $event_id, $user_id);
 		if ($event === FALSE || $owner === FALSE)
 		{
-			return_error("MySQL error: ".mysql_error());
+			return_error("MySQL error: ".db_error());
 		}
 		else
 		{
@@ -46,7 +46,7 @@ else
 					$mail_parts = explode(' ', $mail);
 					if (count($mail_parts) > 1)
 					{
-						$name = $mail_parts[0];
+						$name = clean_string_line($mail_parts[0]);
 
 						$matches = array();
 						$t = preg_match('/<(.*?)>/s', $mail, $matches);
@@ -94,7 +94,7 @@ else
 	}
 	else
 	{
-		return_error("MySQL error: ".mysql_error());
+		return_error("MySQL error: ".db_error());
 	}
 }
 

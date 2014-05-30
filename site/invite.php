@@ -19,14 +19,22 @@ else
 }
 
 require_once(dirname(__FILE__).'/backend/includes/database.php');
+require_once(dirname(__FILE__).'/includes/init.php');
+
+init_page("Invitar", TRUE);
 
 include 'includes/header.php';
 
+$all_loaded = FALSE;
+$error = "";
+
 $con = connect_to_db();
-if ($con)
+if (!$con)
 {
-	$all_loaded = FALSE;
-	$error = "";
+	$error = "connect_to_db";
+}
+else
+{
 
 	$event = event_get($con, $event_id);
 	if ($event === FALSE)
@@ -39,14 +47,19 @@ if ($con)
 		$all_loaded = TRUE;
 	}
 
-	if ($all_loaded)
-	{
-		include 'includes/content-invite.php';
-	}
-	else
-	{
-		include 'includes/content-error.php';
-	}
+}
+
+if ($all_loaded)
+{
+	include 'includes/content-invite.php';
+}
+else if ($error == "event")
+{
+	include 'includes/content-not-found.php';
+}
+else
+{
+	include 'includes/content-error.php';
 }
 
 include 'includes/footer.php';

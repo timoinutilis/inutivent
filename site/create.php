@@ -5,6 +5,9 @@ CREATE EVENT
 */
 
 require_once(dirname(__FILE__).'/includes/config.php');
+require_once(dirname(__FILE__).'/includes/init.php');
+
+init_page("Crear nuevo evento", FALSE);
 
 ?>
 

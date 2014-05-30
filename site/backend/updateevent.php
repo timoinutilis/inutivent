@@ -12,10 +12,10 @@ else
 {
 	$event_id = $_REQUEST['event_id'];
 	$user_id = $_REQUEST['user_id'];
-	$title = !empty($_REQUEST['title']) ? $_REQUEST['title'] : NULL;
+	$title = !empty($_REQUEST['title']) ? clean_string_line($_REQUEST['title']) : NULL;
 	$date = !empty($_REQUEST['date']) ? $_REQUEST['date'] : NULL;
 	$hour = !empty($_REQUEST['hour']) ? $_REQUEST['hour'] : NULL;
-	$details = !empty($_REQUEST['details']) ? $_REQUEST['details'] : NULL;
+	$details = !empty($_REQUEST['details']) ? clean_string($_REQUEST['details']) : NULL;
 
 	$time = ($date && $hour) ? convert_to_datetime($date, $hour) : NULL;
 
@@ -25,7 +25,7 @@ else
 		$event = event_get($con, $event_id);
 		if ($event === FALSE)
 		{
-			return_error("MySQL error: ".mysql_error());
+			return_error("MySQL error: ".db_error());
 		}
 		else if ($event->owner != $user_id)
 		{
@@ -38,12 +38,12 @@ else
 		}
 		else
 		{
-			return_error("MySQL error: ".mysql_error());
+			return_error("MySQL error: ".db_error());
 		}
 	}
 	else
 	{
-		return_error("MySQL error: ".mysql_error());
+		return_error("MySQL error: ".db_error());
 	}
 }
 

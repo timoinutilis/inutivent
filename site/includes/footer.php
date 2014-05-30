@@ -18,8 +18,8 @@ FOOTER
 					</div>
 					<div class="column right">
 						<p>
-							Iconos de <a href="http://www.ikons.piotrkwiatkowski.co.uk">IKONS</a><br>
 							Página desarrollada por <a href="mailto:timo" onclick="onClickMail(event)">Timo Kloss</a><br>
+							Iconos de <a href="http://www.ikons.piotrkwiatkowski.co.uk">IKONS</a><br>
 							Una producción de <a href="http://www.inutilis.com">inutilis</a><br>
 							Copyright 2014 by Timo Kloss
 						</p>

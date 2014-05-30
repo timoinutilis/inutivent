@@ -12,10 +12,28 @@ define('POST_TYPE_TEXT', 'T');
 define('HASH_EVENT', 'md5');
 define('HASH_USER', 'crc32');
 
+$current_con = NULL;
+
 function connect_to_db()
 {
-	$con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	return $con;
+	global $current_con;
+	$current_con = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	if (mysqli_connect_errno())
+	{
+		return FALSE;
+	}
+
+	return $current_con;
+}
+
+function db_error()
+{
+	global $current_con;
+	if (mysqli_connect_errno())
+	{
+		return mysqli_connect_error();
+	}
+	return mysqli_error($current_con);
 }
 
 function event_get_new_id($con)
@@ -45,6 +63,7 @@ function event_create($con, $title, $details, $time)
 {
 	$title = mysqli_real_escape_string($con, $title);
 	$details = mysqli_real_escape_string($con, $details);
+	$time = mysqli_real_escape_string($con, $time);
 
 	$id = event_get_new_id($con);
 	if ($id)
@@ -60,6 +79,8 @@ function event_create($con, $title, $details, $time)
 
 function event_update($con, $event_id, $title = NULL, $time = NULL, $details = NULL, $cover = NULL)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+
 	$changes = array();
 
 	if (!empty($title))
@@ -96,12 +117,17 @@ function event_update($con, $event_id, $title = NULL, $time = NULL, $details = N
 
 function event_set_owner($con, $event_id, $user_id)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+	$user_id = mysqli_real_escape_string($con, $user_id);
+
 	$result = mysqli_query($con, "UPDATE events SET owner = '{$user_id}' WHERE id = '{$event_id}'");
 	return $result;
 }
 
 function event_get($con, $event_id)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+
 	$result = mysqli_query($con, "SELECT * FROM events WHERE id = '{$event_id}'");
 	if ($result && mysqli_num_rows($result) == 1)
 	{
@@ -115,6 +141,8 @@ function event_get($con, $event_id)
 
 function event_delete_completely($con, $event_id)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+
 	// posts
 	$result = mysqli_query($con, "DELETE FROM posts WHERE event_id = '{$event_id}'");
 	if ($result)
@@ -167,7 +195,10 @@ function user_get_new_id($con, $event_id, $spare_obj = NULL)
 
 function user_create($con, $event_id, $name, $status = STATUS_UNKNOWN, $user_id_spare_obj = NULL)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
 	$name = mysqli_real_escape_string($con, $name);
+	$status = mysqli_real_escape_string($con, $status);
+
 	$id = user_get_new_id($con, $event_id, $user_id_spare_obj);
 	if ($id)
 	{
@@ -182,15 +213,20 @@ function user_create($con, $event_id, $name, $status = STATUS_UNKNOWN, $user_id_
 
 function user_update($con, $event_id, $user_id, $status, $name)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+	$user_id = mysqli_real_escape_string($con, $user_id);
+
 	$changes = array();
 
 	if (!empty($status))
 	{
+		$status = mysqli_real_escape_string($con, $status);
 		$changes[] = "status = '{$status}'";
 		$changes[] = "status_changed = NOW()";
 	}
 	if (!empty($name))
 	{
+		$name = mysqli_real_escape_string($con, $name);
 		$changes[] = "name = '{$name}'";
 	}
 
@@ -207,12 +243,18 @@ function user_update($con, $event_id, $user_id, $status, $name)
 
 function user_update_visited($con, $event_id, $user_id)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+	$user_id = mysqli_real_escape_string($con, $user_id);
+
 	$result = mysqli_query($con, "UPDATE users SET visited = NOW() WHERE event_id = '{$event_id}' AND id = '{$user_id}'");
 	return $result;
 }
 
 function user_get($con, $event_id, $user_id)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+	$user_id = mysqli_real_escape_string($con, $user_id);
+
 	$result = mysqli_query($con, "SELECT * FROM users WHERE id = '{$user_id}' AND event_id = '{$event_id}'");
 	if ($result && mysqli_num_rows($result) == 1)
 	{
@@ -223,6 +265,8 @@ function user_get($con, $event_id, $user_id)
 
 function user_get_all($con, $event_id)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+
 	$result = mysqli_query($con, "SELECT * FROM users WHERE event_id = '{$event_id}'");
 	if ($result)
 	{
@@ -238,7 +282,11 @@ function user_get_all($con, $event_id)
 
 function post_create($con, $event_id, $user_id, $type, $data)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+	$user_id = mysqli_real_escape_string($con, $user_id);
+	$type = mysqli_real_escape_string($con, $type);
 	$data = mysqli_real_escape_string($con, $data);
+
 	$result = mysqli_query($con, "INSERT INTO posts (event_id, user_id, type, data, created) VALUES ('{$event_id}', '{$user_id}', '{$type}', '{$data}', NOW())");
 	if ($result)
 	{
@@ -247,8 +295,10 @@ function post_create($con, $event_id, $user_id, $type, $data)
 	return FALSE;
 }
 
-function post_get_all($con, $event_id, $user_id)
+function post_get_all($con, $event_id)
 {
+	$event_id = mysqli_real_escape_string($con, $event_id);
+
 	$result = mysqli_query($con, "SELECT * FROM posts WHERE event_id = '{$event_id}'");
 	if ($result)
 	{

@@ -5,6 +5,9 @@ HOME PAGE / INDEX
 */
 
 require_once(dirname(__FILE__).'/includes/config.php');
+require_once(dirname(__FILE__).'/includes/init.php');
+
+init_page(NULL, FALSE);
 
 ?>
 
@@ -22,7 +25,7 @@ require_once(dirname(__FILE__).'/includes/config.php');
 					<div class="inside">
 						<p>Aquí puedes invitar gente a tus eventos, mirar quién va a asistir y hablar con los invitados en el muro.
 							Y todo en la manera más simple.</p>
-						<a href="create.php">Crear evento...</a>
+						<a href="create.php">Crear nuevo evento...</a>
 					</div>
 				</div>
 

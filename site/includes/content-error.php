@@ -19,6 +19,5 @@ ERROR VIEW
 					<div class="inside">
 						<img src="images/warning.png">
 						<p>Algo no ha funcionado bien :(<br>Por favor, inténtalo más tarde!</p>
-
 					</div>
 				</div>

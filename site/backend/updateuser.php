@@ -13,7 +13,7 @@ else
 	$event_id = $_REQUEST['event_id'];
 	$user_id = $_REQUEST['user_id'];
 	$status = !empty($_REQUEST['status']) ? $_REQUEST['status'] : NULL;
-	$name = !empty($_REQUEST['name']) ? $_REQUEST['name'] : NULL;
+	$name = !empty($_REQUEST['name']) ? clean_string_line($_REQUEST['name']) : NULL;
 
 	$con = connect_to_db();
 	if ($con)
@@ -25,12 +25,12 @@ else
 		}
 		else
 		{
-			return_error("MySQL error: ".mysql_error());
+			return_error("MySQL error: ".db_error());
 		}
 	}
 	else
 	{
-		return_error("MySQL error: ".mysql_error());
+		return_error("MySQL error: ".db_error());
 	}
 }
 
