@@ -18,6 +18,7 @@ else
 	$user_id = $_REQUEST['user'];
 }
 
+require_once(dirname(__FILE__).'/includes/pageutils.php');
 require_once(dirname(__FILE__).'/backend/includes/database.php');
 require_once(dirname(__FILE__).'/includes/init.php');
 
@@ -83,7 +84,7 @@ function header_image_url()
 function event_title()
 {
 	global $event;
-	echo $event->title;
+	echo html_text($event->title);
 }
 
 function event_url()

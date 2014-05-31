@@ -37,19 +37,33 @@ function sendFormData(method, action, formData, onComplete, onError)
 			{
 				onError("Error " + request.status);
 			}
+			unblockScreen();
 		}
 	}
 	request.open(method, action, true);
 	request.send(formData);
+	blockScreen();
 }
 
-function setFormsDisabled(disabled)
+function blockScreen()
 {
-	var elements = document.getElementsByTagName("input");
-	for (var i = 0; i < elements.length; i++)
-	{
-		elements[i].disabled = disabled;
-	}
+	var blocker = document.createElement("div");
+	blocker.id = "blocker"
+	blocker.innerHTML = '<div style="position:fixed; top:50%; left:50%;"><img src="images/loading.gif" style="margin: -40px 0 0 -40px;"></div>';
+	blocker.style.width = "100%";
+	blocker.style.height = "100%";
+	blocker.style.top = "0";
+	blocker.style.left = "0";
+	blocker.style.position = "fixed";
+	blocker.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+
+	document.body.appendChild(blocker);
+  }
+
+function unblockScreen()
+{
+	var blocker = document.getElementById("blocker");
+	document.body.removeChild(blocker);
 }
 
 function onClickMail(event)

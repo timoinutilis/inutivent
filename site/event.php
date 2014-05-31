@@ -111,7 +111,7 @@ function header_image_url()
 function event_title()
 {
 	global $event;
-	echo $event->title;
+	echo html_text($event->title);
 }
 
 function event_date()
@@ -129,7 +129,7 @@ function event_hour()
 function event_owner_name()
 {
 	global $event, $users;
-	echo $users[$event->owner]->name;
+	echo html_text($users[$event->owner]->name);
 }
 
 function event_details()
@@ -141,7 +141,7 @@ function event_details()
 function user_name()
 {
 	global $user;
-	echo $user->name;
+	echo html_text($user->name);
 }
 
 function status_button($status)
@@ -208,6 +208,7 @@ function guests_list_for_status($title, $status)
 END;
 		foreach ($guests as $guest)
 		{
+			$guest_name = html_text($guest->name);
 			$extras = "";
 			if ($guest->id == $event->owner)
 			{
@@ -220,7 +221,7 @@ END;
 				$has_unvisited_users = TRUE;
 			}
 			echo <<<END
-								<li>{$guest->name}{$extras}</li>
+								<li>{$guest_name}{$extras}</li>
 
 END;
 		}
@@ -243,7 +244,7 @@ function posts()
 	global $posts, $users;
 	foreach ($posts as $post)
 	{
-		$name = $users[$post->user_id]->name;
+		$name = html_text($users[$post->user_id]->name);
 		$text = html_text($post->data);
 		$time = relative_time($post->created);
 		echo <<<END

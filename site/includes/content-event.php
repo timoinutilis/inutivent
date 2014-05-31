@@ -158,14 +158,12 @@ EVENT VIEW
 							formData.append("name", name);
 						}
 						sendFormData("POST", "backend/updateuser.php", formData, onComplete, onError)
-						setFormsDisabled(true);
 					}
 
 					function onNameSubmit(event)
 					{
 						var form = event.target;
 						sendForm(form, onComplete, onError);
-						setFormsDisabled(true);
 						return false;
 					}
 
@@ -173,7 +171,6 @@ EVENT VIEW
 					{
 						var form = event.target;
 						sendForm(form, onComplete, onError);
-						setFormsDisabled(true);
 						return false;
 					}
 
@@ -181,7 +178,6 @@ EVENT VIEW
 					{
 						var form = event.target;
 						sendForm(form, onComplete, onError);
-						setFormsDisabled(true);
 						return false;
 					}
 
@@ -189,19 +185,16 @@ EVENT VIEW
 					{
 						var form = event.target;
 						sendForm(form, onComplete, onError);
-						setFormsDisabled(true);
 						return false;
 					}
 
 					function onComplete(data)
 					{
-						setFormsDisabled(false);
 						window.location.reload();
 					}
 
 					function onError(error)
 					{
-						setFormsDisabled(false);
 						alert(error);
 					}
 
@@ -241,7 +234,6 @@ EVENT VIEW
 							formData.append("event_id", "<?php echo $event_id; ?>");
 							formData.append("user_id", "<?php echo $user_id; ?>");
 							sendFormData("POST", "backend/deleteevent.php", formData, onCompleteDelete, onError)
-							setFormsDisabled(true);
 						}
 					}
 
