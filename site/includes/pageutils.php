@@ -102,4 +102,9 @@ function relative_time($datetime)
 	return $date." a la(s) ".hour_of_datetime($datetime);
 }
 
+function external_url($url)
+{
+	echo "link.php?url=".urlencode($url);
+}
+
 ?>

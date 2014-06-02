@@ -55,6 +55,7 @@ function blockScreen()
 	blocker.style.top = "0";
 	blocker.style.left = "0";
 	blocker.style.position = "fixed";
+	blocker.style.zIndex = "100";
 	blocker.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
 
 	document.body.appendChild(blocker);
@@ -103,7 +104,17 @@ function autolink(str, attributes)
 	}
 	
 	var reg = new RegExp("(\\s?)((http|https|ftp)://[^\\s<]+[^\\s<\.)])", "gim");
-	str = str.toString().replace(reg, '$1<a href="$2"'+ attrs +'>$2</a>');
+	str = str.toString().replace(reg, function(match, p1, p2, offset, string) {
+		var realLink = "link.php?url=" + encodeURIComponent(decodeHTML(p2));
+		return p1 + '<a href="' + realLink + '"'+ attrs +' target="_blank">' + p2 + '</a>';
+	});
 	
 	return str;
+}
+
+function decodeHTML(input)
+{
+  var e = document.createElement('div');
+  e.innerHTML = input;
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }

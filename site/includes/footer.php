@@ -4,6 +4,8 @@
 FOOTER
 */
 
+require_once(dirname(__FILE__).'/pageutils.php');
+
 ?>
 			</div>
 
@@ -19,8 +21,8 @@ FOOTER
 					<div class="column right">
 						<p>
 							Página desarrollada por <a href="mailto:timo" onclick="onClickMail(event)">Timo Kloss</a><br>
-							Iconos de <a href="http://www.ikons.piotrkwiatkowski.co.uk">IKONS</a><br>
-							Una producción de <a href="http://www.inutilis.com">inutilis</a><br>
+							Iconos de <a href="<?php external_url("http://www.ikons.piotrkwiatkowski.co.uk"); ?>">IKONS</a><br>
+							Una producción de <a href="<?php external_url("http://www.inutilis.com"); ?>">inutilis</a><br>
 							Copyright 2014 by Timo Kloss
 						</p>
 					</div>
