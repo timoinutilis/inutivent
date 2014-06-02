@@ -78,3 +78,32 @@ function onClickMail(event)
 		event.target.href = h + l;
 	}
 }
+
+function linkTextURLs(elements)
+{
+	for (var i = 0; i < elements.length; i++)
+	{
+		var element = elements[i];
+		var originalText = element.innerHTML;
+		var linkedText = autolink(originalText);
+		if (linkedText != originalText)
+		{
+			element.innerHTML = linkedText;
+		}
+	}
+}
+
+function autolink(str, attributes)
+{
+	attributes = attributes || {};
+	var attrs = "";
+	for (name in attributes)
+	{
+		attrs += " "+ name +'="'+ attributes[name] +'"';
+	}
+	
+	var reg = new RegExp("(\\s?)((http|https|ftp)://[^\\s<]+[^\\s<\.)])", "gim");
+	str = str.toString().replace(reg, '$1<a href="$2"'+ attrs +'>$2</a>');
+	
+	return str;
+}

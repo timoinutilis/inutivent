@@ -250,7 +250,7 @@ function posts()
 		echo <<<END
 								<div class="post">
 									<span class="name">{$name}:</span>
-									<span class="text">{$text}</span>
+									<span name="post-text" class="text">{$text}</span>
 									<p class="time">{$time}</p>
 								</div>
 

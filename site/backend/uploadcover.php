@@ -45,7 +45,7 @@ else
 			$uploads_path = dirname(__FILE__)."/../uploads/";
 
 			$time_hash = hash('md5', microtime());
-			$filename = $user_id."-".$time_hash.".";
+			$filename = $time_hash.".";
 
 			if (!is_dir($uploads_path.$event_id))
 			{

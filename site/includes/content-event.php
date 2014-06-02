@@ -51,7 +51,7 @@ EVENT VIEW
 
 							<br style="clear: both; width: 100%;">
 
-							<div class="details">
+							<div id="event-details-text" class="details">
 								<?php event_details(); ?>
 							</div>
 
@@ -116,7 +116,7 @@ EVENT VIEW
 						<div id="posts">
 							<div id="posts-content">
 								<img src="images/speech_4.png">
-								<h1>Publicaciones</h1>
+								<h1>Comentarios</h1>
 <?php posts(); ?>
 
 								<form action="backend/post.php" method="POST" onsubmit="return onPostSubmit(event)">
@@ -145,6 +145,11 @@ EVENT VIEW
 				</div>
 
 				<script>
+
+					window.onload = function() {
+						linkTextURLs([document.getElementById("event-details-text")]);
+						linkTextURLs(document.getElementsByName("post-text"));
+					};
 
 					function submitAssist(status)
 					{
