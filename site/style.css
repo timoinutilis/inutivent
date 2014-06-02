@@ -398,6 +398,14 @@ ul.list li {
 	font-size: 75%;
 }
 
+#event-details-text img,
+.post img {
+	max-width: 100%;
+	max-height: 420px;
+	display: block;
+	clear: both;
+}
+
 #people {
 	width: 160px;
 	float: left;
