@@ -123,7 +123,7 @@ EVENT VIEW
 									<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 									<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 									<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
-									<textarea rows="3" name="data" placeholder="Escribe algo..."></textarea><br>
+									<textarea rows="3" name="data" id="textarea-post-data" placeholder="Escribe algo..."></textarea><br>
 									<input type="submit" value="Publicar">
 								</form>
 							</div>
@@ -195,6 +195,9 @@ EVENT VIEW
 
 					function onComplete(data)
 					{
+						// clear for firefox
+						document.getElementById("textarea-post-data").value = "";
+						
 						window.location.reload();
 					}
 

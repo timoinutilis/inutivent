@@ -107,10 +107,10 @@ function autolink(str, attributes)
 	str = str.toString().replace(reg, function(match, p1, p2, offset, string) {
 		var safeLink = "link.php?url=" + encodeURIComponent(decodeHTML(p2));
 		var content = p2;
-		if (endsWith(p2, ".jpg") || endsWith(p2, ".jpeg") || endsWith(p2, ".png"))
-		{
-			content = '<img src="' + safeLink + '">';
-		}
+//		if (endsWith(p2, ".jpg") || endsWith(p2, ".jpeg") || endsWith(p2, ".png"))
+//		{
+//			content = '<img src="' + safeLink + '">';
+//		}
 		return p1 + '<a href="' + safeLink + '"'+ attrs +' target="_blank">' + content + '</a>';
 	});
 	
