@@ -21,6 +21,14 @@ else
 		if (user_update($con, $event_id, $user_id, $status, $name))
 		{
 			$result = array('success' => TRUE);
+			if (!empty($status))
+			{
+				$result['status'] = $status;
+			}
+			if (!empty($name))
+			{
+				$result['name'] = $name;
+			}
 			echo json_encode($result);
 		}
 		else
