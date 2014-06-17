@@ -33,14 +33,14 @@ if (!$con)
 else
 {
 	$event = event_get($con, $event_id);
-	if ($event === FALSE)
+	if ($event === FALSE || $event === NULL)
 	{
 		$error = "event";
 	}
 	else
 	{
 		$user = user_get($con, $event_id, $user_id);
-		if ($user === FALSE)
+		if ($user === FALSE || $user === NULL)
 		{
 			$error = "user";
 		}

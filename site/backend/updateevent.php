@@ -6,7 +6,7 @@ require_once(dirname(__FILE__).'/includes/utils.php');
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id']) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -19,31 +19,42 @@ else
 
 	$time = ($date && $hour) ? convert_to_datetime($date, $hour) : NULL;
 
-	$con = connect_to_db();
-	if ($con)
+	if ($time === FALSE)
 	{
-		$event = event_get($con, $event_id);
-		if ($event === FALSE)
-		{
-			return_error("MySQL error: ".db_error());
-		}
-		else if ($event->owner != $user_id)
-		{
-			return_error("no permission");
-		}
-		else if (event_update($con, $event_id, $title, $time, $details))
-		{
-			$result = array('success' => TRUE);
-			echo json_encode($result);
-		}
-		else
-		{
-			return_error("MySQL error: ".db_error());
-		}
+		return_error(ERROR_INVALID_PARAMETERS, "Wrong date or time format");
 	}
 	else
 	{
-		return_error("MySQL error: ".db_error());
+		$con = connect_to_db();
+		if ($con)
+		{
+			$event = event_get($con, $event_id);
+			if ($event === FALSE)
+			{
+				return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+			}
+			else if ($event === NULL)
+			{
+				return_error(ERROR_NOT_FOUND, "Event not found");
+			}
+			else if ($event->owner != $user_id)
+			{
+				return_error(ERROR_NO_PERMISSION, "No permission");
+			}
+			else if (event_update($con, $event_id, $title, $time, $details))
+			{
+				$result = array('success' => TRUE);
+				echo json_encode($result);
+			}
+			else
+			{
+				return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+			}
+		}
+		else
+		{
+			return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+		}
 	}
 }
 

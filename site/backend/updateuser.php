@@ -6,7 +6,7 @@ require_once(dirname(__FILE__).'/includes/utils.php');
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id']) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -33,12 +33,12 @@ else
 		}
 		else
 		{
-			return_error("MySQL error: ".db_error());
+			return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 		}
 	}
 	else
 	{
-		return_error("MySQL error: ".db_error());
+		return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 	}
 }
 

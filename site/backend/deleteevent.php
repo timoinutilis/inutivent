@@ -6,7 +6,7 @@ require_once(dirname(__FILE__).'/includes/utils.php');
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id']) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -19,11 +19,15 @@ else
 		$event = event_get($con, $event_id);
 		if ($event === FALSE)
 		{
-			return_error("MySQL error: ".db_error());
+			return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+		}
+		else if ($event === NULL)
+		{
+			return_error(ERROR_NOT_FOUND, "Event not found");
 		}
 		else if ($event->owner != $user_id)
 		{
-			return_error("no permission");
+			return_error(ERROR_NO_PERMISSION, "No permission");
 		}
 		else
 		{
@@ -43,7 +47,7 @@ else
 				if (!rmdir($dir))
 				{
 					$files_ok = FALSE;
-					return_error("could not delete all uploaded files");
+					return_error(ERROR_FAILED_DELETE_FILES, "Could not delete all uploaded files");
 				}
 			}
 
@@ -57,14 +61,14 @@ else
 				}
 				else
 				{
-					return_error("MySQL error: ".db_error());
+					return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 				}
 			}
 		}
 	}
 	else
 	{
-		return_error("MySQL error: ".db_error());
+		return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 	}
 }
 

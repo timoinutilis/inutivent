@@ -9,7 +9,7 @@ if (   empty($_REQUEST['event_id'])
 	|| !isset($_REQUEST['mails'])
 	|| !isset($_REQUEST['information']) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -25,7 +25,19 @@ else
 		$owner = user_get($con, $event_id, $user_id);
 		if ($event === FALSE || $owner === FALSE)
 		{
-			return_error("MySQL error: ".db_error());
+			return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+		}
+		else if ($event === NULL)
+		{
+			return_error(ERROR_NOT_FOUND, "Event not found");
+		}
+		else if ($owner === NULL)
+		{
+			return_error(ERROR_NOT_FOUND, "User not found");
+		}
+		else if ($event->owner != $user_id)
+		{
+			return_error(ERROR_NO_PERMISSION, "No permission");
 		}
 		else
 		{
@@ -94,7 +106,7 @@ else
 	}
 	else
 	{
-		return_error("MySQL error: ".db_error());
+		return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 	}
 }
 

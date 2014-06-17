@@ -14,7 +14,7 @@ if (   empty($_REQUEST['event_id'])
 	|| !isset($_FILES["file"])
 	|| empty($_FILES["file"]["name"]) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -38,7 +38,7 @@ else
 	{
 		if ($_FILES["file"]["error"] > 0)
 		{
-			return_error("upload error ".$_FILES["file"]["error"]);
+			return_error(ERROR_FAILED_UPLOAD_FILE, "Upload error: ".$_FILES["file"]["error"]);
 		}
 		else
 		{
@@ -106,19 +106,19 @@ else
 				}
 				else
 				{
-					return_error("MySQL error: ".db_error());
+					return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 				}
 			}
 			else
 			{
-				return_error("MySQL error: ".db_error());
+				return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 			}
 
 		}
 	}
 	else
 	{
-		return_error("invalid file format or file too big");
+		return_error(ERROR_INVALID_FILE, "Invalid file format or file too big");
 	}
 }
 

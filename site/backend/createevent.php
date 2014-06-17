@@ -11,7 +11,7 @@ if (   empty($_REQUEST['name'])
 	|| !isset($_REQUEST['hour'])
 	|| !isset($_REQUEST['details']) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -22,9 +22,14 @@ else
 	$hour = $_REQUEST['hour'];
 	$details = clean_string($_REQUEST['details']);
 
-	if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
+	$time = convert_to_datetime($date, $hour);
+	if ($time === FALSE)
 	{
-		return_error("invalid e-mail");
+		return_error(ERROR_INVALID_PARAMETERS, "Wrong date or time format");
+	}
+	else if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
+	{
+		return_error(ERROR_INVALID_PARAMETERS, "Invalid e-mail");
 	}
 	else
 	{
@@ -35,21 +40,21 @@ else
 			$event_id = event_create($con, $title, $details, $time);
 			if ($event_id === FALSE)
 			{
-				return_error("MySQL error: ".db_error());
+				return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 			}
 			else
 			{
 				$user_id = user_create($con, $event_id, $name, STATUS_ATTENDING);
 				if ($user_id === FALSE)
 				{
-					return_error("MySQL error: ".db_error());
+					return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 				}
 				else
 				{
 					$success = event_set_owner($con, $event_id, $user_id);
 					if ($success === FALSE)
 					{
-						return_error("MySQL error: ".db_error());
+						return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 					}
 					else
 					{
@@ -70,7 +75,7 @@ else
 		}
 		else
 		{
-			return_error("MySQL error: ".db_error());
+			return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 		}
 	}
 }

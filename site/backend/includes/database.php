@@ -129,9 +129,16 @@ function event_get($con, $event_id)
 	$event_id = mysqli_real_escape_string($con, $event_id);
 
 	$result = mysqli_query($con, "SELECT * FROM events WHERE id = '{$event_id}'");
-	if ($result && mysqli_num_rows($result) == 1)
+	if ($result)
 	{
-		return mysqli_fetch_object($result);
+		if (mysqli_num_rows($result) == 1)
+		{
+			return mysqli_fetch_object($result);
+		}
+		else
+		{
+			return NULL;
+		}
 	}
 	else
 	{
@@ -256,9 +263,16 @@ function user_get($con, $event_id, $user_id)
 	$user_id = mysqli_real_escape_string($con, $user_id);
 
 	$result = mysqli_query($con, "SELECT * FROM users WHERE id = '{$user_id}' AND event_id = '{$event_id}'");
-	if ($result && mysqli_num_rows($result) == 1)
+	if ($result)
 	{
-		return mysqli_fetch_object($result);
+		if (mysqli_num_rows($result) == 1)
+		{
+			return mysqli_fetch_object($result);
+		}
+		else
+		{
+			return NULL;
+		}
 	}
 	return FALSE;
 }

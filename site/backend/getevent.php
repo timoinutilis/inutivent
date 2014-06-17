@@ -6,7 +6,7 @@ require_once(dirname(__FILE__).'/includes/utils.php');
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id']) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -19,21 +19,29 @@ else
 		$event = event_get($con, $event_id);
 		if ($event === FALSE)
 		{
-			return_error("MySQL error: ".db_error());
+			return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+		}
+		else if ($event === NULL)
+		{
+			return_error(ERROR_NOT_FOUND, "Event not found");
 		}
 		else
 		{
 			$users = user_get_all($con, $event_id);
-			if ($users === FALSE || !isset($users[$user_id]))
+			if ($users === FALSE)
 			{
-				return_error("MySQL error: ".db_error());
+				return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+			}
+			else if (!isset($users[$user_id]))
+			{
+				return_error(ERROR_NOT_FOUND, "User not found");
 			}
 			else
 			{
 				$posts = post_get_all($con, $event_id);
 				if ($posts === FALSE)
 				{
-					return_error("MySQL error: ".db_error());
+					return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 				}
 				else
 				{
@@ -45,7 +53,7 @@ else
 	}
 	else
 	{
-		return_error("MySQL error: ".db_error());
+		return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 	}
 }
 

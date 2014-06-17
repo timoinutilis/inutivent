@@ -8,7 +8,7 @@ if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['type'])
 	|| empty($_REQUEST['data']) )
 {
-	return_error("missing parameters");
+	return_error(ERROR_MISSING_PARAMETERS, "Missing parameters");
 }
 else
 {
@@ -23,7 +23,7 @@ else
 		$post_id = post_create($con, $event_id, $user_id, $type, $data);
 		if ($post_id === FALSE)
 		{
-			return_error("MySQL error: ".db_error());
+			return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 		}
 		else
 		{
@@ -33,7 +33,7 @@ else
 	}
 	else
 	{
-		return_error("MySQL error: ".db_error());
+		return_error(ERROR_MYSQL, "MySQL error: ".db_error());
 	}
 }
 
