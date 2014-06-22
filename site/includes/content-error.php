@@ -16,7 +16,7 @@ ERROR VIEW
 				</div>
 
 				<div id="error" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 						<img src="images/warning.png">
 						<p>Algo no ha funcionado bien :(<br>Por favor, inténtalo más tarde!</p>
 					</div>

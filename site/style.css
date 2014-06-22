@@ -52,6 +52,10 @@ table {
 	border-spacing: 0;
 }
 
+/*html {
+	width: 320px;
+}*/
+
 /*
 Stuff
 */
@@ -146,6 +150,10 @@ textarea {
 	width: 100%;
 }
 
+input {
+	max-width: 100%;
+}
+
 input[type="file"],
 input[type="file"]:hover,
 input[type="file"]:active {
@@ -158,10 +166,17 @@ input[type="file"]:active {
 }
 
 .inside {
-	width: 90%;
+	width: 80%;
 	max-width: 800px;
 	margin: 0 auto;
 	color: #444;
+}
+
+.big-padding {
+	padding: 80px 0;
+}
+.small-padding {
+	padding: 40px 0;
 }
 
 .inside h1 {
@@ -273,7 +288,6 @@ ul.list li {
 }
 
 #event-info .inside {
-	padding: 80px 0;
 	text-align: justify;
 }
 
@@ -303,7 +317,6 @@ ul.list li {
 }
 
 #user-info .inside {
-	padding: 40px 0;
 	text-align: center;
 }
 
@@ -370,10 +383,6 @@ ul.list li {
 #event-content {
 }
 
-#event-content .inside {
-	padding: 80px 0;
-}
-
 #posts {
     margin-right: -201px;
     float:left;
@@ -423,10 +432,6 @@ ul.list li {
 	margin-top: 10px;
 }
 
-#event-create .inside {
-	padding: 80px 0;
-}
-
 .footnote {
 	color: #aaa;
 }
@@ -462,10 +467,6 @@ ul.list li {
 	clear: left;
 }
 
-#invite .inside {
-	padding: 80px 0;
-}
-
 #invite .inside a {
 	display: inline-block;
 }
@@ -479,7 +480,6 @@ ul.list li {
 }
 
 #welcome .inside {
-	padding: 80px 0;
 	text-align: center;
 }
 
@@ -489,10 +489,6 @@ ul.list li {
 
 #welcome-why {
 	background-color: #f2f2f2;
-}
-
-#welcome-why .inside {
-	padding: 80px 0;
 }
 
 #welcome-why img {
@@ -505,12 +501,10 @@ ul.list li {
 }
 
 #welcome-how .inside {
-		text-align: justify;
-	padding: 80px 0;
+	text-align: justify;
 }
 
 #error .inside {
-	padding: 80px 0;
 	text-align: center;
 	font-size: 150%;
 }
@@ -541,9 +535,112 @@ ul.list li {
 }
 
 #footer .right {
-	text-align: center;
 }
 
 #footer .column p {
 	margin: 0 20px;
+}
+
+/*
+Mobile
+*/
+
+@media all and (max-width: 640px) {
+
+	.inside {
+		width: 90%;
+	}
+
+	.big-padding {
+		padding: 40px 0;
+	}
+	.small-padding {
+		padding: 20px 0;
+	}
+
+	#header {
+		text-align: left;
+	}
+
+	#header h1 {
+		font-size: 120%;
+		margin-left: 5%;
+	}
+
+	#header .options {
+		top: 20px;
+		right: 5%;
+		font-size: 80%;
+	}
+
+	#cover h1 {
+		font-size: 120%;
+	}
+
+	#cover-editor {
+		position: static;
+	}
+
+	#welcome {
+		font-size: 100%;
+	}
+
+	#welcome-why img {
+		display: block;
+		position: static;
+		float: right;
+		right: 10%;
+		max-width: 120px;
+	}
+
+	#event-info img,
+	#user-info img,
+	#posts img,
+	#people img {
+		width: 40px;
+	}
+
+	#welcome-why .text {
+		margin-left: 0px;
+	}
+
+	#event-info .fact {
+		width: 80px;
+		font-size: 80%;
+	}
+
+	#event-info .details {
+		font-size: 100%;
+	}
+
+	#posts {
+	    margin-right: 0;
+	    float:none;
+	}
+
+	#posts-content {
+		margin-right: 0;
+	}
+
+	#people {
+		width: 100%;
+		float: none;
+		padding-left: 0;
+		border-left: none;
+		margin-top: 40px;
+	}
+
+	#footer {
+		margin-top: 50px;
+	}
+
+	#footer .column {
+		float: none;
+		width: 100%;
+		text-align: justify;
+	}
+
+	#footer .column p {
+		margin: 0;
+	}
 }

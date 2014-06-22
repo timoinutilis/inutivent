@@ -30,7 +30,7 @@ EVENT VIEW
 				<?php } ?>
 
 				<div id="event-info" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 						<div id="event-display">
 							<div class="facts">
 								<div class="fact">
@@ -91,7 +91,7 @@ EVENT VIEW
 				</div>
 
 				<div id="user-info" class="section">
-					<div class="inside">
+					<div class="inside small-padding">
 						<img src="images/calendar_ok.png">
 						<div class="name">
 							<form action="backend/updateuser.php" method="POST" onsubmit="return onNameSubmit(event)">
@@ -112,7 +112,7 @@ EVENT VIEW
 				</div>
 
 				<div id="event-content" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 						<div id="posts">
 							<div id="posts-content">
 								<img src="images/speech_4.png">

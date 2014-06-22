@@ -15,7 +15,7 @@ INVITE
 				</div>
 
 				<div id="invite" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 
 						<form action="backend/invite.php" method="POST" onsubmit="return onSubmit(event)">
 							<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">

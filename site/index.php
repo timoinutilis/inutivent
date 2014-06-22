@@ -22,7 +22,7 @@ init_page(NULL, FALSE);
 				</div>
 
 				<div id="welcome" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 						<p>Aquí puedes invitar gente a tus eventos, mirar quién va a asistir y hablar con los invitados en el muro.
 							Y todo en la manera más simple.</p>
 						<a href="create.php">Crear nuevo evento...</a>
@@ -30,7 +30,7 @@ init_page(NULL, FALSE);
 				</div>
 
 				<div id="welcome-why" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 						<img src="images/home_why.png">
 						<div class="text">
 							<h1>¿Porqué?</h1>
@@ -48,7 +48,7 @@ init_page(NULL, FALSE);
 				</div>
 
 				<div id="welcome-how" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 						<h1>¿Cómo funciona?</h1>
 						<p>
 							Tú creas un evento con toda su información necesaria. Entonces recibes un e-mail con un link

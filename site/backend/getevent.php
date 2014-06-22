@@ -45,6 +45,8 @@ else
 				}
 				else
 				{
+					user_update_visited($con, $event_id, $user_id);
+					
 					$result = array('event' => $event, 'users' => $users, 'posts' => $posts);
 					echo json_encode($result);
 				}

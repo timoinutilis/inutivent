@@ -14,7 +14,7 @@ init_page("Crear nuevo evento", FALSE);
 <?php include 'includes/header.php'; ?>
 
 				<div id="event-create" class="section">
-					<div class="inside">
+					<div class="inside big-padding">
 
 						<h1>Crear nuevo evento</h1>
 

@@ -12,7 +12,7 @@ require_once(dirname(__FILE__).'/init.php');
 	<head>
 		<title><?php page_title(); ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name = "viewport" content = "width = 480, user-scalable = no">
+		<meta name = "viewport" content = "width = device-width">
 		<link rel="stylesheet" type="text/css" media="all" href="style.css">
 		<script type="text/javascript" src="functions.js"></script>
 <?php page_extra_headers(); ?>
