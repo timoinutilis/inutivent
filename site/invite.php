@@ -22,7 +22,7 @@ require_once(dirname(__FILE__).'/includes/pageutils.php');
 require_once(dirname(__FILE__).'/backend/includes/database.php');
 require_once(dirname(__FILE__).'/includes/init.php');
 
-init_page("Invitar", TRUE);
+init_page( _("Invitar"), TRUE);
 
 include 'includes/header.php';
 

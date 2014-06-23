@@ -16,16 +16,15 @@ init_page(NULL, FALSE);
 				<div id="cover" class="section">
 					<div class="wrapper">
 						<img src="images/index_header.jpg">
-						<h1>¡Hola!</h1>
+						<h1><?php echo _('Hello!'); ?></h1>
 					</div>
 					<br style="clear: both; width: 100%;">
 				</div>
 
 				<div id="welcome" class="section">
 					<div class="inside big-padding">
-						<p>Aquí puedes invitar gente a tus eventos, mirar quién va a asistir y hablar con los invitados en el muro.
-							Y todo en la manera más simple.</p>
-						<a href="create.php">Crear nuevo evento...</a>
+						<p><?php echo _('Here you can invite people to your events without any registration.'); ?></p>
+						<a href="create.php"><?php echo _('Create new event...'); ?></a>
 					</div>
 				</div>
 
@@ -33,15 +32,15 @@ init_page(NULL, FALSE);
 					<div class="inside big-padding">
 						<img src="images/home_why.png">
 						<div class="text">
-							<h1>¿Porqué?</h1>
+							<h1><?php echo _('Why?'); ?></h1>
 							<ul class="list">
-								<li>No hay registración.</li>
-								<li>No hay log-in.</li>
-								<li>No hay perfiles de usuarios.</li>
-								<li>No se guardan informaciones de contacto (e-mail etc.).</li>
-								<li>No es una red social.</li>
-								<li>Al final puedes borrar todos los datos de un evento.</li>
-								<li>Y bueno, es gratis, como todo.</li>
+								<li><?php echo _('No registration'); ?></li>
+								<li><?php echo _('No log-in'); ?></li>
+								<li><?php echo _('No user profiles'); ?></li>
+								<li><?php echo _('No contact information saved on server'); ?></li>
+								<li><?php echo _('No social network'); ?></li>
+								<li><?php echo _('All data can be deleted'); ?></li>
+								<li><?php echo _('It\'s free'); ?></li>
 							</ul>
 						</div>
 					</div>
@@ -49,23 +48,11 @@ init_page(NULL, FALSE);
 
 				<div id="welcome-how" class="section">
 					<div class="inside big-padding">
-						<h1>¿Cómo funciona?</h1>
+						<h1><?php echo _('How does it work?'); ?></h1>
 						<p>
-							Tú creas un evento con toda su información necesaria. Entonces recibes un e-mail con un link
-							a la página del evento. Ese link es personal y solo para ti, no lo compartas. Con tu acceso puedes
-							editar información y tienes la posibilidad de borrar el evento.<br>
-							Desde la página puedes invitar gente con sus direcciones de e-mail. Para cada invitado se crea
-							una cuenta de usuario para este evento y se envian mails con links personales. Con sus accesos los
-							invitados pueden confirmar que vengan y escribir en el muro.<br>
-							Las direcciones de e-mail nunca se guardan, solo se usan para enviar los links y las invitaciones.<br>
-							Las cuentas de usuarios solo sirven para un evento. Así cada evento tiene sus datos independientes y
-							se quitan completamente al borrar el evento.<br>
-							<br>
-							<strong>Atención:</strong> Los links personales son las llaves de esta página, no hay protección por contraseñas.
-							En teoría no debería ser posible encontrar un evento sin tener un link. De todos modos no deberías
-							compartir información critica o muy privada!<br>
-							De momento esta página es un proyecto personal y <strong>no hay garantía para la seguridad de los datos</strong>.
-							Por cualquier duda me podéis <a href="mailto:timo" onclick="onClickMail(event)">contactar por e-mail</a>.
+							<?php printf(_('When you create an event you will receive an e-mail with a personal link to access and edit your event. When you invite people everybody will get an e-mail with a personal link, too. E-mail addresses are never saved on the server. For each event independent users are created on the server, there is no connection between user data of different events.<br><br><strong>Warning:</strong> The personal links are the keys of this website, there is no password protection. Don\'t publish very private information! For any doubts you can contact me by <a href="%1$s" onclick="%2$s">e-mail</a>.'),
+							'mailto:timo',
+							'onClickMail(event)'); ?>
 						</p>
 					</div>
 				</div>

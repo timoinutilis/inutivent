@@ -7,7 +7,7 @@ CREATE EVENT
 require_once(dirname(__FILE__).'/includes/config.php');
 require_once(dirname(__FILE__).'/includes/init.php');
 
-init_page("Crear nuevo evento", FALSE);
+init_page( _('New Event'), FALSE);
 
 ?>
 
@@ -16,32 +16,31 @@ init_page("Crear nuevo evento", FALSE);
 				<div id="event-create" class="section">
 					<div class="inside big-padding">
 
-						<h1>Crear nuevo evento</h1>
+						<h1><?php echo _('New Event'); ?></h1>
 
 						<form action="backend/createevent.php" method="POST" onsubmit="return onSubmit(event)">
 							<div class="group">
-								<label for="title">Título:</label>
-								<input type="text" id="title" name="title" placeholder="ejemplo: fiesta de cumpleaños"><br>
+								<label for="title"><?php echo _('Title:'); ?></label>
+								<input type="text" id="title" name="title" placeholder="<?php echo _('ex: Birthday Party'); ?>"><br>
 								
-								<label for="date">Fecha:</label>
-								<input type="text" id="date" name="date" placeholder="ejemplo: 24/12/2014"><br>
+								<label for="date"><?php echo _('Date:'); ?></label>
+								<input type="text" id="date" name="date" placeholder="<?php echo _('ex: 24/12/2014'); ?>"><br>
 								
-								<label for="hour">Hora:</label>
-								<input type="text" id="hour" name="hour" placeholder="ejemplo: 20:00"><br>
+								<label for="hour"><?php echo _('Time:'); ?></label>
+								<input type="text" id="hour" name="hour" placeholder="<?php echo _('ex: 20:00'); ?>"><br>
 								
-								Detalles: *<br>
-								<textarea rows="10" name="details" placeholder="Escribe algo..."></textarea><br>
-								<span class="footnote">* No pongas aquí datos privados como tu dirección o numero de telefono.
-								Lo puedes hacer al enviar invitaciones.</span><br>
+								<?php echo _('Details: *'); ?><br>
+								<textarea rows="10" name="details" placeholder="<?php echo _('Write something...'); ?>"></textarea><br>
+								<span class="footnote"><?php echo _('* Don\'t put any private data like your address or telephone number here. You can do it when you are inviting.'); ?></span><br>
 								<br>
 								
-								<label for="name">Tu nombre:</label>
+								<label for="name"><?php echo _('Your Name:'); ?></label>
 								<input type="text" id="name" name="name"><br>
 								
-								<label for="mail">Tu e-mail:</label>
+								<label for="mail"><?php echo _('Your E-Mail:'); ?></label>
 								<input type="email" id="mail" name="mail"><br>
 							</div>
-							<input type="submit" value="Listo" class="big-button">
+							<input type="submit" value="<?php echo _('Create Event'); ?>" class="big-button">
 						</form>
 
 					</div>

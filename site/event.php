@@ -188,10 +188,10 @@ function invite_url()
 
 function guest_list()
 {
-	guests_list_for_status('asistirán', STATUS_ATTENDING);
-	guests_list_for_status('tal vez asistan', STATUS_MAYBE_ATTENDING);
-	guests_list_for_status('no asistirán', STATUS_NOT_ATTENDING);
-	guests_list_for_status('invitados', STATUS_UNKNOWN);
+	guests_list_for_status( _('going'), STATUS_ATTENDING);
+	guests_list_for_status( _('maybe'), STATUS_MAYBE_ATTENDING);
+	guests_list_for_status( _('not going'), STATUS_NOT_ATTENDING);
+	guests_list_for_status( _('invited'), STATUS_UNKNOWN);
 }
 
 function guests_list_for_status($title, $status)
@@ -212,7 +212,7 @@ END;
 			$extras = "";
 			if ($guest->id == $event->owner)
 			{
-				$extras .= " (Org.)";
+				$extras .= " "._('(Host)');
 			}
 			if ($guest->visited == '0000-00-00 00:00:00')
 			{
@@ -231,8 +231,9 @@ END;
 END;
 		if ($has_unvisited_users)
 		{
-		echo <<<END
-							<p class="note">* aún no lo ha visto</p>
+			$has_unvisted_userts_text = _("* hasn't seen it yet");
+			echo <<<END
+							<p class="note">{$has_unvisted_userts_text}</p>
 
 END;
 		}

@@ -596,7 +596,8 @@ Mobile
 	#event-info img,
 	#user-info img,
 	#posts img,
-	#people img {
+	#people img,
+	#error img {
 		width: 40px;
 	}
 
@@ -628,6 +629,10 @@ Mobile
 		padding-left: 0;
 		border-left: none;
 		margin-top: 40px;
+	}
+
+	#error .inside {
+		font-size: 100%;
 	}
 
 	#footer {

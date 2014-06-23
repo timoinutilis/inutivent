@@ -21,9 +21,9 @@ EVENT VIEW
 						<form action="backend/uploadcover.php" method="post" enctype="multipart/form-data" onsubmit="return onCoverSubmit(event)">
 							<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-							<label for="file">Foto de portada:</label>
+							<label for="file"><?php echo _('Cover Photo:'); ?></label>
 							<input type="file" name="file" id="file">
-							<input type="submit" name="submit" value="Subir">
+							<input type="submit" name="submit" value="<?php echo _('Upload'); ?>">
 						</form>
 					</div>
 				</div>
@@ -57,8 +57,8 @@ EVENT VIEW
 
 							<?php if ($is_owner) { ?>
 							<div class="button-container">
-								<button type="button" onclick="showEventEditor();">Editar</button>
-								<button type="button" onclick="onClickDeleteEvent();" class="delete">Borrar evento</button>
+								<button type="button" onclick="showEventEditor();"><?php echo _('Edit'); ?></button>
+								<button type="button" onclick="onClickDeleteEvent();" class="delete"><?php echo _('Delete Event'); ?></button>
 							</div>
 							<?php } ?>
 						</div>
@@ -70,19 +70,19 @@ EVENT VIEW
 									<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 									<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
-									<label for="input-title">Título:</label>
-									<input type="text" id="input-title" name="title" placeholder="ejemplo: fiesta de cumpleaños"><br>
+									<label for="input-title"><?php echo _('Title:'); ?></label>
+									<input type="text" id="input-title" name="title" placeholder="<?php echo _('ex: Birthday Party'); ?>"><br>
 									
-									<label for="input-date">Fecha:</label>
-									<input type="text" id="input-date" name="date" placeholder="ejemplo: 24/12/2014"><br>
+									<label for="input-date"><?php echo _('Date:'); ?></label>
+									<input type="text" id="input-date" name="date" placeholder="<?php echo _('ex: 24/12/2014'); ?>"><br>
 									
-									<label for="input-hour">Hora:</label>
-									<input type="text" id="input-hour" name="hour" placeholder="ejemplo: 20:00"><br>
+									<label for="input-hour"><?php echo _('Time:'); ?></label>
+									<input type="text" id="input-hour" name="hour" placeholder="<?php echo _('ex: 20:00'); ?>"><br>
 
 									<textarea rows="10" name="details" id="textarea-details"></textarea><br>
 								</div>
-								<input type="submit" value="Guardar">
-								<button type="button" onclick="hideEditor();">Cancelar</button>
+								<input type="submit" value="<?php echo _('Save'); ?>">
+								<button type="button" onclick="hideEditor();"><?php echo _('Cancel'); ?></button>
 							</form>
 						</div>
 						<?php } ?>
@@ -97,15 +97,15 @@ EVENT VIEW
 							<form action="backend/updateuser.php" method="POST" onsubmit="return onNameSubmit(event)">
 								<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 								<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-								Tu nombre: <input type="text" id="input-name" name="name" value="<?php echo user_name(); ?>">
-								<input type="submit" value="Guardar">
+								<?php echo _('Your Name:'); ?> <input type="text" id="input-name" name="name" value="<?php echo user_name(); ?>">
+								<input type="submit" value="<?php echo _('Save'); ?>">
 							</form>
 						</div>
 
 						<div class="status">
-							<button type="button" <?php echo status_button(STATUS_ATTENDING); ?>>Asistir</button>
-							<button type="button" <?php echo status_button(STATUS_MAYBE_ATTENDING); ?>>Tal vez asistir</button>
-							<button type="button" <?php echo status_button(STATUS_NOT_ATTENDING); ?>>No asistir</button>
+							<button type="button" <?php echo status_button(STATUS_ATTENDING); ?>><?php echo _('Going'); ?></button>
+							<button type="button" <?php echo status_button(STATUS_MAYBE_ATTENDING); ?>><?php echo _('Maybe'); ?></button>
+							<button type="button" <?php echo status_button(STATUS_NOT_ATTENDING); ?>><?php echo _('Not Going'); ?></button>
 						</div>
 
 					</div>
@@ -116,26 +116,26 @@ EVENT VIEW
 						<div id="posts">
 							<div id="posts-content">
 								<img src="images/speech_4.png">
-								<h1>Comentarios</h1>
+								<h1><?php echo _('Comments'); ?></h1>
 <?php posts(); ?>
 
 								<form action="backend/post.php" method="POST" onsubmit="return onPostSubmit(event)">
 									<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 									<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 									<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
-									<textarea rows="3" name="data" id="textarea-post-data" placeholder="Escribe algo..."></textarea><br>
-									<input type="submit" value="Publicar">
+									<textarea rows="3" name="data" id="textarea-post-data" placeholder="<?php echo _('Write something...'); ?>"></textarea><br>
+									<input type="submit" value="Post">
 								</form>
 							</div>
 						</div>
 
 						<div id="people">
 							<img src="images/users.png">
-							<h1>Invitados</h1>
+							<h1><?php echo _('Guests'); ?></h1>
 <?php guest_list(); ?>
 							<?php if ($is_owner) { ?>
 							<br>
-							<a href="<?php invite_url(); ?>">Invitar...</a>
+							<a href="<?php invite_url(); ?>"><?php echo _('Invite...'); ?></a>
 							<?php } ?>
 							
 						</div>
@@ -236,7 +236,7 @@ EVENT VIEW
 
 					function onClickDeleteEvent()
 					{
-						if (confirm("Quieres borrar este evento de verdad?\nSe borran toda la información, las publicaciones y las fotos."))
+						if (confirm("<?php echo _('Do you really want to delete this event with all its data and posts?'); ?>"))
 						{
 							var formData = new FormData();
 							formData.append("event_id", "<?php echo $event_id; ?>");

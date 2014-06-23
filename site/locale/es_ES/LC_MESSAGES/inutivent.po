@@ -1,0 +1,327 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Inutivent 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-23 17:15+0200\n"
+"PO-Revision-Date: 2014-06-23 20:51+0100\n"
+"Last-Translator: Timo Kloss <timo@inutilis.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es_ES\n"
+
+#: ../create.php:10 ../create.php:19
+msgid "New Event"
+msgstr "Evento nuevo"
+
+#: ../create.php:23 ../includes/content-event.php:73
+msgid "Title:"
+msgstr "Título:"
+
+#: ../create.php:24 ../includes/content-event.php:74
+msgid "ex: Birthday Party"
+msgstr "ejemplo: fiesta de cumpleaños"
+
+#: ../create.php:26 ../includes/content-event.php:76
+msgid "Date:"
+msgstr "Fecha:"
+
+#: ../create.php:27 ../includes/content-event.php:77
+msgid "ex: 24/12/2014"
+msgstr "ejemplo: 24/12/2014"
+
+#: ../create.php:29 ../includes/content-event.php:79
+msgid "Time:"
+msgstr "Hora:"
+
+#: ../create.php:30 ../includes/content-event.php:80
+msgid "ex: 20:00"
+msgstr "ejemplo: 20:00"
+
+#: ../create.php:32
+msgid "Details: *"
+msgstr "Detalles: *"
+
+#: ../create.php:33 ../includes/content-event.php:126
+msgid "Write something..."
+msgstr "Escribe algo..."
+
+#: ../create.php:34
+msgid ""
+"* Don't put any private data like your address or telephone number here. You "
+"can do it when you are inviting."
+msgstr ""
+"* No pongas aquí datos privados como tu dirección o numero de teléfono. Lo "
+"puedes hacer al enviar invitaciones."
+
+#: ../create.php:37 ../includes/content-event.php:100
+msgid "Your Name:"
+msgstr "Tu nombre:"
+
+#: ../create.php:40
+msgid "Your E-Mail:"
+msgstr "Tu e-mail:"
+
+#: ../create.php:43
+msgid "Create Event"
+msgstr "Crear evento"
+
+#: ../event.php:191
+msgid "going"
+msgstr "asistarán"
+
+#: ../event.php:192
+msgid "maybe"
+msgstr "tal vez asistan"
+
+#: ../event.php:193
+msgid "not going"
+msgstr "no asistarán"
+
+#: ../event.php:194
+msgid "invited"
+msgstr "invitados"
+
+#: ../event.php:215
+msgid "(Host)"
+msgstr "(Organizador/a)"
+
+#: ../event.php:234
+msgid "* hasn't seen it yet"
+msgstr "* aún no lo ha visto"
+
+#: ../index.php:19
+msgid "Hello!"
+msgstr "¡Hola!"
+
+#: ../index.php:26
+msgid "Here you can invite people to your events without any registration."
+msgstr ""
+"Aquí puedes invitar gente a tus eventos, mirar quién va a asistir y hablar "
+"con los invitados en el muro. Y todo sin registración."
+
+#: ../index.php:27
+msgid "Create new event..."
+msgstr "Crear nuevo evento..."
+
+#: ../index.php:35
+msgid "Why?"
+msgstr "¿Porqué?"
+
+#: ../index.php:37
+msgid "No registration"
+msgstr "No hay registración."
+
+#: ../index.php:38
+msgid "No log-in"
+msgstr "No hay log-in."
+
+#: ../index.php:39
+msgid "No user profiles"
+msgstr "No hay perfiles de usuarios."
+
+#: ../index.php:40
+msgid "No contact information saved on server"
+msgstr "No se guardan informaciones de contacto (e-mail etc.)."
+
+#: ../index.php:41
+msgid "No social network"
+msgstr "No es una red social."
+
+#: ../index.php:42
+msgid "All data can be deleted"
+msgstr "Al final puedes borrar todos los datos de un evento."
+
+#: ../index.php:43
+msgid "It's free"
+msgstr "Y bueno, es gratis, como todo."
+
+#: ../index.php:51
+msgid "How does it work?"
+msgstr "¿Cómo funciona?"
+
+#: ../index.php:53
+#, php-format
+msgid ""
+"When you create an event you will receive an e-mail with a personal link to "
+"access and edit your event. When you invite people everybody will get an e-"
+"mail with a personal link, too. E-mail addresses are never saved on the "
+"server. For each event independent users are created on the server, there is "
+"no connection between user data of different events.<br><br><strong>Warning:"
+"</strong> The personal links are the keys of this website, there is no "
+"password protection. Don't publish very private information! For any doubts "
+"you can contact me by <a href=\"%1$s\" onclick=\"%2$s\">e-mail</a>."
+msgstr ""
+"Cuando creas un evento recibes un e-mail con un link personal para acceder y "
+"editar tu evento. Al invitar todos reciben un e-mail con un link personal "
+"también. Las direcciones de e-mail nunca se guardan en el servidor. Las "
+"cuentas de usuarios solo sirven para un evento. Así cada evento tiene sus "
+"datos independientes y se quitan completamente al borrar el evento."
+"<br><br><strong>Atención:</strong> Los links personales son las llaves de "
+"esta página, no hay protección por contraseñas. No deberías compartir "
+"información critica o muy privada! Por cualquier duda me puedes <a href="
+"\"%1$s\" onclick=\"%2$s\">contactar por e-mail</a>."
+
+#: ../invite.php:25
+msgid "Invitar"
+msgstr "Invitar"
+
+#: ../includes/content-error.php:13 ../includes/content-not-found.php:13
+msgid "Oh No!"
+msgstr "¡Vaya!"
+
+#: ../includes/content-error.php:21
+msgid "Something went wrong :(<br>Please try again later!"
+msgstr "Algo no ha funcionado bien :(<br>Por favor, inténtalo más tarde!"
+
+#: ../includes/content-event.php:24
+msgid "Cover Photo:"
+msgstr "Foto de portada:"
+
+#: ../includes/content-event.php:26
+msgid "Upload"
+msgstr "Subir"
+
+#: ../includes/content-event.php:60
+msgid "Edit"
+msgstr "Editar"
+
+#: ../includes/content-event.php:61
+msgid "Delete Event"
+msgstr "Borrar evento"
+
+#: ../includes/content-event.php:84 ../includes/content-event.php:101
+msgid "Save"
+msgstr "Guardar"
+
+#: ../includes/content-event.php:85
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../includes/content-event.php:106
+msgid "Going"
+msgstr "Asistiré"
+
+#: ../includes/content-event.php:107
+msgid "Maybe"
+msgstr "Tal vez asista"
+
+#: ../includes/content-event.php:108
+msgid "Not Going"
+msgstr "No asistiré"
+
+#: ../includes/content-event.php:119
+msgid "Comments"
+msgstr "Comentarios"
+
+#: ../includes/content-event.php:134
+msgid "Guests"
+msgstr "Invitados"
+
+#: ../includes/content-event.php:138
+msgid "Invite..."
+msgstr "Invitar..."
+
+#: ../includes/content-event.php:239
+msgid "Do you really want to delete this event with all its data and posts?"
+msgstr ""
+"Quieres borrar este evento de verdad con toda la información y las "
+"publicaciones?"
+
+#: ../includes/content-invite.php:12
+msgid "Invite to"
+msgstr "Invitar a"
+
+#: ../includes/content-invite.php:24
+msgid "E-Mail Addresses: *"
+msgstr "Direcciones de e-mail: *"
+
+#: ../includes/content-invite.php:26
+msgid ""
+"* Separated by new lines, \",\" or \";\". If you use the format \"Name &lt;"
+"mail@example.com&gt;\" the guest's name gets saved already, otherwise it's "
+"\"???\" until they change it."
+msgstr ""
+"* Separados por nueva línea, \",\" o \";\". Si usas el formato \"Nombre &lt;"
+"mail@example.com&gt;\" ya se guarda el nombre para el invitado, si no se ve "
+"como \"???\" hasta que lo cambie."
+
+#: ../includes/content-invite.php:29
+msgid "Optional Private Information (Your Address, Telephone Number): *"
+msgstr "Información privada opcional (tu dirección, numero de telefono): *"
+
+#: ../includes/content-invite.php:31
+msgid "* The information will only be sent by e-mail, it won't be saved."
+msgstr "* La información solo se envía por mail, no se guarda."
+
+#: ../includes/content-invite.php:33
+msgid "Send mail(s)"
+msgstr "Enviar mail(s)"
+
+#: ../includes/content-invite.php:34
+msgid "Go to event's page"
+msgstr "Ir a la página del evento"
+
+#: ../includes/content-invite.php:55
+msgid "{0} invitation(s) were sent correctly.\\nThere were errors with:\\n{1}"
+msgstr ""
+"Se han enviado {0} invitacion(es) correctamente.\n"
+"Hubo errores con:\n"
+"{1}"
+
+#: ../includes/content-not-found.php:21
+msgid ""
+"This event doesn't exist (anymore).<br>Maybe it's deleted or your link is "
+"wrong."
+msgstr ""
+"Este evento (ya) no existe.<br>A lo mejor está borrado o tu link no es "
+"correcto."
+
+#: ../includes/footer.php:16
+#, php-format
+msgid ""
+"With Inutivent you can invite people to your events without any "
+"registration. <a href=\"%1$s\">More information</a>"
+msgstr ""
+"En Inutivent puedes invitar gente a tus eventos, mirar quién va a asistir y "
+"hablar con los invitados en el muro. Y todo sin registración. <a href=\"%1$s"
+"\">Más información</a>"
+
+#: ../includes/footer.php:21
+#, php-format
+msgid ""
+"Website developed by <a href=\"%1$s\" onclick=\"%2$s\">Timo Kloss</"
+"a><br>Icons from <a href=\"%3$s\">IKONS</a><br>An <a href=\"%4$s\">inutilis</"
+"a> production<br>Copyright 2014 by Timo Kloss"
+msgstr ""
+"Página desarrollada por <a href=\"%1$s\" onclick=\"%2$s\">Timo Kloss</"
+"a><br>Iconos de <a href=\"%3$s\">IKONS</a><br>Una producción de <a href="
+"\"%4$s\">inutilis</a><br>Copyright 2014 by Timo Kloss"
+
+#: ../includes/header.php:30
+msgid "+ Create Event"
+msgstr "+ Crear evento"
+
+#: ../includes/pageutils.php:71
+msgid "today"
+msgstr "hoy"
+
+#: ../includes/pageutils.php:75 ../includes/pageutils.php:91
+msgid "yesterday"
+msgstr "ayer"
+
+#: ../includes/pageutils.php:95
+#, php-format
+msgid "%d days ago"
+msgstr "hace %d días"
+
+#: ../includes/pageutils.php:102
+#, php-format
+msgid "%1$s at %2$s"
+msgstr "%1$s a la(s) %2$s"

@@ -128,3 +128,10 @@ function endsWith(str, suffix)
 {
 	return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
+
+function formatString(format, args)
+{
+    return format.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined' ? args[number] : match;
+    });
+}

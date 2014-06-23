@@ -68,11 +68,11 @@ function relative_day($datetime)
 
 	if ($days == 0)
 	{
-		return "hoy";
+		return _('today');
 	}
 	else if ($days == 1)
 	{
-		return "ayer";
+		return _('yesterday');
 	}
 	return date_of_datetime($datetime);
 }
@@ -88,23 +88,28 @@ function relative_time($datetime)
 
 	if ($days == 1)
 	{
-		$date = "ayer";
+		$date = _('yesterday');
 	}
 	else if ($days <= 7)
 	{
-		$date = "hace {$days} días";
+		$date = sprintf( _('%d days ago'), $days);
 	}
 	else
 	{
 		$date = date_of_datetime($datetime);
 	}
 
-	return $date." a la(s) ".hour_of_datetime($datetime);
+	return sprintf( _('%1$s at %2$s'), $date, hour_of_datetime($datetime));
 }
 
 function external_url($url)
 {
-	echo "link.php?url=".urlencode($url);
+	echo get_external_url($url);
+}
+
+function get_external_url($url)
+{
+	return "link.php?url=".urlencode($url);	
 }
 
 ?>

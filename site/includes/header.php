@@ -27,7 +27,7 @@ require_once(dirname(__FILE__).'/init.php');
 					<h1><a href="<?php echo SITE_URL; ?>">Inutivent</a> <span style="color: #f00;">beta</span></h1>
 				</div>
 				<div class="options">
-					<a href="create.php">+ Crear evento</a>
+					<a href="create.php"><?php echo _('+ Create Event'); ?></a>
 				</div>
 			</div>
 
