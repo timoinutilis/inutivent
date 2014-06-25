@@ -4,17 +4,18 @@
 INIT
 */
 
+require_once(dirname(__FILE__).'/config.php');
+
 $page_subtitle = NULL;
 $page_private = NULL;
 
 // locale/gettext init
-$locale = get_locale();
-$domain = "inutivent";
-putenv("LANG={$locale}");
-setlocale(LC_ALL, $locale);
-bindtextdomain($domain, 'locale');
-bind_textdomain_codeset($domain, 'UTF-8');
-textdomain($domain);
+$page_locale = get_locale();
+putenv("LANG={$page_locale}");
+setlocale(LC_ALL, $page_locale);
+bindtextdomain(TEXT_DOMAIN, 'locale');
+bind_textdomain_codeset(TEXT_DOMAIN, 'UTF-8');
+textdomain(TEXT_DOMAIN);
 
 function init_page($subtitle, $private)
 {
@@ -46,6 +47,12 @@ function page_extra_headers()
 
 END;
 	}
+}
+
+function page_locale()
+{
+	global $page_locale;
+	echo $page_locale;
 }
 
 function get_locale()

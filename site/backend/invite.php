@@ -3,6 +3,8 @@
 require_once(dirname(__FILE__).'/includes/database.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 require_once(dirname(__FILE__).'/includes/mail.php');
+require_once(dirname(__FILE__).'/../includes/config.php');
+
 
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id'])
@@ -17,6 +19,7 @@ else
 	$user_id = $_REQUEST['user_id'];
 	$mails = $_REQUEST['mails'];
 	$information = clean_string($_REQUEST['information']);
+	$locale = !empty($_REQUEST['locale']) ? $_REQUEST['locale'] : 'en_US';
 
 	$con = connect_to_db();
 	if ($con)
@@ -41,6 +44,13 @@ else
 		}
 		else
 		{
+			// locale/gettext init
+			putenv("LANG={$locale}");
+			setlocale(LC_ALL, $locale);
+			bindtextdomain(TEXT_DOMAIN, dirname(__FILE__).'/../locale');
+			bind_textdomain_codeset(TEXT_DOMAIN, 'UTF-8');
+			textdomain(TEXT_DOMAIN);
+
 			$mail_addresses = preg_split('/[\n,;]+/', $mails);
 			$num_sent = 0;
 			$failed = array();

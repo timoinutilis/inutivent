@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Inutivent 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-23 17:15+0200\n"
-"PO-Revision-Date: 2014-06-23 20:48+0100\n"
+"PO-Revision-Date: 2014-06-25 13:31+0100\n"
 "Last-Translator: Timo Kloss <timo@inutilis.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -296,3 +296,30 @@ msgstr "vor %d Tagen"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s um %2$s"
+
+#: ../backend/includes/mail.php:11
+#, php-format
+msgid "Your event \"%s\""
+msgstr "Deine Veranstaltung \"%s\""
+
+#: ../backend/includes/mail.php:13
+#, php-format
+msgid "Hello %s,"
+msgstr "Hallo %s,"
+
+#: ../backend/includes/mail.php:13
+msgid "Here you have the access to the webpage of your event:"
+msgstr ""
+
+#: ../backend/includes/mail.php:43
+msgid "Visit Event's Webpage"
+msgstr "Besuche Webseite der Veranstaltung"
+
+#: ../backend/includes/mail.php:44
+msgid "Open in App (iOS)"
+msgstr "Öffne in App (iOS)"
+
+#: ../backend/includes/mail.php:45
+msgid ""
+"With Inutivent you can invite people to your events without any registration."
+msgstr ""

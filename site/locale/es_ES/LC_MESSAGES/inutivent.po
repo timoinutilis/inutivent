@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Inutivent 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-23 17:15+0200\n"
-"PO-Revision-Date: 2014-06-23 20:51+0100\n"
+"PO-Revision-Date: 2014-06-25 13:59+0100\n"
 "Last-Translator: Timo Kloss <timo@inutilis.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -271,9 +271,7 @@ msgstr "Ir a la página del evento"
 #: ../includes/content-invite.php:55
 msgid "{0} invitation(s) were sent correctly.\\nThere were errors with:\\n{1}"
 msgstr ""
-"Se han enviado {0} invitacion(es) correctamente.\n"
-"Hubo errores con:\n"
-"{1}"
+"Se han enviado {0} invitacion(es) correctamente.\\nHubo errores con:\\n{1}"
 
 #: ../includes/content-not-found.php:21
 msgid ""
@@ -325,3 +323,30 @@ msgstr "hace %d días"
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s a la(s) %2$s"
+
+#: ../backend/includes/mail.php:11
+#, php-format
+msgid "Your event \"%s\""
+msgstr "Tu evento \"%s\""
+
+#: ../backend/includes/mail.php:13
+#, php-format
+msgid "Hello %s,"
+msgstr "Hola %s,"
+
+#: ../backend/includes/mail.php:13
+msgid "Here you have the access to the webpage of your event:"
+msgstr ""
+
+#: ../backend/includes/mail.php:43
+msgid "Visit Event's Webpage"
+msgstr "Visitar página web del evento"
+
+#: ../backend/includes/mail.php:44
+msgid "Open in App (iOS)"
+msgstr "Abrir en app (iOS)"
+
+#: ../backend/includes/mail.php:45
+msgid ""
+"With Inutivent you can invite people to your events without any registration."
+msgstr ""

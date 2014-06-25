@@ -20,6 +20,7 @@ INVITE
 						<form action="backend/invite.php" method="POST" onsubmit="return onSubmit(event)">
 							<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+							<input type="hidden" name="locale" value="<?php page_locale(); ?>">
 							<div class="group">
 								<?php echo _('E-Mail Addresses: *'); ?><br>
 								<textarea rows="10" name="mails" id="mails"></textarea><br>

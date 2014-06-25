@@ -1,0 +1,74 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>%1$s</title>
+	<style>
+		body {
+			background-color: #eee;
+			font-family: sans-serif;
+		}
+		#container {
+			margin: 0 auto;
+			max-width: 600px;
+		}
+		#box {
+			padding: 20px;
+			border: 1px solid #aaa;
+			border-radius: 5px;
+			background-color: #fff;
+		}
+		#details {
+			margin-bottom: 40px;
+			text-align: justify;
+		}
+		#access {
+			text-align: center;
+		}
+		#footer {
+			margin-top: 10px;
+			color: #999;
+			font-size: 0.9em;
+		}
+		.button {
+			display: inline-block;
+			padding: 10px 16px;
+			text-decoration: none;
+			background-color: #0a0;
+			color: #fff;
+			border-radius: 5px;
+			box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.25);
+			margin: 4px 4px;
+		}
+		.button:hover {
+			background-color: #0b0;
+		}
+		.button:active {
+			background-color: #080;
+		}
+		h1 {
+			margin: 0 0 20px 0;
+			padding: 0;
+			text-align: center;
+			font-size: 1.3em;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="box">
+			<div id="details">
+				<h1>%1$s</h1>
+				%2$s
+			</div>
+			<div id="access">
+				<a href="%3$s" class="button">%4$s</a>
+				<a href="%5$s" class="button">%6$s</a>
+			</div>
+		</div>
+		<div id="footer">
+			%7$s
+		</div>
+	</div>
+</body>
+</html>

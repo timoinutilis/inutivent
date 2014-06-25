@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-23 17:15+0200\n"
+"POT-Creation-Date: 2014-06-25 12:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,34 +224,34 @@ msgstr ""
 msgid "Invite to"
 msgstr ""
 
-#: ../includes/content-invite.php:24
+#: ../includes/content-invite.php:25
 msgid "E-Mail Addresses: *"
 msgstr ""
 
-#: ../includes/content-invite.php:26
+#: ../includes/content-invite.php:27
 msgid ""
 "* Separated by new lines, \",\" or \";\". If you use the format \"Name &lt;"
 "mail@example.com&gt;\" the guest's name gets saved already, otherwise it's "
 "\"???\" until they change it."
 msgstr ""
 
-#: ../includes/content-invite.php:29
+#: ../includes/content-invite.php:30
 msgid "Optional Private Information (Your Address, Telephone Number): *"
 msgstr ""
 
-#: ../includes/content-invite.php:31
+#: ../includes/content-invite.php:32
 msgid "* The information will only be sent by e-mail, it won't be saved."
 msgstr ""
 
-#: ../includes/content-invite.php:33
+#: ../includes/content-invite.php:34
 msgid "Send mail(s)"
 msgstr ""
 
-#: ../includes/content-invite.php:34
+#: ../includes/content-invite.php:35
 msgid "Go to event's page"
 msgstr ""
 
-#: ../includes/content-invite.php:55
+#: ../includes/content-invite.php:56
 msgid "{0} invitation(s) were sent correctly.\\nThere were errors with:\\n{1}"
 msgstr ""
 
@@ -296,4 +296,31 @@ msgstr ""
 #: ../includes/pageutils.php:102
 #, php-format
 msgid "%1$s at %2$s"
+msgstr ""
+
+#: ../backend/includes/mail.php:11
+#, php-format
+msgid "Your event \"%s\""
+msgstr ""
+
+#: ../backend/includes/mail.php:13
+#, php-format
+msgid "Hello %s,"
+msgstr ""
+
+#: ../backend/includes/mail.php:13
+msgid "Here you have the access to the webpage of your event:"
+msgstr ""
+
+#: ../backend/includes/mail.php:43
+msgid "Visit Event's Webpage"
+msgstr ""
+
+#: ../backend/includes/mail.php:44
+msgid "Open in App (iOS)"
+msgstr ""
+
+#: ../backend/includes/mail.php:45
+msgid ""
+"With Inutivent you can invite people to your events without any registration."
 msgstr ""
