@@ -152,10 +152,17 @@ function event_details()
 	echo html_text($event->details);
 }
 
-function user_name()
+function user_name($allow_empty)
 {
 	global $user;
-	echo html_text($user->name);
+	if ($allow_empty && $user->name == "???")
+	{
+		echo "";
+	}
+	else
+	{
+		echo html_text($user->name);
+	}
 }
 
 function status_button($status)

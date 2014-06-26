@@ -100,7 +100,7 @@ EVENT VIEW
 							<form action="backend/updateuser.php" method="POST" onsubmit="return onNameSubmit(event)">
 								<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 								<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-								<?php echo _('Your Name:'); ?> <input type="text" id="input-name" name="name" value="<?php echo user_name(); ?>">
+								<?php echo _('Your Name:'); ?> <input type="text" id="input-name" name="name" value="<?php echo user_name(TRUE); ?>" placeholder="<?php echo _('Enter your name'); ?>">
 								<button type="submit"><?php echo _('Save'); ?></button>
 							</form>
 						</div>
@@ -161,7 +161,7 @@ EVENT VIEW
 						formData.append("user_id", "<?php echo $user_id; ?>");
 						formData.append("status", status);
 						var name = document.getElementById("input-name").value;
-						if (name != "<?php user_name(); ?>")
+						if (name != "" && name != "<?php user_name(FALSE); ?>")
 						{
 							formData.append("name", name);
 						}
