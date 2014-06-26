@@ -29,18 +29,18 @@ init_page( _('New Event'), FALSE);
 								<label for="hour"><?php echo _('Time:'); ?></label>
 								<input type="text" id="hour" name="hour" placeholder="<?php echo _('ex: 20:00'); ?>"><br>
 								
-								<?php echo _('Details: *'); ?><br>
+								<?php echo _('Details:'); ?>
+								<span class="footnote"><?php echo _('(Don\'t put any private data like your address or telephone number here. You can do it when you are inviting.)'); ?></span><br>
 								<textarea rows="10" name="details" placeholder="<?php echo _('Write something...'); ?>"></textarea><br>
-								<span class="footnote"><?php echo _('* Don\'t put any private data like your address or telephone number here. You can do it when you are inviting.'); ?></span><br>
 								<br>
 								
 								<label for="name"><?php echo _('Your Name:'); ?></label>
 								<input type="text" id="name" name="name"><br>
 								
 								<label for="mail"><?php echo _('Your E-Mail:'); ?></label>
-								<input type="email" id="mail" name="mail"><br>
+								<input type="email" id="mail" name="mail" placeholder="<?php echo _('will not be saved'); ?>">
 							</div>
-							<input type="submit" value="<?php echo _('Create Event'); ?>" class="big-button">
+							<button type="submit" class="big-button"><?php echo _('Create Event'); ?></button>
 						</form>
 
 					</div>

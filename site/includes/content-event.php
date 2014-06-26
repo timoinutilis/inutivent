@@ -23,7 +23,7 @@ EVENT VIEW
 							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 							<label for="file"><?php echo _('Cover Photo:'); ?></label>
 							<input type="file" name="file" id="file">
-							<input type="submit" name="submit" value="<?php echo _('Upload'); ?>">
+							<button type="submit"><?php echo _('Upload'); ?></button>
 						</form>
 					</div>
 				</div>
@@ -34,18 +34,18 @@ EVENT VIEW
 						<div id="event-display">
 							<div class="facts">
 								<div class="fact">
+									<img src="images/user.png">
+									<p><?php echo _('Host:'); ?> <?php event_owner_name(); ?></p>
+								</div>
+
+								<div class="fact">
 									<img src="images/calendar.png">
-									<p><?php event_date(); ?></p>
+									<p><?php event_day(); ?><br><?php event_date(); ?></p>
 								</div>
 
 								<div class="fact">
 									<img src="images/time.png">
 									<p><?php event_hour(); ?></p>
-								</div>
-
-								<div class="fact">
-									<img src="images/user.png">
-									<p><?php event_owner_name(); ?></p>
 								</div>
 							</div>
 
@@ -58,7 +58,8 @@ EVENT VIEW
 							<?php if ($is_owner) { ?>
 							<div class="button-container">
 								<button type="button" onclick="showEventEditor();"><?php echo _('Edit'); ?></button>
-								<button type="button" onclick="onClickDeleteEvent();" class="delete"><?php echo _('Delete Event'); ?></button>
+								<a href="<?php invite_url(); ?>"><?php echo _('Invite...'); ?></a>
+								<button type="button" onclick="onClickDeleteEvent();" class="delete" style="float:right;"><?php echo _('Delete Event'); ?></button>
 							</div>
 							<?php } ?>
 						</div>
@@ -79,9 +80,11 @@ EVENT VIEW
 									<label for="input-hour"><?php echo _('Time:'); ?></label>
 									<input type="text" id="input-hour" name="hour" placeholder="<?php echo _('ex: 20:00'); ?>"><br>
 
+									<?php echo _('Details:'); ?>
+									<span class="footnote"><?php echo _('(Don\'t put any private data like your address or telephone number here. You can do it when you are inviting.)'); ?></span><br>
 									<textarea rows="10" name="details" id="textarea-details"></textarea><br>
 								</div>
-								<input type="submit" value="<?php echo _('Save'); ?>">
+								<button type="submit"><?php echo _('Save'); ?></button>
 								<button type="button" onclick="hideEditor();"><?php echo _('Cancel'); ?></button>
 							</form>
 						</div>
@@ -92,13 +95,13 @@ EVENT VIEW
 
 				<div id="user-info" class="section">
 					<div class="inside small-padding">
-						<img src="images/calendar_ok.png">
+
 						<div class="name">
 							<form action="backend/updateuser.php" method="POST" onsubmit="return onNameSubmit(event)">
 								<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
 								<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 								<?php echo _('Your Name:'); ?> <input type="text" id="input-name" name="name" value="<?php echo user_name(); ?>">
-								<input type="submit" value="<?php echo _('Save'); ?>">
+								<button type="submit"><?php echo _('Save'); ?></button>
 							</form>
 						</div>
 
@@ -124,7 +127,7 @@ EVENT VIEW
 									<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 									<input type="hidden" name="type" value="<?php echo POST_TYPE_TEXT; ?>">
 									<textarea rows="3" name="data" id="textarea-post-data" placeholder="<?php echo _('Write something...'); ?>"></textarea><br>
-									<input type="submit" value="Post">
+									<button type="submit"><?php echo _('Post'); ?></button>
 								</form>
 							</div>
 						</div>

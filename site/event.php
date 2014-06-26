@@ -120,6 +120,20 @@ function event_date()
 	echo date_of_datetime($event->time);
 }
 
+function event_day()
+{
+	global $event;
+	$date_time = DateTime::createFromFormat('Y-m-d H:i:s', $event->time);
+	$day = (int)$date_time->format("w");
+	if ($day == 1) echo _('Monday');
+	else if ($day == 2) echo _('Tuesday');
+	else if ($day == 3) echo _('Wednesday');
+	else if ($day == 4) echo _('Thursday');
+	else if ($day == 5) echo _('Friday');
+	else if ($day == 6) echo _('Saturday');
+	else echo _('Sunday');
+}
+
 function event_hour()
 {
 	global $event;

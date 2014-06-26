@@ -22,16 +22,16 @@ INVITE
 							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 							<input type="hidden" name="locale" value="<?php page_locale(); ?>">
 							<div class="group">
-								<?php echo _('E-Mail Addresses: *'); ?><br>
+								<?php echo _('E-Mail Addresses:'); ?>
+								<span class="footnote"><?php echo _('(Separated by new lines, "," or ";". Addresses will not be saved. If you use the format "Name &lt;mail@example.com&gt;" the guest\'s name gets saved already.)'); ?></span><br>
 								<textarea rows="10" name="mails" id="mails"></textarea><br>
-								<span class="footnote"><?php echo _('* Separated by new lines, "," or ";". If you use the format "Name &lt;mail@example.com&gt;" the guest\'s name gets saved already, otherwise it\'s "???" until they change it.'); ?></span>
 							</div>
 							<div class="group">
-								<?php echo _('Optional Private Information (Your Address, Telephone Number): *'); ?><br>
+								<?php echo _('Optional Private Information (Your Address, Telephone Number):'); ?>
+								<span class="footnote"><?php echo _('(Will only be sent by e-mail, it won\'t be saved.)'); ?></span><br>
 								<textarea rows="5" name="information" id="mails"></textarea><br>
-								<span class="footnote"><?php echo _('* The information will only be sent by e-mail, it won\'t be saved.'); ?></span>
 							</div>
-							<input type="submit" value="<?php echo _('Send mail(s)'); ?>" class="big-button">
+							<button type="submit" class="big-button"><?php echo _('Send mail(s)'); ?></button>
 							<a href="<?php event_url(); ?>"><?php echo _('Go to event\'s page'); ?></a>
 						</form>
 
