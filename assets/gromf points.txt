@@ -1,0 +1,17 @@
+Gromf helps you inviting friends to your events, without registration and without collecting personal data.
+
+
+Why?
+
+-There is no registration and Gromf doesn't want any passwords.
+-There are no user profiles. Gromf is really not into personal information.
+-Gromf only asks for e-mail addresses to send invitations, he doesn't even try to remember them.
+-Gromf doesn't care where you have gone before, he keeps user information separated for each event.
+-Gromf is hungry and won't wait more than 30 days after the event's end to eat all data. Nothing will be left!
+
+
+How does it work?
+
+When you create an event you will receive an e-mail with a personal link to access and edit your event. When you invite people everybody will get an e-mail with a personal link, too. E-mail addresses are never saved on the server. For each event independent users are created on the server, there is no connection between user data of different events.
+
+Warning: The personal links are the keys of this website, there is no password protection. Don't publish very private information! For any doubts you can contact me by e-mail.
