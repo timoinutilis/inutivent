@@ -20,6 +20,7 @@ else
 
 require_once(dirname(__FILE__).'/includes/pageutils.php');
 require_once(dirname(__FILE__).'/backend/includes/database.php');
+require_once(dirname(__FILE__).'/backend/includes/utils.php');
 require_once(dirname(__FILE__).'/includes/init.php');
 
 init_page( _("Invitar"), TRUE);
@@ -37,7 +38,7 @@ if (!$con)
 else
 {
 
-	$event = event_get($con, $event_id);
+	$event = event_get_if_not_too_old($con, $event_id);
 	if ($event === FALSE)
 	{
 		$error = "event";

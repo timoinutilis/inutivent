@@ -16,7 +16,7 @@ else
 	$con = connect_to_db();
 	if ($con)
 	{
-		$event = event_get($con, $event_id);
+		$event = event_get_if_not_too_old($con, $event_id);
 		if ($event === FALSE)
 		{
 			return_error(ERROR_MYSQL, "MySQL error: ".db_error());

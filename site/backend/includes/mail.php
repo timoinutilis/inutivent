@@ -10,7 +10,7 @@ function send_owner_mail($mail, $event, $user)
 {
 	$subject = sprintf( _('Your event "%s"'), $event->title);
 
-	$text = sprintf( _('Hello %s,'), $user->name)."\n\n"._('Here you have the access to the webpage of your event:');
+	$text = sprintf( _('Hello %s,'), $user->name)."\n\n"._('Here you have the access to the webpage of your event.');
 	$message = create_mail($event->title, $text, $event->id, $user->id);
 
 	$headers  = 'MIME-Version: 1.0'."\r\n";
@@ -42,12 +42,13 @@ function create_mail($title, $message, $event_id, $user_id)
 	$message = html_text($message);
 	$web_button = html_text( _('Visit Event\'s Webpage'));
 	$app_button = html_text( _('Open in App (iOS)'));
-	$footer = html_text( _('With Inutivent you can invite people to your events without any registration.'));
+	$access_info = html_text( _('This is your personal access. Don\'t share it and clean the browser history after using public computers.'));
+	$footer = html_text( _('Gromf helps you inviting friends to your events, without registration and without collecting personal information.'));
 
 	$web_url = SITE_URL."/event.php?event={$event_id}&user={$user_id}";
-	$app_url = "inutivent://?event={$event_id}&user={$user_id}";
+	$app_url = "gromf://?event={$event_id}&user={$user_id}";
 
-	$mail = sprintf($mail_template, $title, $message, $web_url, $web_button, $app_url, $app_button, $footer);
+	$mail = sprintf($mail_template, $title, $message, $web_url, $web_button, $app_url, $app_button, $access_info, $footer);
 	return $mail;
 }
 

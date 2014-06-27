@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__).'/includes/database.php');
+require_once(dirname(__FILE__).'/includes/files.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 
 if (   empty($_REQUEST['event_id'])
@@ -32,26 +33,13 @@ else
 		else
 		{
 			// delete uploaded files
-			$dir = dirname(__FILE__).'/../uploads/'.$event_id;
-			$files_ok = TRUE;
-			if (is_dir($dir))
+			$files_ok = delete_files_of_event($event_id);
+			
+			if (!$files_ok)
 			{
-				$files = glob($dir.'/*'); // get all file names
-				foreach($files as $file)
-				{
-					if(is_file($file))
-					{
-						unlink($file); // delete file
-					}
-				}
-				if (!rmdir($dir))
-				{
-					$files_ok = FALSE;
-					return_error(ERROR_FAILED_DELETE_FILES, "Could not delete all uploaded files");
-				}
+				return_error(ERROR_FAILED_DELETE_FILES, "Could not delete all uploaded files");
 			}
-
-			if ($files_ok)
+			else
 			{
 				// delete from data base
 				if (event_delete_completely($con, $event_id))

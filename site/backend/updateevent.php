@@ -23,6 +23,10 @@ else
 	{
 		return_error(ERROR_INVALID_PARAMETERS, "Wrong date or time format");
 	}
+	else if ($time && !is_datetime_allowed($time))
+	{
+		return_error(ERROR_INVALID_PARAMETERS, "Date cannot be in the past or too far in the future");
+	}
 	else
 	{
 		$con = connect_to_db();

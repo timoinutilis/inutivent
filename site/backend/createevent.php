@@ -27,6 +27,10 @@ else
 	{
 		return_error(ERROR_INVALID_PARAMETERS, "Wrong date or time format");
 	}
+	else if (!is_datetime_allowed($time))
+	{
+		return_error(ERROR_INVALID_PARAMETERS, "Date cannot be in the past or too far in the future");
+	}
 	else if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
 	{
 		return_error(ERROR_INVALID_PARAMETERS, "Invalid e-mail");

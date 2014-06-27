@@ -29,11 +29,11 @@ function page_title()
 	global $page_subtitle;
 	if ($page_subtitle)
 	{
-		echo "Inutivent | ".$page_subtitle;
+		echo "Gromf | ".$page_subtitle;
 	}
 	else
 	{
-		echo "Inutivent";
+		echo "Gromf";
 	}
 }
 

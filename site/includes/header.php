@@ -24,7 +24,7 @@ require_once(dirname(__FILE__).'/init.php');
 
 			<div id="header" class="section">
 				<div class="logo">
-					<h1><a href="<?php echo SITE_URL; ?>">Inutivent</a> <span style="color: #f00;">beta</span></h1>
+					<h1><a href="<?php echo SITE_URL; ?>"><img src="images/header_logo.png">Gromf</a> <span style="color:#c00; font-size:75%;">BETA</span></h1>
 				</div>
 				<div class="options">
 					<a href="create.php"><?php echo _('+ Create Event'); ?></a>

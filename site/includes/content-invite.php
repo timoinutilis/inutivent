@@ -23,7 +23,7 @@ INVITE
 							<input type="hidden" name="locale" value="<?php page_locale(); ?>">
 							<div class="group">
 								<?php echo _('E-Mail Addresses:'); ?>
-								<span class="footnote"><?php echo _('(Separated by new lines, "," or ";". Addresses will not be saved. If you use the format "Name &lt;mail@example.com&gt;" the guest\'s name gets saved already.)'); ?></span><br>
+								<span class="footnote"><?php echo _('(Separated by new lines, "," or ";". Addresses will not be saved. If you use the format "Name&nbsp;&lt;mail@example.com&gt;" the guest\'s name gets saved already.)'); ?></span><br>
 								<textarea rows="10" name="mails" id="mails"></textarea><br>
 							</div>
 							<div class="group">
