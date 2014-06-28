@@ -6,16 +6,10 @@ INVITE
 
 ?>
 
-				<div id="cover" class="section">
-					<div class="wrapper">
-						<img src="<?php header_image_url(); ?>">
-						<h1><?php echo _('Invite to'); ?><br><?php event_title(); ?></h1>
-					</div>
-					<br style="clear: both; width: 100%;">
-				</div>
-
 				<div id="invite" class="section">
 					<div class="inside big-padding">
+
+						<h1><?php echo _('Invite to'); ?> <?php event_title(); ?></h1>
 
 						<form action="backend/invite.php" method="POST" onsubmit="return onSubmit(event)">
 							<input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
@@ -32,7 +26,7 @@ INVITE
 								<textarea rows="5" name="information" id="mails"></textarea><br>
 							</div>
 							<button type="submit" class="big-button"><?php echo _('Send mail(s)'); ?></button>
-							<a href="<?php event_url(); ?>"><?php echo _('Go to event\'s page'); ?></a>
+							<a href="<?php event_url(); ?>" style="margin-left: 10px;"><?php echo _('Go to event\'s page'); ?></a>
 						</form>
 
 					</div>

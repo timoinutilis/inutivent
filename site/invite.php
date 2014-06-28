@@ -39,7 +39,7 @@ else
 {
 
 	$event = event_get_if_not_too_old($con, $event_id);
-	if ($event === FALSE)
+	if ($event === FALSE || $event === NULL)
 	{
 		$error = "event";
 	}

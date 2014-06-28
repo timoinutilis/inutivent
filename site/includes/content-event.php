@@ -35,7 +35,7 @@ EVENT VIEW
 							<div class="facts">
 								<div class="fact">
 									<img src="images/user.png">
-									<p><?php echo _('Host:'); ?> <?php event_owner_name(); ?></p>
+									<p><?php event_owner_name(); ?></p>
 								</div>
 
 								<div class="fact">
@@ -57,8 +57,8 @@ EVENT VIEW
 
 							<?php if ($is_owner) { ?>
 							<div class="button-container">
-								<button type="button" onclick="showEventEditor();"><?php echo _('Edit'); ?></button>
-								<a href="<?php invite_url(); ?>"><?php echo _('Invite...'); ?></a>
+								<a href="#" onclick="showEventEditor(); return false;"><?php echo _('Edit'); ?></a> &middot;
+								<a href="<?php invite_url(); ?>"><?php echo _('Invite'); ?></a>
 								<button type="button" onclick="onClickDeleteEvent();" class="delete" style="float:right;"><?php echo _('Delete Event'); ?></button>
 							</div>
 							<?php } ?>
@@ -138,7 +138,7 @@ EVENT VIEW
 <?php guest_list(); ?>
 							<?php if ($is_owner) { ?>
 							<br>
-							<a href="<?php invite_url(); ?>"><?php echo _('Invite...'); ?></a>
+							<a href="<?php invite_url(); ?>"><?php echo _('Invite'); ?></a>
 							<?php } ?>
 							
 						</div>

@@ -24,7 +24,7 @@ init_page(NULL, FALSE);
 				<div id="welcome" class="section">
 					<div class="inside big-padding">
 						<p><?php echo _('Gromf helps you inviting friends to your events, without registration and without collecting personal data.'); ?></p>
-						<a href="create.php"><?php echo _('Create new event...'); ?></a>
+						<a href="create.php"><?php echo _('Create new event'); ?></a>
 					</div>
 				</div>
 
