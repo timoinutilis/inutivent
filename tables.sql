@@ -4,6 +4,7 @@ CREATE TABLE `events` (
   `title` text NOT NULL,
   `details` text NOT NULL,
   `time` datetime NOT NULL,
+  `cover` varchar(50) DEFAULT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 );
@@ -28,3 +29,4 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`),
   KEY `event_id` (`event_id`)
 );
+
