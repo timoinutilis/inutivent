@@ -40,7 +40,8 @@ function send_mail($to, $from_name, $subject, $plain_message, $html_message)
 
 	$headers  = "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: multipart/alternative;boundary={$boundary}\r\n";
-	$headers .= "From: ".mb_encode_mimeheader($from_name, "UTF-8", "Q"). " <".SENDER_MAIL_ADDRESS.">";
+	$headers .= "From: ".mb_encode_mimeheader($from_name, "UTF-8", "Q"). " <".SENDER_MAIL_ADDRESS.">\r\n";
+	$headers .= "Reply-To: ".REPLY_MAIL_ADDRESS;
 
 	$message = "This is a MIME message.\r\n";
 	$message .= "--{$boundary}\r\n";

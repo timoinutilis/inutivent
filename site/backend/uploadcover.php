@@ -6,8 +6,8 @@ require_once(dirname(__FILE__).'/includes/utils.php');
 define('UPLOAD_MAX_BYTES', 3000000);
 define('COVER_MAX_WIDTH', 1024);
 define('COVER_MAX_HEIGHT_FACTOR', 0.375);
-define('COVER_MAX_BYTES', 50000);
-define('COVER_JPG_QUALITY', 60);
+define('COVER_MAX_BYTES', 100000);
+define('COVER_JPG_QUALITY', 80);
 
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id'])

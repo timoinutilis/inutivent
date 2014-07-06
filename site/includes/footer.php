@@ -15,11 +15,13 @@ require_once(dirname(__FILE__).'/pageutils.php');
 						<p>
 							<?php printf( _('Gromf helps you inviting friends to your events, without registration and without collecting personal data. <a href="%1$s">More information</a>'), SITE_URL); ?>
 						</p>
+						<a href="<?php echo SITE_URL; ?>"><img src="images/footer_logo_gromf.png"></a>
 					</div>
 					<div class="column right">
 						<p>
-							<?php printf( _('Website developed by <a href="%1$s" onclick="%2$s">Timo Kloss</a><br>Icons from <a href="%3$s">IKONS</a><br>An <a href="%4$s">inutilis</a> production<br>Copyright 2014 by Timo Kloss'), 'mailto:support', 'onClickMail(event)', get_external_url("http://www.ikons.piotrkwiatkowski.co.uk"), get_external_url("http://www.inutilis.com")); ?>
+							<?php printf( _('Website and illustrations by <a href="%1$s" onclick="%2$s">Timo Kloss</a>.<br>Icons from <a href="%3$s">IKONS</a>.'), 'mailto:support', 'onClickMail(event)', get_external_url("http://www.ikons.piotrkwiatkowski.co.uk")); ?>
 						</p>
+						<a href="<?php external_url("http://www.inutilis.com"); ?>"><img src="images/footer_logo_inutilis.png"></a>
 					</div>
 					<br style="clear: both; width: 100%;">
 				</div>

@@ -29,7 +29,7 @@ init_page(NULL, FALSE);
 				</div>
 
 				<div id="welcome-why" class="section">
-					<div class="inside big-padding">
+					<div class="inside small-padding">
 						<img src="images/home_why.png">
 						<div class="text">
 							<h1><?php echo _('Why?'); ?></h1>

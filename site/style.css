@@ -77,7 +77,7 @@ strong {
 
 a {
 	text-decoration: none;
-	color: #07a;
+	color: #1B6F8E; /*#e34623;*/
 }
 
 a:hover {
@@ -95,40 +95,40 @@ textarea:focus {
 	outline: none;
 	font-family: sans-serif;
 	font-size: 100%;
-	border: 1px solid #ddd;
+	border: 1px solid #aaa;
 	padding: 5px;
 	color: #444;
 }
 
 input:hover:enabled,
 textarea:hover:enabled {
-	border: 1px solid #bbb;
+	border: 1px solid #888;
 }
 
 input:active:enabled,
 input:focus:enabled,
 textarea:active:enabled,
 textarea:focus:enabled {
-	border: 1px solid #bbb;
+	border: 1px solid #888;
 	box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3) inset;
 }
 
 button {
 	border: none !important;
-	background-color: #07a;
+	background-color: #1B6F8E; /*#e34623;*/
 	color: #fff;
 	border-radius: 5px;
 	box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.25);
 	font-size: 90%;
-	padding: 4px 8px;
+	padding: 5px 8px 6px 8px;
 }
 
 button:hover:enabled {
-	background-color: #039EE1;
+	background-color: #57A5C3;
 }
 
 button:active:enabled {
-	background-color: #025579;
+	background-color: #034761;
 }
 
 button.delete {
@@ -153,6 +153,7 @@ input[type="file"],
 input[type="file"]:hover,
 input[type="file"]:active {
 	border: none;
+	box-shadow: none;
 }
 
 .section {
@@ -195,20 +196,26 @@ ul.list li {
 }
 
 #header {
-	background-color: #000;
+	background-color: #e34623;
 	color: #fff;
-	text-align: center;
-	padding: 16px 0;
+	padding: 10px 0;
+	border-bottom: 2px solid #722312;
+	margin-bottom: 2px;
 }
 
-#header h1 {
-	font-size: 200%;
-	font-weight: bold;
+#header .logo {
+	display: block;
+	width: 177px;
+	margin: 0 auto;
+	line-height: 0;
+}
+
+#header img {
 }
 
 #header .options {
 	position: absolute;
-	top: 27px;
+	top: 24px;
 	right: 20px;
 }
 
@@ -233,6 +240,7 @@ ul.list li {
 	width: 100%;
 	display: block;
 	position: relative;
+	margin: 0 auto;
 	z-index: 1;
 }
 
@@ -242,7 +250,7 @@ ul.list li {
 	width: 100%;
 	bottom: 10px;
 	left: 0;
-	z-index: 2;
+	z-index: 4;
 	text-align: center;
 	font-size: 200%;
 	font-weight: bold;
@@ -250,24 +258,26 @@ ul.list li {
 	text-shadow: 0px 1px 6px #000;
 }
 
-#cover .wrapper:before {
+/*#cover .wrapper:before {
 	content: '';
 	position: absolute;
 	top: 0;
 	right: 0;
 	left: 0;
 	height: 6px;
-	box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.5) inset;
+	box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.5) inset;
+	background-color: rgba(0, 0, 0, 0.1);
 	z-index: 3;
-}
+}*/
 #cover .wrapper:after {
 	content: '';
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	left: 0;
-	height: 6px;
-	box-shadow: 0px -4px 10px -5px rgba(0, 0, 0, 1.0) inset;
+	height: 2px;
+	/*box-shadow: 0px -4px 10px -5px rgba(0, 0, 0, 1.0) inset;*/
+	background-color: rgba(0, 0, 0, 0.5);
 	z-index: 3;
 }
 
@@ -309,11 +319,15 @@ ul.list li {
 
 
 #user-info {
-	background-color: #f2f2f2;
+	/*background-color: #f2f2f2;*/
 }
 
 #user-info .inside {
 	text-align: center;
+	background-color: #eeeeee;
+	border-radius: 5px;
+/*	border-top: 2px dashed #e34623;
+	border-bottom: 2px dashed #e34623;*/
 }
 
 #user-info .name {
@@ -394,7 +408,7 @@ ul.list li {
 }
 
 #posts .post .name {
-	color: #666;
+	/*color: #666;*/
 	font-weight: bold;
 }
 
@@ -429,7 +443,8 @@ ul.list li {
 }
 
 .footnote {
-	color: #aaa;
+	/*color: #aaa;*/
+	font-size: 75%;
 }
 
 .big-button {
@@ -484,7 +499,7 @@ ul.list li {
 }
 
 #welcome-why {
-	background-color: #f2f2f2;
+	/*background-color: #f2f2f2;*/
 }
 
 #welcome-why img {
@@ -492,8 +507,14 @@ ul.list li {
 	position: absolute;
 }
 
+#welcome-why .inside {
+	background-color: #eee;
+	border-radius: 5px;
+}
+
 #welcome-why .text {
 	margin-left: 240px;
+	margin-right: 20px;
 }
 
 #welcome-how .inside {
@@ -506,9 +527,10 @@ ul.list li {
 }
 
 #footer {
-	background-color: #000;
+	background-color: #e34623;
 	text-align: center;
 	margin-top: 140px;
+	border-top: 2px solid #722312;
 }
 
 #footer a {
@@ -517,9 +539,9 @@ ul.list li {
 }
 
 #footer .inside {
-	padding: 40px 0 20px 0;
+	padding: 20px 0 0 0;
 	text-align: center;
-	color: #aaa;
+	color: #fff;
 }
 
 #footer .column {
@@ -535,6 +557,10 @@ ul.list li {
 
 #footer .column p {
 	margin: 0 20px;
+}
+
+#footer img {
+	margin-top: 10px;
 }
 
 /*
@@ -554,17 +580,16 @@ Mobile
 		padding: 20px 0;
 	}
 
-	#header {
-		text-align: left;
+	#header .logo {
+		margin: 0 0 0 5%;
 	}
 
-	#header h1 {
-		font-size: 120%;
-		margin-left: 5%;
+	#header img {
+		width: 88px;
 	}
 
 	#header .options {
-		top: 20px;
+		top: 13px;
 		right: 5%;
 		font-size: 80%;
 	}
@@ -585,7 +610,6 @@ Mobile
 		display: block;
 		position: static;
 		float: right;
-		right: 10%;
 		max-width: 120px;
 	}
 
@@ -598,7 +622,7 @@ Mobile
 	}
 
 	#welcome-why .text {
-		margin-left: 0px;
+		margin-left: 20px;
 	}
 
 	#event-info .fact {

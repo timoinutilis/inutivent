@@ -16,12 +16,12 @@ INVITE
 							<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 							<input type="hidden" name="locale" value="<?php page_locale(); ?>">
 							<div class="group">
-								<?php echo _('E-Mail Addresses:'); ?>
+								<?php echo _('E-Mail Addresses:'); ?><br>
 								<span class="footnote"><?php echo _('(Separated by new lines, "," or ";". Addresses will not be saved. If you use the format "Name&nbsp;&lt;mail@example.com&gt;" the guest\'s name gets saved already.)'); ?></span><br>
 								<textarea rows="10" name="mails" id="mails"></textarea><br>
 							</div>
 							<div class="group">
-								<?php echo _('Optional Private Information (Your Address, Telephone Number):'); ?>
+								<?php echo _('Optional Private Information (Your Address, Telephone Number):'); ?><br>
 								<span class="footnote"><?php echo _('(Will only be sent by e-mail, it won\'t be saved.)'); ?></span><br>
 								<textarea rows="5" name="information" id="mails"></textarea><br>
 							</div>
