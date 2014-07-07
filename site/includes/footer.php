@@ -19,7 +19,7 @@ require_once(dirname(__FILE__).'/pageutils.php');
 					</div>
 					<div class="column right">
 						<p>
-							<?php printf( _('Website and illustrations by <a href="%1$s" onclick="%2$s">Timo Kloss</a>.<br>Icons from <a href="%3$s">IKONS</a>.'), 'mailto:support', 'onClickMail(event)', get_external_url("http://www.ikons.piotrkwiatkowski.co.uk")); ?>
+							<?php printf( _('Website and illustrations by <a href="%1$s" onclick="%2$s">Timo Kloss</a><br>Icons from <a href="%3$s">IKONS</a><br>© 2014'), 'mailto:support', 'onClickMail(event)', get_external_url("http://www.ikons.piotrkwiatkowski.co.uk")); ?>
 						</p>
 						<a href="<?php external_url("http://www.inutilis.com"); ?>"><img src="images/footer_logo_inutilis.png"></a>
 					</div>
