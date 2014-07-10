@@ -115,7 +115,7 @@ function get_mail_access_info()
 
 function get_mail_footer()
 {
-	return _('Gromf helps you inviting friends to your events, without registration and without collecting personal information. Your e-mail address was not saved.');
+	return _('Gromf helps you to invite friends to your events, without the need to register and without collecting personal data. Your e-mail address was not saved.');
 }
 
 ?>

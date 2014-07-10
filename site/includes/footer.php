@@ -13,7 +13,7 @@ require_once(dirname(__FILE__).'/pageutils.php');
 				<div class="inside">
 					<div class="column">
 						<p>
-							<?php printf( _('Gromf helps you inviting friends to your events, without registration and without collecting personal data. <a href="%1$s">More information</a>'), SITE_URL); ?>
+							<?php printf( _('Gromf helps you to invite friends to your events, without the need to register and without collecting personal data. <a href="%1$s">More information</a>'), SITE_URL); ?>
 						</p>
 						<a href="<?php echo SITE_URL; ?>"><img src="images/footer_logo_gromf.png"></a>
 					</div>

@@ -284,7 +284,9 @@ ul.list li {
 }
 
 #cover-editor {
-	position: absolute;
+	/*position: absolute;*/
+	background-color: #eee;
+	background-image: url(images/paper.jpg);
 }
 
 #cover-editor .inside {
@@ -430,7 +432,7 @@ ul.list li {
 	width: 160px;
 	float: left;
 	padding-left: 40px;
-	border-left: 1px solid #eee;
+	border-left: 1px solid #e8e8e8;
 }
 
 #people li {
@@ -518,6 +520,10 @@ ul.list li {
 #welcome-why .text {
 	margin-left: 240px;
 	margin-right: 20px;
+}
+
+#welcome-why li {
+	margin-bottom: 6px;
 }
 
 #welcome-how .inside {
@@ -614,7 +620,7 @@ Mobile
 		display: block;
 		position: static;
 		float: right;
-		max-width: 120px;
+		max-width: 100px;
 	}
 
 	#event-info img,
