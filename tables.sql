@@ -6,6 +6,7 @@ CREATE TABLE `events` (
   `time` datetime NOT NULL,
   `cover` varchar(50) DEFAULT NULL,
   `created` datetime NOT NULL,
+  `locale` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -16,6 +17,7 @@ CREATE TABLE `users` (
   `status` char(1) NOT NULL,
   `status_changed` datetime NOT NULL,
   `visited` datetime NOT NULL,
+  `created` datetime NOT NULL,
   PRIMARY KEY (`id`,`event_id`)
 );
 

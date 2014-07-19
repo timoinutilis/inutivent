@@ -19,7 +19,7 @@ function send_owner_mail($mail, $event, $user)
 	return send_mail($mail, $from_name, $subject, $plain_message, $html_message);
 }
 
-function send_invitation_mail($mail, $event, $owner, $user, $information)
+function send_invitation_mail($mail, $event, $owner, $user, $information, $reply_to)
 {
 	$from_name = $owner->name.' via '.SENDER_MAIL_NAME;
 
@@ -29,19 +29,24 @@ function send_invitation_mail($mail, $event, $owner, $user, $information)
 	$plain_message = create_plain_message($event->title, $text, $event->id, $user->id);
 	$html_message = create_html_message($event->title, $text, $event->id, $user->id);
 
-	return send_mail($mail, $from_name, $subject, $plain_message, $html_message);
+	return send_mail($mail, $from_name, $subject, $plain_message, $html_message, $reply_to);
 }
 
-function send_mail($to, $from_name, $subject, $plain_message, $html_message)
+function send_mail($to, $from_name, $subject, $plain_message, $html_message, $reply_to = NULL)
 {
 	mb_internal_encoding("UTF-8");
 
 	$boundary = uniqid('part_');
 
+	if (!$reply_to)
+	{
+		$reply_to = REPLY_MAIL_ADDRESS;
+	}
+
 	$headers  = "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: multipart/alternative;boundary={$boundary}\r\n";
 	$headers .= "From: ".mb_encode_mimeheader($from_name, "UTF-8", "Q"). " <".SENDER_MAIL_ADDRESS.">\r\n";
-	$headers .= "Reply-To: ".REPLY_MAIL_ADDRESS;
+	$headers .= "Reply-To: {$reply_to}";
 
 	$message = "This is a MIME message.\r\n";
 	$message .= "--{$boundary}\r\n";
@@ -82,7 +87,7 @@ function create_plain_message($title, $message, $event_id, $user_id)
 	$app_url = "gromf://?event={$event_id}&user={$user_id}";
 
 	$mail = "{$message}\r\n\r\n\r\n";
-	$mail .= _('Visit Event\'s Webpage').": {$web_url}\r\n";
+	$mail .= _('Reply on Webpage of Event').": {$web_url}\r\n";
 	$mail .= _('Open in App (iOS)').": {$app_url}\r\n\r\n";
 	$mail .= get_mail_access_info()."\r\n\r\n";
 	$mail .= get_mail_footer()."\r\n";
@@ -96,7 +101,7 @@ function create_html_message($title, $message, $event_id, $user_id)
 
 	$title = html_text($title);
 	$message = html_text($message);
-	$web_button = html_text( _('Visit Event\'s Webpage'));
+	$web_button = html_text( _('Reply on Webpage of Event'));
 	$app_button = html_text( _('Open in App (iOS)'));
 	$access_info = html_text(get_mail_access_info());
 	$footer = html_text(get_mail_footer());

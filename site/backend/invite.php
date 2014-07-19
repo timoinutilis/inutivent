@@ -19,6 +19,7 @@ else
 	$user_id = $_REQUEST['user_id'];
 	$mails = $_REQUEST['mails'];
 	$information = clean_string($_REQUEST['information']);
+	$reply_to = !empty($_REQUEST['reply_to']) ? clean_string_line($_REQUEST['reply_to']) : NULL;
 	$locale = !empty($_REQUEST['locale']) ? $_REQUEST['locale'] : 'en_US';
 
 	$con = connect_to_db();
@@ -41,6 +42,10 @@ else
 		else if ($event->owner != $user_id)
 		{
 			return_error(ERROR_NO_PERMISSION, "No permission");
+		}
+		else if ($reply_to && !filter_var($reply_to, FILTER_VALIDATE_EMAIL))
+		{
+			return_error(ERROR_INVALID_PARAMETERS, "'Reply to' address is invalid");
 		}
 		else
 		{
@@ -98,7 +103,7 @@ else
 							$guest_user = new stdClass();
 							$guest_user->id = $guest_user_id;
 
-							if (send_invitation_mail($mail, $event, $owner, $guest_user, $information))
+							if (send_invitation_mail($mail, $event, $owner, $guest_user, $information, $reply_to))
 							{
 								$num_sent++;
 							}

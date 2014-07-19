@@ -64,11 +64,12 @@ function event_create($con, $title, $details, $time)
 	$title = mysqli_real_escape_string($con, $title);
 	$details = mysqli_real_escape_string($con, $details);
 	$time = mysqli_real_escape_string($con, $time);
+	$locale = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? mysqli_real_escape_string($con, $_SERVER['HTTP_ACCEPT_LANGUAGE']) : 'unknown';
 
 	$id = event_get_new_id($con);
 	if ($id)
 	{
-		$result = mysqli_query($con, "INSERT INTO events (id, title, details, time, created) VALUES ('{$id}', '{$title}', '{$details}', '{$time}', NOW())");
+		$result = mysqli_query($con, "INSERT INTO events (id, title, details, time, created, locale) VALUES ('{$id}', '{$title}', '{$details}', '{$time}', NOW(), '{$locale}')");
 		if ($result)
 		{
 			return $id;
@@ -209,7 +210,7 @@ function user_create($con, $event_id, $name, $status = STATUS_UNKNOWN, $user_id_
 	$id = user_get_new_id($con, $event_id, $user_id_spare_obj);
 	if ($id)
 	{
-		$result = mysqli_query($con, "INSERT INTO users (id, event_id, name, status, status_changed, visited) VALUES ('{$id}', '{$event_id}', '{$name}', '{$status}', NOW(), '0000-00-00 00:00:00')");
+		$result = mysqli_query($con, "INSERT INTO users (id, event_id, name, status, status_changed, visited, created) VALUES ('{$id}', '{$event_id}', '{$name}', '{$status}', NOW(), '0000-00-00 00:00:00', NOW())");
 		if ($result)
 		{
 			return $id;

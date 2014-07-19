@@ -25,6 +25,11 @@ INVITE
 								<span class="footnote"><?php echo _('(Will only be sent by e-mail, it won\'t be saved.)'); ?></span><br>
 								<textarea rows="5" name="information" id="mails"></textarea><br>
 							</div>
+							<div class="group">
+								<?php echo _('Your E-Mail (optional):'); ?><br>
+								<span class="footnote"><?php echo _('(May prevent invitations from going to spam. Used for "Reply to", it won\'t be saved.)'); ?></span><br>
+								<input type="email" name="reply_to">
+							</div>
 							<button type="submit" class="big-button"><?php echo _('Send mail(s)'); ?></button>
 							<a href="<?php event_url(); ?>" style="margin-left: 10px;"><?php echo _('Go to event\'s page'); ?></a>
 						</form>
