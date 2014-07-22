@@ -73,12 +73,18 @@ EVENT VIEW
 
 									<label for="input-title"><?php echo _('Title:'); ?></label>
 									<input type="text" id="input-title" name="title" placeholder="<?php echo _('ex: Birthday Party'); ?>"><br>
+									<br>
 									
 									<label for="input-date"><?php echo _('Date:'); ?></label>
-									<input type="text" id="input-date" name="date" placeholder="<?php echo _('ex: 24/12/2014'); ?>"><br>
+									<span style="position:relative;">
+										<input type="text" id="input-date" name="date" placeholder="<?php echo _('ex: 24/12/2014'); ?>">
+										<script>DateInput('date', true, 'DD/MM/YYYY', '<?php event_date(); ?>')</script><br>
+									</span>
+									<br>
 									
 									<label for="input-hour"><?php echo _('Time:'); ?></label>
 									<input type="text" id="input-hour" name="hour" placeholder="<?php echo _('ex: 20:00'); ?>"><br>
+									<br>
 
 									<?php echo _('Details:'); ?><br>
 									<span class="footnote"><?php echo _('(Don\'t put any private data like your address or telephone number here. You can do it when you are inviting.)'); ?></span><br>

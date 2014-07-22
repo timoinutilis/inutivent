@@ -7,7 +7,7 @@ CREATE EVENT
 require_once(dirname(__FILE__).'/includes/config.php');
 require_once(dirname(__FILE__).'/includes/init.php');
 
-init_page( _('New Event'), FALSE);
+init_page( _('New Event'), FALSE, array('libs/calendarDateInput.js'));
 
 ?>
 
@@ -22,12 +22,18 @@ init_page( _('New Event'), FALSE);
 							<div class="group">
 								<label for="title"><?php echo _('Title:'); ?></label>
 								<input type="text" id="title" name="title" placeholder="<?php echo _('ex: Birthday Party'); ?>"><br>
-								
+								<br>
+
 								<label for="date"><?php echo _('Date:'); ?></label>
-								<input type="text" id="date" name="date" placeholder="<?php echo _('ex: 24/12/2014'); ?>"><br>
+								<span style="position:relative;">
+									<input type="text" id="date" name="date" placeholder="<?php echo _('ex: 24/12/2014'); ?>">
+									<script>DateInput('date', true, 'DD/MM/YYYY')</script><br>
+								</span>
+								<br>
 								
 								<label for="hour"><?php echo _('Time:'); ?></label>
 								<input type="text" id="hour" name="hour" placeholder="<?php echo _('ex: 20:00'); ?>"><br>
+								<br>
 								
 								<?php echo _('Details:'); ?><br>
 								<span class="footnote"><?php echo _('(Don\'t put any private data like your address or telephone number here. You can do it when you are inviting.)'); ?></span><br>
@@ -36,9 +42,11 @@ init_page( _('New Event'), FALSE);
 								
 								<label for="name"><?php echo _('Your Name:'); ?></label>
 								<input type="text" id="name" name="name"><br>
+								<br>
 								
 								<label for="mail"><?php echo _('Your E-Mail:'); ?></label>
 								<input type="email" id="mail" name="mail" placeholder="<?php echo _('will not be saved'); ?>">
+								<br>
 							</div>
 							<button type="submit" class="big-button"><?php echo _('Create Event'); ?></button>
 						</form>

@@ -73,7 +73,7 @@ else
 	}
 }
 
-init_page($all_loaded ? $event->title : NULL, TRUE);
+init_page($all_loaded ? $event->title : NULL, TRUE, array('libs/calendarDateInput.js'));
 
 include 'includes/header.php';
 

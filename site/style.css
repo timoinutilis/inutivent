@@ -463,17 +463,17 @@ ul.list li {
 
 #event-create .group input,
 #event-editor .group input {
-	display: block;
+	display: inline-block;
 	width: 300px;
 }
 
 #event-create .group label,
 #event-editor .group label {
-	display: block;
+	display: inline-block;
 	width: 120px;
 	height: 30px;
 	line-height: 30px;
-	float: left;
+/*	float: left;*/
 }
 
 #event-create .group br,

@@ -23,7 +23,7 @@ $to_date = isset($_GET['to']) ? $_GET['to'] : NULL;
 
 if (empty($from_date))
 {
-	$from_date = '2014-01-01';
+	$from_date = date('Y-m-d' , time() - 30 * 24 * 60 * 60);
 }
 if (empty($to_date))
 {
