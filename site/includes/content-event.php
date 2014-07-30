@@ -135,6 +135,8 @@ EVENT VIEW
 									<textarea rows="3" name="data" id="textarea-post-data" placeholder="<?php echo _('Write something...'); ?>"></textarea><br>
 									<button type="submit"><?php echo _('Post'); ?></button>
 								</form>
+								<br>
+								<span class="footnote"><?php echo _('Gromf doesn\'t send notifications. Come back regularly to check for new comments and other changes.'); ?></span>
 							</div>
 						</div>
 

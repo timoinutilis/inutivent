@@ -27,6 +27,8 @@ else
 		}
 		else
 		{
+			user_update_visited($con, $event_id, $user_id);
+			
 			$users = user_get_all($con, $event_id);
 			if ($users === FALSE)
 			{
@@ -45,8 +47,6 @@ else
 				}
 				else
 				{
-					user_update_visited($con, $event_id, $user_id);
-					
 					$result = array('event' => $event, 'users' => $users, 'posts' => $posts);
 					echo json_encode($result);
 				}
