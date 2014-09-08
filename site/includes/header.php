@@ -13,6 +13,7 @@ require_once(dirname(__FILE__).'/init.php');
 		<title><?php page_title(); ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name = "viewport" content = "width = device-width">
+		<meta name="apple-itunes-app" content="app-id=899138813, app-argument=gromf://?<?php echo $_SERVER['QUERY_STRING']; ?>">
 		<link rel="stylesheet" type="text/css" media="all" href="style.css">
 		<script type="text/javascript" src="functions.js"></script>
 <?php page_extra_headers(); ?>
