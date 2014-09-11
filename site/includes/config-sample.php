@@ -15,8 +15,15 @@ define('DB_HOST', 'localhost');
 /** Root URL */
 define('SITE_URL', 'http://localhost:8888');
 
+/** Apple App Store URL for Gromf app */
+define('APP_STORE_URL', '');
+
 /** Invitation sender e-mail */
-define('SENDER_MAIL_ADDRESS', 'Gromf <mail@example.com>');
+define('SENDER_MAIL_NAME', 'Gromf');
+define('SENDER_MAIL_ADDRESS', 'mail@example.com');
+
+/** Invitation reply-to e-mail */
+define('REPLY_MAIL_ADDRESS', 'no-reply@example.com');
 
 /** Locale gettext domain */
 define('TEXT_DOMAIN', 'inutivent');

@@ -175,6 +175,9 @@ input[type="file"]:active {
 .small-padding {
 	padding: 40px 0;
 }
+.heading-top-margin {
+	margin-top: 80px;
+}
 
 .inside h1 {
 	font-weight: bold;
@@ -588,6 +591,9 @@ Mobile
 	}
 	.small-padding {
 		padding: 20px 0;
+	}
+	.heading-top-margin {
+		margin-top: 40px;
 	}
 
 	#header .logo {
