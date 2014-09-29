@@ -4,6 +4,8 @@ require_once(dirname(__FILE__).'/includes/database.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 require_once(dirname(__FILE__).'/includes/mail.php');
 
+header('Content-type: application/json');
+
 if (   empty($_REQUEST['name'])
 	|| empty($_REQUEST['mail'])
 	|| !isset($_REQUEST['title'])
@@ -62,6 +64,18 @@ else
 					}
 					else
 					{
+						$cover_result = NULL;
+						if (isset($_FILES["cover"]))
+						{
+							$cover_result = save_cover_for_event($event_id, $_FILES["cover"]);
+							// if photo upload fails, this service will still finish with success.
+
+							if (isset($cover_result["filename"]))
+							{
+								event_update($con, $event_id, NULL, NULL, NULL, $cover_result["filename"]);
+							}
+						}
+
 						$event = new stdClass();
 						$event->id = $event_id;
 						$event->title = $title;
@@ -72,6 +86,10 @@ else
 
 						send_owner_mail($mail, $event, $user);
 						$result = array('event_id' => $event_id, 'user_id' => $user_id);
+						if ($cover_result)
+						{
+							$result["cover_result"] = $cover_result;
+						}
 						echo json_encode($result);
 					}
 				}

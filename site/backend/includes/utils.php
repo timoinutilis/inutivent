@@ -13,9 +13,14 @@ require_once(dirname(__FILE__).'/../../includes/config.php');
 require_once(dirname(__FILE__).'/database.php');
 require_once(dirname(__FILE__).'/files.php');
 
+function make_error($error_id, $message)
+{
+	return array('error_id' => $error_id, 'error' => $message);
+}
+
 function return_error($error_id, $message)
 {
-	$error = array('error_id' => $error_id, 'error' => $message);
+	$error = make_error($error_id, $message);
 	echo json_encode($error);
 }
 

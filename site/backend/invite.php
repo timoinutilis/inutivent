@@ -5,6 +5,7 @@ require_once(dirname(__FILE__).'/includes/utils.php');
 require_once(dirname(__FILE__).'/includes/mail.php');
 require_once(dirname(__FILE__).'/../includes/config.php');
 
+header('Content-type: application/json');
 
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id'])

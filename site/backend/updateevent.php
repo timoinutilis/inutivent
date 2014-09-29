@@ -3,6 +3,8 @@
 require_once(dirname(__FILE__).'/includes/database.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 
+header('Content-type: application/json');
+
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id']) )
 {
@@ -45,14 +47,33 @@ else
 			{
 				return_error(ERROR_NO_PERMISSION, "No permission");
 			}
-			else if (event_update($con, $event_id, $title, $time, $details))
-			{
-				$result = array('success' => TRUE);
-				echo json_encode($result);
-			}
 			else
 			{
-				return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+				$cover_result = NULL;
+				$cover_filename = NULL;
+				if (isset($_FILES["cover"]))
+				{
+					$cover_result = save_cover_for_event($event_id, $_FILES["cover"]);
+					if (isset($cover_result["filename"]))
+					{
+						$cover_filename = $cover_result["filename"];
+					}
+					// if photo upload fails, this service will still finish with success.
+				}
+
+				if (event_update($con, $event_id, $title, $time, $details, $cover_filename))
+				{
+					$result = array('success' => TRUE);
+					if ($cover_result)
+					{
+						$result["cover_result"] = $cover_result;
+					}
+					echo json_encode($result);
+				}
+				else
+				{
+					return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+				}
 			}
 		}
 		else

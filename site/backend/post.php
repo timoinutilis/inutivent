@@ -3,6 +3,8 @@
 require_once(dirname(__FILE__).'/includes/database.php');
 require_once(dirname(__FILE__).'/includes/utils.php');
 
+header('Content-type: application/json');
+
 if (   empty($_REQUEST['event_id'])
 	|| empty($_REQUEST['user_id'])
 	|| empty($_REQUEST['type'])

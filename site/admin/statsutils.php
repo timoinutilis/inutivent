@@ -51,6 +51,7 @@ function print_table($title, $con, $query, $single_object = FALSE)
 				$vars = get_object_vars($object);
 				foreach ($vars as $value)
 				{
+					$value = str_replace("\n", '<br>', $value);
 					echo "<td>$value</td>\n";
 				}
 				echo "</tr>\n";
