@@ -117,6 +117,18 @@ else
 				}
 			}
 			$result = array('num_sent' => $num_sent, 'failed' => $failed, 'debug' => $debug);
+			if ($num_sent > 0)
+			{
+				$users = user_get_all($con, $event_id);
+				if ($users === FALSE)
+				{
+					// ignore error
+				}
+				else
+				{
+					$result['users'] = $users;
+				}
+			}
 			echo json_encode($result);
 		}
 	}
