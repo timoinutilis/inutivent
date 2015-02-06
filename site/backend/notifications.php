@@ -23,9 +23,19 @@ else
 		{
 			$parts = explode('|', $event_info);
 			$event_id = $parts[0];
-			$last_opened = $parts[1];
+			$user_id = $parts[1];
+			$last_opened = $parts[2];
 
-			$changed_events[] = $event_id;
+			$notifications = count_notifications($con, $event_id, $user_id, $last_opened);
+			if ($notifications === FALSE)
+			{
+				return_error(ERROR_MYSQL, "MySQL error: ".db_error());
+				return;
+			}
+			else if ($notifications > 0)
+			{
+				$changed_events[] = $event_id;
+			}
 		}
 
 		$result = array('events' => $changed_events);

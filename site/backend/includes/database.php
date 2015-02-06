@@ -326,4 +326,20 @@ function post_get_all($con, $event_id)
 	}
 	return FALSE;
 }
+
+function count_notifications($con, $event_id, $user_id, $last_opened)
+{
+	$event_id = mysqli_real_escape_string($con, $event_id);
+	$user_id = mysqli_real_escape_string($con, $user_id);
+	$last_opened = mysqli_real_escape_string($con, $last_opened);
+
+	$result = mysqli_query($con, "SELECT COUNT(*) AS num FROM posts WHERE event_id = '{$event_id}' AND user_id <> '{$user_id}' AND created > FROM_UNIXTIME({$last_opened})");
+	if ($result)
+	{
+		$object = mysqli_fetch_object($result);
+		return $object->num;
+	}
+	return FALSE;
+}
+
 ?>
